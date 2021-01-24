@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SummonPlayer</title>
+    <title>Summon Player</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,6 +12,18 @@
   <body>
   	<p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <h1><%= link_to('Summon Player', root_path) %></h1>
+    <nav>
+    <ul>
+    	<li>
+      	<%= link_to('Home', root_path) %>
+      </li>
+      <li>
+        <%= user_signed_in? ? 
+          link_to('Sign out', destroy_user_session_path, method: "delete") 
+          : link_to('Sign in', new_user_session_path) %>
+    </ul>
+    </nav>
     <%= yield %>
   </body>
 </html>
