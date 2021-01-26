@@ -63,7 +63,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.smtp_settings = {
     :user_name => 'apikey',
-    :password => Rails..application.credentials.sendgrid[:api_key],
+    :password => Rails.application.credentials.sendgrid[:api_key],
     :domain => 'summonplayer.com',
     :address => 'smtp.sendgrid.net',
     :port => 587,
