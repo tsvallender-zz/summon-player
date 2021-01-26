@@ -61,7 +61,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "summon_player_production"
 
   config.action_mailer.perform_caching = false
-  Rails.application.routes.default_url_options[:host] = 'summonplayer.com'
+  Rails.application.routes.default_url_options[:host] = 'summon-player.dokku.summonplayer.com'
   config.action_mailer.smtp_settings = {
     :user_name => 'apikey',
     :password => Rails.application.credentials.sendgrid[:api_key],
