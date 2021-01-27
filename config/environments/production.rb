@@ -67,7 +67,7 @@ Rails.application.configure do
     :password => Rails.application.credentials.sendgrid[:api_key],
     :domain => 'summonplayer.com',
     :address => 'smtp.sendgrid.net',
-    :port => 587,
+    :port => 2525,
     :authentication => :plain,
     :enable_starttls_auto => true
   }
