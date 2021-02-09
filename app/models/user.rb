@@ -10,4 +10,6 @@ class User < ApplicationRecord
     length:     { maximum: 20 },
     format:     { with: /\A[\w_-]+\z/i }
 
+  validates :description,
+  	length:			{ maximum: 1000 }
 end

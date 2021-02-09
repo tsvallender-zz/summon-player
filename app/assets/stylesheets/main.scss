@@ -46,6 +46,7 @@ header#title {
 }
 
 main {
+    margin: 1em 0em;
     padding: 2em;
     h1 {
         font-weight: bold;
@@ -53,7 +54,7 @@ main {
     }
 
     ul#userOptions {
-        margin: 1em 0em;
+        margin: 2em 0em 2em 0em;
 		li {
             border: 1px solid $border-color;
             padding: 0.5em;
