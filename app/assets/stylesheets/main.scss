@@ -51,4 +51,14 @@ main {
         font-weight: bold;
         font-size: 2em;
     }
+
+    ul#userOptions {
+        margin: 1em 0em;
+		li {
+            border: 1px solid $border-color;
+            padding: 0.5em;
+            display: inline;
+            list-style-type: none;
+        }
+    }
 }
