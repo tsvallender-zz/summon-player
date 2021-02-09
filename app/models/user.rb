@@ -3,4 +3,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable
+
+         
+  validates :username,
+    presence:   true,
+    length:     { maximum: 20 },
+    format:     { with: /\A[\w_-]+\z/i }
+
 end
