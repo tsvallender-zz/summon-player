@@ -1,9 +1,9 @@
-<p>Welcome to Summon Player! We are a community of tabletop gamers. Here you can find people to play RPGs, wargames and board games with, either online or in person.</p>
-
 <% if user_signed_in? %>
-    <p>Hello! <%= current_user %></p>
+    <p>Hello <%= current_user.username %>!</p>
     <%= link_to('Edit profile', edit_user_registration_path) %>
 <% else %>
+	<p>Welcome to Summon Player! We are a community of tabletop gamers. Here you can find people to play RPGs, wargames and board games with, either online or in person.</p>
+
 	<%= link_to('Sign up', new_user_registration_path) %> or
     <%= link_to('sign in', new_user_session_path) %>.
 <% end %>

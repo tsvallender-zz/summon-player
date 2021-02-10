@@ -7,7 +7,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should_get_user_profile" do
-  	get '/users/'+@user.username
+  	get user_path(@user.username)
     assert_response :success
 	end
 end
