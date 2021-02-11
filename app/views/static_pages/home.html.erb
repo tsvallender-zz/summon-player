@@ -1,6 +1,5 @@
 <% if user_signed_in? %>
-    <p>Hello <%= current_user.username %>!</p>
-    <%= link_to('Edit profile', edit_user_registration_path) %>
+    <%= render 'shared/user_home'%>
 <% else %>
 	<p>Welcome to Summon Player! We are a community of tabletop gamers. Here you can find people to play RPGs, wargames and board games with, either online or in person.</p>
 

@@ -1,5 +1,7 @@
 <h1><%= @user.username %></h1>
-
+<% if @user == current_user %>
+	<%= link_to('Edit profile', edit_user_registration_path) %>
+<% end %>
 <ul id="userOptions">
 	<li>Send message</li>
     <li>Invite to group</li>
