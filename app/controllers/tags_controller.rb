@@ -1,4 +1,12 @@
 class TagsController < ApplicationController
+  def index
+    @tags = Tag.all
+  end
+
+  def show
+    @tag = Tag.find_by(name: params[:id])
+  end
+
   def new
     @tag = Tag.new
   end
@@ -6,11 +14,29 @@ class TagsController < ApplicationController
   def create
     @tag = Tag.new(tag_params)
     if @tag.save
-      render root_url
+      redirect_to @tag
     else
       render 'new'
     end
   end
+
+  def edit
+    @tag = Tag.find_by(name: params[:id])
+  end
+
+  def update
+    if @tag.update(tag_params)
+      redirect_to @tag
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    Tag.find_by(name: params[:id]).destroy
+    redirect_to tags_path
+  end
+
 
 	private
     def tag_params

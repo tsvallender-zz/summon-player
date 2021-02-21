@@ -1,13 +1,5 @@
+<% provide(:title, 'Create a new tag') %>
+<% provide(:button_text, 'Create tag') %>
 <h1>Create a new tag</h1>
 
-<%= form_with(model: @tag, local: true) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-
-  <%= f.submit 'Create tag' %>
-<% end %>
+<%= render 'form' %>

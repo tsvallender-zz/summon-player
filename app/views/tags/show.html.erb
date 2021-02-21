@@ -1,0 +1,9 @@
+<% provide(:title, @tag.name) %>
+
+<h1><%= @tag.name %></h1>
+
+<%= link_to 'Edit', edit_tag_path(@tag) %>
+
+<%=link_to "Delete", tag_path(@tag), :method => :delete %>  
+
+<p><%= @tag.description %></p>

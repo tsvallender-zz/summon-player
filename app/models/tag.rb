@@ -6,4 +6,8 @@ class Tag < ApplicationRecord
     
     validates :description,
       length: { maximum: 1000 }
+  
+  def to_param
+    name
+  end
 end
