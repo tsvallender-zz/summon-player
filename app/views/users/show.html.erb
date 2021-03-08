@@ -9,3 +9,11 @@
 </ul>
 
 <p id="userDescription"><%= @user.description %></p>
+
+<% if @user.ads.any? %>
+    <h2>Ads</h2>
+    <ol class="ads">
+        <%= render @ads %>
+    </ol>
+    <%= will_paginate @ads %>
+<% end %>

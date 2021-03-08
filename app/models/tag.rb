@@ -7,7 +7,8 @@ class Tag < ApplicationRecord
     validates :description,
       length: { maximum: 1000 }
   
-    has_many :ads, class_name: "AdTag", foreign_key: "ad_id"
+    has_many :adtags, class_name: "AdTag", foreign_key: "tag_id"
+    has_many :ads, through: :adtags, :source => :ad
   def to_param
     name
   end

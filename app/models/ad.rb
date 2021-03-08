@@ -8,5 +8,6 @@ class Ad < ApplicationRecord
   validates :title, presence: true, length: { maximum: 30 }
   validates :category, inclusion: { in: categories.keys }
 
-  has_many :tags, class_name: "AdTag", foreign_key: "tag_id"
+  has_many :adtags, class_name: "AdTag", foreign_key: "ad_id"
+  has_many :tags, through: :adtags, :source => :tag
 end

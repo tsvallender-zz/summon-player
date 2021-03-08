@@ -7,3 +7,11 @@
 <%=link_to "Delete", tag_path(@tag), :method => :delete %>  
 
 <p><%= @tag.description %></p>
+
+<% if @tag.ads.any? %>
+    <h2>Ads</h2>
+    <ol class="ads">
+        <%= render @ads %>
+    </ol>
+    <%= will_paginate @ads %>
+<% end %>

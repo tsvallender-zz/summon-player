@@ -63,3 +63,23 @@ main {
         }
     }
 }
+
+ol.ads {
+    li {
+        border: 1px solid $border-color;
+        padding: 1em;
+        margin: 1em;
+        div {
+            margin: .2em 0em;
+        }
+        .h {
+            font-weight: bold;
+        }
+        .timestamp {
+            text-align: right;
+        }
+    }
+    h4 {
+        font-weight: bold;
+    }
+}

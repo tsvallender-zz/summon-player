@@ -1,0 +1,11 @@
+<% provide(:title, "Ads") %>
+<h2>Ads</h2>
+
+<%= will_paginate %>
+
+<% if @ads.any? %>
+    <ol class="ads">
+        <%= render @ads %>
+    </ol>
+    <%= will_paginate @ads %>
+<% end %>

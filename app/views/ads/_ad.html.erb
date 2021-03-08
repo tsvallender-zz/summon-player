@@ -1,0 +1,11 @@
+<li id="ad-id-<%= ad.id %>">
+    <h4 class="ad-title"><%= link_to ad.title, ad_path(ad.id) %></h4>
+    <div class="ad-text"><%= ad.text %></div>
+    <div class="ad-category"><span class="h">Category:</span> <%= ad.category %></div>
+    <div class="ad-tags"><span class="h">Tags:</span>
+        <% ad.tags.each do |tag| %>
+            <%= link_to tag.name, tag_path(tag.name) %>
+        <% end %>
+    </div>
+    <div class="timestamp">Posted <%= time_ago_in_words(ad.created_at) %> ago.</div>
+</li>
