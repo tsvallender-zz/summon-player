@@ -1,9 +1,11 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+dnd:
+  name: dnd
+  description: Dungeons & Dragons
 
-one:
-  name: MyString
-  description: MyText
+fifth:
+  name: 5e
+  description: D&D 5th edition
 
-two:
-  name: MyString
-  description: MyText
+kidsonbikes:
+  name: kidsonbikes
+  description: Kids on Bikes
