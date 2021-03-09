@@ -10,8 +10,6 @@
   </head>
 
   <body>
-  	<p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
 		<header id="title">
     <%= link_to(root_path) do %>
     	<h1>Summon Player</h1>
@@ -34,6 +32,9 @@
     </nav>
     </header>
     <main>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
     	<%= yield %>
     </main>
   </body>

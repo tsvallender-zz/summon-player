@@ -1,4 +1,3 @@
-* Add "flash"
 * Ads
 ** Add tags
 ** Location
