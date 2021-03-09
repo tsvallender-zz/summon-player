@@ -1,9 +1,17 @@
 dnd:
+  title: D&D
   user: trevor
   category: rpg
-  text: 'I want to play DnD'
+  text: "I want to play in Dungeons"
 
 kidsonbikes:
+  title: Kids on Bikes
   user: trevor
   category: rpg
-  text: 'I want to play Kids on Bikes'
+  text: "I want to play Kids on Bikes"
+
+scythe:
+  title: Scythe
+  user: bob
+  category: boardgame
+  text: "I want to play Scythe"

@@ -4,6 +4,7 @@
 ** Location
 ** Sort/filter options
 ** Archive
+** Search
 * tags
 ** Parent/child
 ** Synonyms
