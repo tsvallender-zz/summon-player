@@ -1,5 +1,6 @@
 * Ads
-** Model - user, category, text, tags
+** View user that posted ad
+** Ad remainder of controller functions
 ** Location
 * tags
 ** Has many ads
