@@ -1,9 +1,7 @@
 * Ads
-** View user that posted ad
-** Ad remainder of controller functions
+** Add remainder of controller functions
 ** Location
 * tags
-** Has many ads
 ** Parent/child
 ** Synonyms
 ** "Real" name
