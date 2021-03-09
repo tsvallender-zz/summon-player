@@ -48,9 +48,18 @@ header#title {
 main {
     margin: 1em 0em;
     padding: 2em;
-    h1 {
+    h1, h2, h3, h4, h5, h6 {
         font-weight: bold;
         font-size: 2em;
+    }
+    h2 {
+        font-size: 1.6em;
+    }
+    h3 {
+        font-size: 1.3em;
+    }
+    h4, h5, h6 {
+        font-size: 1em;
     }
 
     ul#userOptions {
@@ -61,6 +70,14 @@ main {
             display: inline;
             list-style-type: none;
         }
+    }
+}
+
+form {
+    .header {
+        display: block;
+        font-weight: bold;
+        padding: .5em 0em;
     }
 }
 

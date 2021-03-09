@@ -1,3 +1,4 @@
+* Add "flash"
 * Ads
 ** Add remainder of controller functions
 ** Location
@@ -13,3 +14,8 @@
 ** https://github.com/alexreisner/geocoder
 ** https://postgis.net/docs/Geocode.html
 * Turbo
+* Switch to Ajax forms?
+* Feed
+** Ads from people you follow
+* Posts
+** Into feeds

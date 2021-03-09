@@ -1,0 +1,14 @@
+<%= form_with(model: @ad, local: true) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <%= f.label :title, class: 'header' %>
+    <%= f.text_field :title %>
+
+    <%= f.label :text, class: 'header' %>
+    <%= f.text_area :text %>
+
+    <%= f.label :category, class: 'header' %>
+    <%= f.select(:category, Ad.categories.keys.map {|category| [category.titleize,category]}) %>
+
+    <%= f.submit yield(:button_text) %>
+<% end %>

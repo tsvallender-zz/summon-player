@@ -3,14 +3,14 @@
 <h2>Find a game</h2>
 <%= form_with(url: "/ads", method: "get") do %>
 	<fieldset>
-      <legend>Location</legend>
+      <legend class="header">Location</legend>
       <br><%= radio_button_tag 'location', 'online', checked: true %>
       <%= label_tag(:location_online, 'Online') %>
       <br><%= radio_button_tag 'location', 'inperson' %>
       <%= label_tag(:location_inperson, 'In-person') %>
 	</fieldset>
     <fieldset>
-      <legend>Game types</legend>
+      <legend class="header">Game types</legend>
       <br><%= check_box_tag 'rpgs', 'rpgs', true %>
       <%= label_tag(:rpgs, 'RPGs') %>
       <br><%= check_box_tag 'ccgs', 'ccgs', true %>
@@ -25,7 +25,7 @@
       <%= label_tag(:rpgs, 'LARPs') %>
     </fieldset>
     <fieldset>
-      <legend>Tags</legend>
+      <legend class="header">Tags</legend>
       <%= text_field_tag(:tags) %>
 	</fieldset>
     <%= submit_tag("Find game") %>
