@@ -22,12 +22,23 @@ class AdsController < ApplicationController
     end
 
     def edit
+        @ad = Ad.find(params[:id])
     end
 
     def update
+        @ad = Ad.find(params[:id])
+        if @ad.update(ad_params)
+            flash[:success] = "Ad updated"
+            redirect_to @ad
+        else
+            render 'edit'
+        end
     end
 
     def destroy
+        Ad.find(params[:id]).destroy
+        flash[:success] = "Ad deleted"
+        redirect_to ads_url
     end
 
     private

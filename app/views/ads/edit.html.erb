@@ -1,0 +1,8 @@
+<% provide(:title, "Edit your ad") %>
+<% provide(:button_text, "Edit") %>
+
+<h2>Edit your ad</h2>
+
+<%= render 'form' %>
+
+<%= link_to "delete", @ad, method: :delete, data: {confirm: "Are you sure?" } %>

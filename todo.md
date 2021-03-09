@@ -2,6 +2,8 @@
 * Ads
 ** Add remainder of controller functions
 ** Location
+** Sort/filter options
+** Archive
 * tags
 ** Parent/child
 ** Synonyms
