@@ -1,4 +1,7 @@
 class AdsController < ApplicationController
+    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+    before_action :ad_owner, only: [:edit, :update]
+
     def index
         @ads = Ad.paginate(page: params[:page])
     end
@@ -44,5 +47,10 @@ class AdsController < ApplicationController
     private
         def ad_params
             params.require(:ad).permit(:title, :text, :category)
+        end
+
+        def ad_owner
+            @ad = Ad.find(params[:id])
+            redirect_to(root_path) unless current_user == @ad.user
         end
 end

@@ -1,6 +1,6 @@
 * Add "flash"
 * Ads
-** Add remainder of controller functions
+** Add tags
 ** Location
 ** Sort/filter options
 ** Archive
