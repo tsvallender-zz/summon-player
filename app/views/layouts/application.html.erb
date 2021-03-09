@@ -21,6 +21,9 @@
     	<li>
       	<%= link_to('Home', root_path) %>
       </li>
+    	<li>
+      	<%= link_to('Ads', ads_path) %>
+      </li>
       <% if user_signed_in? %>
       	<li><%= link_to('Profile', user_path(current_user.username)) %></li>
 				<li><%= link_to('Sign out', destroy_user_session_path, method: "delete") %></li>
