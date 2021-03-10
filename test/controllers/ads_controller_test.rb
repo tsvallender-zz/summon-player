@@ -6,6 +6,7 @@ class AdsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @ad = ads(:dnd)
     @bob = users(:bob)
+    @category = categories(:rpg)
   end
 
   test "should redirect new when not logged in" do
@@ -15,7 +16,7 @@ class AdsControllerTest < ActionDispatch::IntegrationTest
 
   test "should redirect create when not logged in" do
     assert_no_difference "Ad.count" do
-      post ads_path, params: { ad: { title: "Test ad", text: "Testing", category: Ad.categories.keys[0]}}
+      post ads_path, params: { ad: { title: "Test ad", text: "Testing", category: @category}}
     end
     assert_redirected_to new_user_session_path
   end
@@ -30,7 +31,7 @@ class AdsControllerTest < ActionDispatch::IntegrationTest
   test "should redirect edit when not logged in" do
     @old = @ad
     assert_equal @old, @ad
-    patch ad_path(@ad), params: {ad: { title: "Test ad", text: "Testing", category: Ad.categories.keys[0]}}
+    patch ad_path(@ad), params: {ad: { title: "Test ad", text: "Testing", category: @category}}
     assert_equal @old, @ad
     assert_redirected_to new_user_session_path
   end
@@ -39,7 +40,7 @@ class AdsControllerTest < ActionDispatch::IntegrationTest
     sign_in @bob
     @old = @ad
     assert_equal @old, @ad
-    patch ad_path(@ad), params: {ad: { title: "Test ad", text: "Testing", category: Ad.categories.keys[0]}}
+    patch ad_path(@ad), params: {ad: { title: "Test ad", text: "Testing", category: @category}}
     assert_equal @old, @ad
     assert_redirected_to new_user_session_path
   end

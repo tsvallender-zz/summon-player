@@ -3,9 +3,10 @@ require 'test_helper'
 class AdTest < ActiveSupport::TestCase
   def setup
     @user = users(:trevor)
+    @rpg = categories(:rpg)
     @ad = @user.ads.build(title: "D&D Players wanted",
                           text: "I need some people to play D&D with",
-                          category: 'rpg')
+                          category: @rpg)
   end
 
   test "should be valid" do
