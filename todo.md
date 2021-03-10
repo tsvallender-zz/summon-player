@@ -1,5 +1,4 @@
 * Ads
-** Add tags
 ** Location
 ** Sort/filter options
 ** Archive
@@ -8,6 +7,7 @@
 ** Parent/child
 ** Synonyms
 ** "Real" name
+** Add new from new ad page, make sexier
 * groups
 * "games I want to play"
 * messaging
