@@ -1,6 +1,6 @@
 class AdsController < ApplicationController
-    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-    before_action :ad_owner, only: [:edit, :update]
+    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :archive, :unarchive]
+    before_action :ad_owner, only: [:edit, :update, :archive, :unarchive]
 
     def index
         if params[:ad] && ad_params[:category_id].present? # Filtering by category
@@ -52,6 +52,22 @@ class AdsController < ApplicationController
         Ad.find(params[:id]).destroy
         flash[:success] = "Ad deleted"
         redirect_to ads_url
+    end
+
+    def archive
+        @ad = Ad.find(params[:id])
+        @ad.archived = true
+        @ad.save!
+        flash[:success] = "Ad has been archived"
+        redirect_to @ad
+    end
+
+    def unarchive
+        @ad = Ad.find(params[:id])
+        @ad.archived = false
+        @ad.save!
+        flash[:success] = "Ad has been unarchived"
+        redirect_to @ad
     end
 
     private

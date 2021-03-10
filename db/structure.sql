@@ -56,7 +56,8 @@ CREATE TABLE public.ads (
     text character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    category_id bigint NOT NULL
+    category_id bigint NOT NULL,
+    archived boolean DEFAULT false
 );
 
 
@@ -408,6 +409,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210308102556'),
 ('20210310094905'),
 ('20210310095008'),
-('20210310114338');
+('20210310114338'),
+('20210310133718');
 
 
