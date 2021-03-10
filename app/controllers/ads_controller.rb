@@ -15,6 +15,7 @@ class AdsController < ApplicationController
     end
 
     def create
+        puts ad_params
         @ad = current_user.ads.build(ad_params)
         if @ad.save
             flash[:success] = "Ad posted!"
@@ -46,7 +47,7 @@ class AdsController < ApplicationController
 
     private
         def ad_params
-            params.require(:ad).permit(:title, :text, :category)
+            params.require(:ad).permit(:title, :text, :category_id)
         end
 
         def ad_owner
