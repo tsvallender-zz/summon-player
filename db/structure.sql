@@ -9,20 +9,6 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- Name: ad_category; Type: TYPE; Schema: public; Owner: -
---
-
-CREATE TYPE public.ad_category AS ENUM (
-    'rpg',
-    'ccg',
-    'boardgame',
-    'wargame',
-    'traditional',
-    'larp'
-);
-
-
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -70,7 +56,7 @@ CREATE TABLE public.ads (
     text character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    category public.ad_category
+    category_id bigint NOT NULL
 );
 
 
@@ -103,6 +89,38 @@ CREATE TABLE public.ar_internal_metadata (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
+
+
+--
+-- Name: categories; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.categories (
+    id bigint NOT NULL,
+    name character varying,
+    description text,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.categories_id_seq OWNED BY public.categories.id;
 
 
 --
@@ -205,6 +223,13 @@ ALTER TABLE ONLY public.ads ALTER COLUMN id SET DEFAULT nextval('public.ads_id_s
 
 
 --
+-- Name: categories id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.categories ALTER COLUMN id SET DEFAULT nextval('public.categories_id_seq'::regclass);
+
+
+--
 -- Name: tags id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -240,6 +265,14 @@ ALTER TABLE ONLY public.ads
 
 ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: categories categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
 
 
 --
@@ -285,6 +318,13 @@ CREATE UNIQUE INDEX index_ad_tags_on_ad_id_and_tag_id ON public.ad_tags USING bt
 --
 
 CREATE INDEX index_ad_tags_on_tag_id ON public.ad_tags USING btree (tag_id);
+
+
+--
+-- Name: index_ads_on_category_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ads_on_category_id ON public.ads USING btree (category_id);
 
 
 --
@@ -345,6 +385,14 @@ ALTER TABLE ONLY public.ads
 
 
 --
+-- Name: ads fk_rails_b1934989b5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ads
+    ADD CONSTRAINT fk_rails_b1934989b5 FOREIGN KEY (category_id) REFERENCES public.categories(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -356,7 +404,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210209123115'),
 ('20210221175428'),
 ('20210308093511'),
-('20210308094306'),
-('20210308102556');
+('20210308102556'),
+('20210310094905'),
+('20210310095008');
 
 

@@ -1,0 +1,23 @@
+rpg:
+  name: RPG
+  description: Role-playing games
+
+wargame:
+  name: Wargame
+  description: Wargame
+
+ccg:
+  name: CCG
+  description: Collectible card game
+
+boardgame:
+  name: Board game
+  description: Modern board game
+
+traditional:
+  name: Traditional
+  description: Traditional game
+
+larp:
+  name: LARP
+  description: Live-Action Roleplaying Game

@@ -2,7 +2,7 @@
 
 <h2 class="ad-title"><%= @ad.title %></h2>
 <div class="ad-text"><%= @ad.text %></div>
-<div class="ad-category"><span class="h">Category:</span> <%= @ad.category %></div>
+<div class="ad-category"><span class="h">Category:</span> <%= @ad.category.name %></div>
 <div class="ad-tags"><span class="h">Tags:</span>
     <% @ad.tags.each do |tag| %>
         <%= link_to tag.name, tag_path(tag.name) %>
