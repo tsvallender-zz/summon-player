@@ -1,5 +1,9 @@
+* More tests
+* Messaging (Using Action Cable)
 * Ads
 ** Location
+*** https://github.com/alexreisner/geocoder
+*** https://postgis.net/docs/Geocode.html
 ** Search
 * tags
 ** Parent/child
@@ -7,14 +11,8 @@
 ** "Real" name
 ** Add new from new ad page, make sexier
 ** Follow - same as adtags associations
-* user
-** 
 * groups
-* messaging
-** https://blog.alexmaccaw.com/killing-a-library
-* user location
-** https://github.com/alexreisner/geocoder
-** https://postgis.net/docs/Geocode.html
+** Clubs, Stores
 * Turbo
 * Switch to Ajax forms?
 * Posts
