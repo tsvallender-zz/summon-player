@@ -4,6 +4,7 @@
         <%= f.input :title %>
         <%= f.input :text, :as => :text %>
         <%= f.input :category %>
+        <%= f.input :tags, :as => :check_boxes, :collection => Tag.all %>
     <% end %>
     <%= f.actions %>
 <% end %>
