@@ -3,6 +3,14 @@
 
 <%= link_to 'Post a new ad', new_ad_path %>
 
+<h3>Filter:</h3>
+<%= form_tag(ads_path, method: :get) do %>
+    <%= label :ad, :category, class: 'header' %>
+    <%= collection_select :ad, :category_id, Category.all, :id, :name, :include_blank => "All" %>
+
+    <%= submit_tag 'Filter' %>
+<% end %>
+
 <%= will_paginate %>
 
 <% if @ads.any? %>

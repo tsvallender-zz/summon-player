@@ -3,7 +3,11 @@ class AdsController < ApplicationController
     before_action :ad_owner, only: [:edit, :update]
 
     def index
-        @ads = Ad.paginate(page: params[:page])
+        if params[:ad] && ad_params[:category_id].present? # Filtering by category
+            @ads = Ad.where(category_id: ad_params[:category_id]).paginate(page: params[:page])
+        else
+            @ads = Ad.paginate(page: params[:page])
+        end
     end
 
     def show

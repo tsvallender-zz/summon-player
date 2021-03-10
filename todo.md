@@ -1,4 +1,5 @@
 * Ads
+** Fix controller params permissions
 ** Location
 ** Sort/filter options
 ** Archive
