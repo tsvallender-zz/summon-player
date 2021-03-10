@@ -21,12 +21,12 @@ user.save!
 end
 
 # Create categories
-rpg = Category.create!(name: "RPG", description: "Tabletop Roleplaying Games")
-ccg = Category.create!(name: "CCG", description: "Collectible card games")
-wargame = Category.create!(name: "Wargame", description: "Wargames")
-boardgame = Category.create!(name: "Board game", description: "Modern Board Games")
-traditional = Category.create!(name: "Traditional", description: "Traditional Games")
-larp = Category.create!(name: "LARP", description: "Live-Action Roleplaying Games")
+rpg = Category.create!(name: "RPG", description: "Tabletop Roleplaying Games", stub: "rpg")
+ccg = Category.create!(name: "CCG", description: "Collectible card games", stub: "ccg")
+wargame = Category.create!(name: "Wargame", description: "Wargames", stub: "wargame")
+boardgame = Category.create!(name: "Board game", description: "Modern Board Games", stub: "boardgame")
+traditional = Category.create!(name: "Traditional", description: "Traditional Games", stub: "traditional")
+larp = Category.create!(name: "LARP", description: "Live-Action Roleplaying Games", stub: "larp")
 
 # Generate tags
 dnd = Tag.create!(name: "dnd", description: "Dungeons & Dragons")
