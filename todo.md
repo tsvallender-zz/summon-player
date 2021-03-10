@@ -9,7 +9,7 @@
 ** "Real" name
 ** Add new from new ad page, make sexier
 * groups
-* "games I want to play"
+* "games I want to play"/follow tags
 * messaging
 ** https://blog.alexmaccaw.com/killing-a-library
 * user location
