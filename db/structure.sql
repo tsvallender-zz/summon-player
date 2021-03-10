@@ -100,7 +100,8 @@ CREATE TABLE public.categories (
     name character varying,
     description text,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    stub character varying
 );
 
 
@@ -406,6 +407,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210308093511'),
 ('20210308102556'),
 ('20210310094905'),
-('20210310095008');
+('20210310095008'),
+('20210310114338');
 
 

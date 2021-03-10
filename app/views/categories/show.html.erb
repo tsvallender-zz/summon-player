@@ -1,0 +1,11 @@
+<% provide(:title, @category.name) %>
+
+<h2><%= @category.name %></h2>
+<p><%= @category.description %></p>
+
+<% if @category.ads.any? %>
+    <ol class="ads">
+        <%= render @ads %>
+    </ol>
+    <%= will_paginate @ads %>
+<% end %>
