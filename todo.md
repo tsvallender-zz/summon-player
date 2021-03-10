@@ -1,15 +1,15 @@
 * Ads
 ** Location
-** Sort/filter options
-** Archive
 ** Search
 * tags
 ** Parent/child
 ** Synonyms
 ** "Real" name
 ** Add new from new ad page, make sexier
+** Follow - same as adtags associations
+* user
+** 
 * groups
-* "games I want to play"/follow tags
 * messaging
 ** https://blog.alexmaccaw.com/killing-a-library
 * user location
@@ -17,7 +17,5 @@
 ** https://postgis.net/docs/Geocode.html
 * Turbo
 * Switch to Ajax forms?
-* Feed
-** Ads from people you follow
 * Posts
 ** Into feeds

@@ -8,6 +8,7 @@
     </div>
 <% end %>
 <div class="ad-text"><%= @ad.text %></div>
+<div class="ad-user">Posted by <%= @ad.user.username %></div>
 <div class="ad-category"><span class="h">Category:</span> <%= @ad.category.name %></div>
 <div class="ad-tags"><span class="h">Tags:</span>
     <% @ad.tags.each do |tag| %>
@@ -15,7 +16,7 @@
     <% end %>
 </div>
 <div class="timestamp">Posted <%= time_ago_in_words(@ad.created_at) %> ago.</div>
-<% if current_user == @ad.user %>
+<% if current_user.id == @ad.user.id %>
     <%= link_to 'Edit ad', edit_ad_path %>
     <% unless @ad.archived %>
         | <%= link_to 'Archive ad', archive_ad_path, method: "put" %>

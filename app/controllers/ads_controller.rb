@@ -4,14 +4,18 @@ class AdsController < ApplicationController
 
     def index
         if params[:ad] && ad_params[:category_id].present? # Filtering by category
-            @ads = Ad.where(category_id: ad_params[:category_id]).paginate(page: params[:page])
+            @ads = Ad.desc.active.where(category_id: ad_params[:category_id]).paginate(page: params[:page])
         else
-            @ads = Ad.paginate(page: params[:page])
+            @ads = Ad.desc.active.paginate(page: params[:page])
         end
     end
 
     def show
         @ad = Ad.find(params[:id])
+        if @ad.archived && @ad.user != current_user
+            flash[:alert] = "You don't have permission to view that ad"
+            redirect_to ads_path
+        end
     end
 
     def new

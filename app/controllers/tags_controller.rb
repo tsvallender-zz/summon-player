@@ -6,7 +6,7 @@ class TagsController < ApplicationController
 
   def show
     @tag = Tag.find_by(name: params[:id])
-    @ads = @tag.ads.paginate(page: params[:page])
+    @ads = @tag.ads.active.paginate(page: params[:page])
   end
 
   def new
