@@ -56,7 +56,7 @@ class AdsController < ApplicationController
 
     private
         def ad_params
-            params.require(:ad).permit!
+            params.require(:ad).permit(:title, :text, :category_id, :tag_ids => [])
         end
 
         def ad_owner
