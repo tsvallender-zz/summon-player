@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   resources :tags
   resources :ads do
     member do
-      put :archive
-      put :unarchive
+      patch :archive
+      patch :unarchive
     end
   end
   resources :categories

@@ -1,19 +1,42 @@
 require 'test_helper'
 
 class MessagesControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get messages_index_url
+  include Devise::Test::IntegrationHelpers
+  def setup
+    @trevor = users(:trevor)
+    @bob = users(:bob)
+  end
+
+  test "should redirect index when not logged in" do
+    get messages_index_path
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should get index when logged in" do
+    sign_in @trevor
+    get messages_index_path
+    assert :success
+  end
+
+  test "should redirect conversation when not logged in" do
+    get message_path(@trevor)
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should get conversation when logged in" do
+    sign_in @trevor
+    get message_path(@bob.id)
     assert_response :success
   end
 
-  test "should get new" do
-    get messages_new_url
-    assert_response :success
+  test "should redirect create when not logged in" do
+    post messages_path(params: { message: { text: "Hello there", to_id: 1}})
+    assert_redirected_to new_user_session_path
   end
 
-  test "should get create" do
-    get messages_create_url
+  test "should create message when logged in" do
+    sign_in @trevor
+    post messages_path(params: { message: { text: "Hello there", to_id: 1}})
     assert_response :success
   end
-
 end

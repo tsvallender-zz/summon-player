@@ -4,6 +4,7 @@ trevor:
   description: "I do love to play"
   email: admin@summonplayer.com
   encrypted_password: <%= User.new.send(:password_digest, '123456') %>
+  confirmed_at: <%= 6.months.ago %>
 
 bob:
   id: 2
@@ -11,3 +12,4 @@ bob:
   description: "I do love to play"
   email: bob@summonplayer.com
   encrypted_password: <%= User.new.send(:password_digest, 'foobar') %>
+  confirmed_at: <%= 4.months.ago %>

@@ -1,11 +1,9 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  text: MyText
-  from_id: 
-  to_id: 
+  text: Hello there
+  from_id: 1
+  to_id: 2
 
 two:
-  text: MyText
-  from_id: 
-  to_id: 
+  text: Back at you
+  from_id: 2
+  to_id: 1

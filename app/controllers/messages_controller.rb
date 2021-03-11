@@ -11,19 +11,14 @@ class MessagesController < ApplicationController
     @message = Message.new
   end
 
-  def new
-    @message = Message.new
-  end
-
   def create
     message = current_user.sent_messages.build(
       to: User.find(message_params[:to_id]),
       text: message_params[:text]
     )
-
     if message.save
-        ActionCable.server.broadcast 'messages_channel',
-                                    message: render_message(message)
+        ActionCable.server.broadcast('messages_channel',
+                                    { message: render_message(message) })
     end
   end
 

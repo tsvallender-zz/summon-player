@@ -43,10 +43,10 @@ class AdsController < ApplicationController
     end
 
     def update
-        @ad = Ad.find(params[:id])
-        if @ad.update(ad_params)
+        ad = Ad.find(params[:id])
+        if ad.update(ad_params)
             flash[:success] = "Ad updated"
-            redirect_to @ad
+            redirect_to ad
         else
             render 'edit'
         end

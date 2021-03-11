@@ -1,17 +1,27 @@
 dnd:
   title: D&D
-  user: trevor
+  user_id: 1
   category: rpg
   text: "I want to play in Dungeons"
+  archived: false
 
 kidsonbikes:
   title: Kids on Bikes
-  user: trevor
+  user_id: 1
   category: rpg
   text: "I want to play Kids on Bikes"
+  archived: false
 
 scythe:
   title: Scythe
-  user: bob
+  user_id: 2
   category: boardgame
   text: "I want to play Scythe"
+  archived: false
+
+archived:
+  title: Warhammer Quest
+  user_id: 2
+  category: boardgame
+  text: "I want to play WHQ"
+  archived: true
