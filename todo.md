@@ -1,5 +1,5 @@
 * More tests
-* Messaging (Using Action Cable)
+* Messaging
 * Ads
 ** Location
 *** https://github.com/alexreisner/geocoder
