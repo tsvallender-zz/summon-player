@@ -3,11 +3,8 @@
 
 <%= link_to 'Post a new message', new_message_path %>
 
-<%= will_paginate %>
-
-<% if @messages.any? %>
-    <ol class="messages">
-        <%= render @messages %>
+<% @conversations.each do |c| %>
+    <ol class="conversations">
+        <li><%= User.find(c).username %></li>
     </ol>
-    <%= will_paginate @messages %>
 <% end %>

@@ -110,3 +110,26 @@ ol.ads {
     padding: .5em;
     border-radius: 1em;
 }
+
+ol.messages {
+    li.message {
+        border: 1px solid $border-color;
+        border-radius: 1em;
+        margin: 1em 0em;
+        padding: 1em;
+    }
+    .from {
+        display: block;
+        font-weight: bold;
+        font-size: .6em;
+    }
+    .text {
+        display: block;
+        margin: .5em;
+    }
+    .time {
+        font-size: .6em;
+        display: block;
+        text-align: right;
+    }
+}

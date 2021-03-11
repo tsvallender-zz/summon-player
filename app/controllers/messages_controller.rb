@@ -2,8 +2,12 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    # completely useless, just for dev
-    @messages = Message.paginate(page: params[:page])
+    @conversations = current_user.conversations
+  end
+
+  def show
+    @user = User.find(params[:id])
+    @messages = current_user.conversation(params[:id])
   end
 
   def new
@@ -22,7 +26,6 @@ class MessagesController < ApplicationController
                                     to: @message.to,
                                     from: @message.from
     end
-
     redirect_to messages_path # need to do something meaningful
   end
 

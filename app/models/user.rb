@@ -15,4 +15,14 @@ class User < ApplicationRecord
 
   validates :description,
   	length:			{ maximum: 1000 }
+
+  # Returns a list of user ids this user is conversing with
+  def conversations
+    (sent_messages.distinct.pluck(:to_id) + received_messages.distinct.pluck(:from_id)).uniq
+  end
+
+  # Returns the conversation with a given user
+  def conversation(user_id)
+    sent_messages.where(to_id: user_id).or(received_messages.where(from_id: user_id)).order("created_at")
+  end
 end

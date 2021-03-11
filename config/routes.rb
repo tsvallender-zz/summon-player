@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "static_pages#home"
   resources :users, only: [:show]
-  resources :messages, only: [:index, :new, :create]
+  resources :messages, only: [:index, :show, :new, :create]
   resources :tags
   resources :ads do
     member do
