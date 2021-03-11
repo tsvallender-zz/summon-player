@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    # completely useless, just for dev
     @messages = Message.paginate(page: params[:page])
   end
 
@@ -12,7 +13,7 @@ class MessagesController < ApplicationController
   def create
     @message = Message.create(
       from: current_user,
-      to: message_params[:to],
+      to: User.find(message_params[:to_id]),
       text: message_params[:text]
     )
 
@@ -20,6 +21,11 @@ class MessagesController < ApplicationController
         flash[:success] = "message posted!"
     end
 
-    render 'new' # need to do something meaningful
+    redirect_to messages_path # need to do something meaningful
   end
+
+  private
+    def message_params
+        params.require(:message).permit(:text, :to_id)
+    end
 end

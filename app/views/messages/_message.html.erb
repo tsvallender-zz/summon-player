@@ -1,0 +1,6 @@
+<li id="message-id-<%= message.id %>">
+    <div class="message-to">To <%= message.to.username %></div>
+    <div class="message-text"><%= message.text %></div>
+    <div class="message-from">From <%= message.from.username %></div>
+    <div class="timestamp">Posted <%= time_ago_in_words(message.created_at) %> ago.</div>
+</li>
