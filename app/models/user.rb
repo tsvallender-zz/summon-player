@@ -5,7 +5,8 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable
 
   has_many :ads, dependent: :destroy
-  has_many :messages
+  has_many :sent_messages, foreign_key: :from_id, class_name: "Message"
+  has_many :received_messages, foreign_key: :to_id, class_name: "Message"
          
   validates :username,
     presence:   true,

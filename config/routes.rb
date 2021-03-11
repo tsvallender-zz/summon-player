@@ -16,4 +16,6 @@ Rails.application.routes.draw do
     end
   end
   resources :categories
+
+  mount ActionCable.server, at: '/cable'
 end
