@@ -5,6 +5,6 @@
 
 <% @conversations.each do |c| %>
     <ol class="conversations">
-        <li><%= User.find(c).username %></li>
+        <li><%= link_to User.find(c).username, message_path(c) %></li>
     </ol>
 <% end %>
