@@ -1,0 +1,13 @@
+<% provide(:title, "Messages") %>
+<h2>Messages</h2>
+
+<%= link_to 'Post a new message', new_message_path %>
+
+<%= will_paginate %>
+
+<% if @messages.any? %>
+    <ol class="messages">
+        <%= render @messages %>
+    </ol>
+    <%= will_paginate @messages %>
+<% end %>
