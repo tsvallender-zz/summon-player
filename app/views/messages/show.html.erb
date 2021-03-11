@@ -2,15 +2,9 @@
 
 <h2><%= @user.username %></h2>
 
-<% @messages.each do |m| %>
-    <ol class="messages">
-        <li class="message">
-            <span class="from"><%= m.from.username %>:</span>
-            <span class="text"><%= m.text %></span>
-            <span class="time"><%= time_ago_in_words(m.created_at) %> ago.</span>
-        </li>
-    </ol>
-<% end %>
+<ol id="messages">
+    <%= render @messages %>
+</ol>
 
 <%= form_with(model: @message) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>

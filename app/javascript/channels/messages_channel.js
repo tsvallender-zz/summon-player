@@ -10,6 +10,6 @@ consumer.subscriptions.create("MessagesChannel", {
   },
 
   received(data) {
-    alert(data.from.username + ' says ' + data.text);
+    document.getElementById('messages').innerHTML += data.message;
   }
 });
