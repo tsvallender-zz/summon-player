@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable
 
   has_many :ads, dependent: :destroy
+  has_many :messages
          
   validates :username,
     presence:   true,
