@@ -8,6 +8,7 @@ class MessagesController < ApplicationController
   def show
     @user = User.find(params[:id])
     @messages = current_user.conversation(params[:id])
+    @message = Message.new
   end
 
   def new
@@ -26,7 +27,6 @@ class MessagesController < ApplicationController
                                     to: @message.to,
                                     from: @message.from
     end
-    redirect_to messages_path # need to do something meaningful
   end
 
   private

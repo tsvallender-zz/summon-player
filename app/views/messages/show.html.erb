@@ -11,3 +11,13 @@
         </li>
     </ol>
 <% end %>
+
+<%= form_with(model: @message) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <%= f.text_area :text %>
+
+    <%= f.hidden_field :to_id, value: @user.id %>
+
+    <%= f.submit "Send" %>
+<% end %>
