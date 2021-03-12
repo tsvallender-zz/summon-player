@@ -1,4 +1,5 @@
 * Messaging
+** don't display self on ad page
 ** dont display ad messages in conversations
 ** group
 ** notifications, read/unread

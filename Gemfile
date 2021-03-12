@@ -8,7 +8,8 @@ gem 'pg', '~> 1.2.3'
 gem 'puma', '~> 4.1'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 4.0' # transpiles javascript
-gem 'turbolinks', '~> 5' # change to turbo soon?
+gem 'turbo-rails'
+gem 'redis'
 gem 'will_paginate'
 gem 'devise'
 gem 'bootsnap', '>= 1.4.2', require: false # reduces boot time via caching

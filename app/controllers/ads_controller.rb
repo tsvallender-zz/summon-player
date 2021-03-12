@@ -79,6 +79,13 @@ class AdsController < ApplicationController
         redirect_to @ad
     end
 
+    def messages
+        @user = User.find_by(username: params[:user])
+        @ad = Ad.find(params[:id])
+        @messages = @ad.messages.user(@user)
+        render(partial: 'messages')
+    end
+
     private
         def ad_params
             params.require(:ad).permit(:title, :text, :category_id, :tag_ids => [])

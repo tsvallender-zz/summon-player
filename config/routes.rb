@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     member do
       patch :archive
       patch :unarchive
+      get   :messages
     end
   end
   resources :categories

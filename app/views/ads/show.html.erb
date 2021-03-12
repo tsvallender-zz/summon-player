@@ -28,9 +28,10 @@
 <% if current_user == @ad.user %>
     <ol id="users">
         <% @users.each do |u| %>
-            <li><%= u.username %></li>
+            <li><a href="<%= messages_ad_path(@ad, :user => u.username) %>" data-turbo-frame="user_messages"><%= u.username %></a>
         <% end %>
     </ol>
+    <%= turbo_frame_tag "user_messages" %>
 <% else %>
     <ol id="messages">
         <%= render @messages %>
