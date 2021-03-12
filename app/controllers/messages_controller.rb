@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @conversations = current_user.conversations
+    @users = current_user.conversations
   end
 
   def show

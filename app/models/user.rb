@@ -20,9 +20,14 @@ class User < ApplicationRecord
     name
   end
 
-  # Returns a list of user ids this user is conversing with
+  # Returns a list of users this user is conversing with
   def conversations
-    (sent_messages.distinct.pluck(:to_id) + received_messages.distinct.pluck(:from_id)).uniq
+    user_ids = (sent_messages.distinct.pluck(:to_id) + received_messages.distinct.pluck(:from_id)).uniq
+    users = []
+    user_ids.each do |u|
+      users.append(User.find(u))
+    end
+    users
   end
 
   # Returns the conversation with a given user

@@ -3,8 +3,8 @@
 
 <%= link_to 'Post a new message', new_message_path %>
 
-<% @conversations.each do |c| %>
+<% @users.each do |c| %>
     <ol class="conversations">
-        <li><%= link_to User.find(c).username, message_path(c) %></li>
+        <li><%= link_to c.username, message_path(c.username) %></li>
     </ol>
 <% end %>
