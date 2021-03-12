@@ -1,6 +1,4 @@
 class Ad < ApplicationRecord
-  # enum category: {rpg: 'rpg', ccg: 'ccg', boardgame: 'boardgame', 
-  #   wargame: 'wargame', traditional: 'traditional', larp: 'larp'}
   belongs_to :user
   belongs_to :category
 
@@ -11,7 +9,11 @@ class Ad < ApplicationRecord
   has_many :adtags, class_name: "AdTag", foreign_key: "ad_id"
   has_many :tags, through: :adtags, :source => :tag
   
-  has_many :messages
+  has_many :messages do
+    def user(user)
+      where(:to_id => user.id).or(where(:from_id => user.id))
+    end
+  end
 
   scope :active, -> { where(archived: false) }
   scope :desc, -> { order(created_at: :desc) }

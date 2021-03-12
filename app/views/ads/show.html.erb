@@ -21,4 +21,20 @@
     <% unless @ad.archived %>
         | <%= link_to 'Archive ad', archive_ad_path, method: "put", class: "archive" %>
     <% end %>
+    <!-- here we need to have owners messages -->
+<% else %>
+    <h2>Messages</h2>
+    <ol id="messages">
+        <%= render @messages %>
+    </ol>
+    <%= form_with(model: @message) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <%= f.text_area :text %>
+
+        <%= f.hidden_field :to_id, value: @ad.user.id %>
+        <%= f.hidden_field :ad_id, value: @ad.id %>
+
+        <%= f.submit "Send" %>
+    <% end %>
 <% end %>

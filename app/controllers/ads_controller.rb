@@ -11,7 +11,9 @@ class AdsController < ApplicationController
     end
 
     def show
+        @message = Message.new
         @ad = Ad.find(params[:id])
+        @messages = @ad.messages.user(current_user)
         if @ad.archived && @ad.user != current_user
             flash[:alert] = "You don't have permission to view that ad"
             redirect_to ads_path

@@ -1,6 +1,6 @@
 * More tests
 * Messaging
-** on ads
+** dont display ad messages in conversations
 ** group
 ** notifications, read/unread
 * Ads
