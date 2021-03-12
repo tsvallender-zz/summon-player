@@ -135,7 +135,8 @@ CREATE TABLE public.messages (
     from_id integer,
     to_id integer,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    ad_id bigint
 );
 
 
@@ -392,6 +393,13 @@ CREATE INDEX index_ads_on_user_id_and_created_at ON public.ads USING btree (user
 
 
 --
+-- Name: index_messages_on_ad_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_messages_on_ad_id ON public.messages USING btree (ad_id);
+
+
+--
 -- Name: index_messages_on_from_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -441,6 +449,14 @@ CREATE UNIQUE INDEX index_users_on_username ON public.users USING btree (usernam
 
 
 --
+-- Name: messages fk_rails_2a9002a576; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.messages
+    ADD CONSTRAINT fk_rails_2a9002a576 FOREIGN KEY (ad_id) REFERENCES public.ads(id);
+
+
+--
 -- Name: ads fk_rails_400d8fa7ce; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -473,6 +489,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210310095008'),
 ('20210310114338'),
 ('20210310133718'),
-('20210311090113');
+('20210311090113'),
+('20210312083747');
 
 

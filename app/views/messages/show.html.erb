@@ -12,6 +12,7 @@
     <%= f.text_area :text %>
 
     <%= f.hidden_field :to_id, value: @user.id %>
+    <%= f.hidden_field :ad_id %>
 
     <%= f.submit "Send" %>
 <% end %>

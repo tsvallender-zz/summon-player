@@ -1,7 +1,5 @@
-<li id="message-id-<%= message.id %>">
-    <li class="message">
-        <span class="from"><%= message.from.username %>:</span>
-        <span class="text"><%= message.text %></span>
-        <span class="time"><%= time_ago_in_words(message.created_at) %> ago.</span>
-    </li>
+<li id="message-id-<%= message.id %>" class="message">
+    <span class="from"><%= message.from.username %>:</span>
+    <span class="text"><%= message.text %></span>
+    <span class="time"><%= time_ago_in_words(message.created_at) %> ago.</span>
 </li>

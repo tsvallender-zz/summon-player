@@ -10,6 +10,8 @@ class Ad < ApplicationRecord
 
   has_many :adtags, class_name: "AdTag", foreign_key: "ad_id"
   has_many :tags, through: :adtags, :source => :tag
+  
+  has_many :messages
 
   scope :active, -> { where(archived: false) }
   scope :desc, -> { order(created_at: :desc) }

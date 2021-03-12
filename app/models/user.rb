@@ -16,6 +16,10 @@ class User < ApplicationRecord
   validates :description,
   	length:			{ maximum: 1000 }
 
+  def to_param
+    name
+  end
+
   # Returns a list of user ids this user is conversing with
   def conversations
     (sent_messages.distinct.pluck(:to_id) + received_messages.distinct.pluck(:from_id)).uniq
