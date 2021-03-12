@@ -1,8 +1,8 @@
-* More tests
 * Messaging
 ** dont display ad messages in conversations
 ** group
 ** notifications, read/unread
+** List ad conversations
 * Ads
 ** Location
 *** https://github.com/alexreisner/geocoder
@@ -20,3 +20,8 @@
 * Switch to Ajax forms?
 * Posts
 ** Into feeds
+
+* At-work tasks:
+** More tests (models)
+** CSS - Responsive
+** Make chat scroll etc.

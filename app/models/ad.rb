@@ -17,4 +17,13 @@ class Ad < ApplicationRecord
 
   scope :active, -> { where(archived: false) }
   scope :desc, -> { order(created_at: :desc) }
+
+  def interested
+    user_ids = self.messages.distinct.pluck(:from_id)
+    users = []
+    user_ids.each do |u|
+      users.append(User.find(u))
+    end
+    users
+  end
 end

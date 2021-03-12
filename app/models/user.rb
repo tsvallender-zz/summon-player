@@ -32,6 +32,6 @@ class User < ApplicationRecord
 
   # Returns the conversation with a given user
   def conversation(user_id)
-    sent_messages.where(to_id: user_id).or(received_messages.where(from_id: user_id)).order("created_at")
+    sent_messages.where(to_id: user_id, ad_id: nil).or(received_messages.where(from_id: user_id, ad_id: nil)).order("created_at")
   end
 end
