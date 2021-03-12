@@ -1,5 +1,8 @@
 * More tests
 * Messaging
+** on ads
+** group
+** notifications, read/unread
 * Ads
 ** Location
 *** https://github.com/alexreisner/geocoder
