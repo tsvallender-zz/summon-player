@@ -1,5 +1,4 @@
 * Messaging
-** don't display self on ad page
 ** dont display ad messages in conversations
 ** group
 ** notifications, read/unread
@@ -26,3 +25,4 @@
 ** CSS - Responsive
 ** Make chat scroll etc.
 ** Cookie error
+** Check for bangs

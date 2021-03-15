@@ -19,7 +19,7 @@ class Ad < ApplicationRecord
   scope :desc, -> { order(created_at: :desc) }
 
   def interested
-    user_ids = self.messages.distinct.pluck(:from_id)
+    user_ids = self.messages.where.not(from: user).distinct.pluck(:from_id)
     users = []
     user_ids.each do |u|
       users.append(User.find(u))
