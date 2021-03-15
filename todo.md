@@ -3,7 +3,6 @@
 ** dont display ad messages in conversations
 ** group
 ** notifications, read/unread
-** List ad conversations
 * Ads
 ** Location
 *** https://github.com/alexreisner/geocoder
