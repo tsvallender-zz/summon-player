@@ -83,6 +83,7 @@ class AdsController < ApplicationController
         @user = User.find_by(username: params[:user])
         @ad = Ad.find(params[:id])
         @messages = @ad.messages.user(@user)
+        @message = Message.new
         render(partial: 'messages')
     end
 

@@ -23,8 +23,15 @@ class MessagesController < ApplicationController
     end
 
     if message.save!
-        ActionCable.server.broadcast('messages_channel',
-                                    { message: render_message(message) })
+      respond_to do |format|
+        format.html { ActionCable.server.broadcast('messages_channel',
+                                    { message: render_message(message) }) }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.append(:messages,
+            partial: "messages/message",
+            locals: { message: message })
+        end
+      end
     else
       flash[:alert] = "Couldn't post your message"
       redirect_to message_path(user.username)

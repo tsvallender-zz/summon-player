@@ -31,7 +31,7 @@
             <li><a href="<%= messages_ad_path(@ad, :user => u.username) %>" data-turbo-frame="user_messages"><%= u.username %></a>
         <% end %>
     </ol>
-    <%= turbo_frame_tag "user_messages" %>
+    <%= turbo_frame_tag "user_messages", src: messages_ad_path(@ad, :user => @users.first.username) %>
 <% else %>
     <ol id="messages">
         <%= render @messages %>
@@ -40,7 +40,6 @@
         <%= render 'shared/error_messages', object: f.object %>
 
         <%= f.text_area :text %>
-
         <%= f.hidden_field :to_id, value: @ad.user.id %>
         <%= f.hidden_field :ad_id, value: @ad.id %>
 
