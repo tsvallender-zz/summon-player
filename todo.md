@@ -1,5 +1,4 @@
 * Messaging
-** dont display ad messages in conversations
 ** group
 ** notifications, read/unread
 * Ads
@@ -15,8 +14,6 @@
 ** Follow - same as adtags associations
 * groups
 ** Clubs, Stores
-* Turbo
-* Switch to Ajax forms?
 * Posts
 ** Into feeds
 
