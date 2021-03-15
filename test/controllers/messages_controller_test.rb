@@ -25,7 +25,7 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
 
   test "should get conversation when logged in" do
     sign_in @trevor
-    get message_path(@bob.id)
+    get message_path(@bob)
     assert_response :success
   end
 
@@ -36,7 +36,9 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create message when logged in" do
     sign_in @trevor
-    post messages_path(params: { message: { text: "Hello there", to_id: 1}})
+    assert_difference "Message.count", 1 do
+      post messages_path(params: { message: { text: "Hello there", to_id: 1}})
+    end
     assert_response :success
   end
 end

@@ -24,6 +24,20 @@ class AdTest < ActiveSupport::TestCase
   end
 
   test "should require a valid category" do
-    assert_raise(Exception) { @ad.category = "blah" }
+    @ad.category = nil
+    assert_not @ad.valid?
+  end
+
+  test "should require an owner" do
+    @ad.user = nil
+    assert_not @ad.valid?
+  end
+
+  test "active scope should not get archived ads" do
+    assert_equal(3, Ad.active.count)
+  end
+
+  test "archived scope should get only archived ads" do
+    assert_equal(1, Ad.archived.count)
   end
 end

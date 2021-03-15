@@ -17,7 +17,7 @@ class User < ApplicationRecord
   	length:			{ maximum: 1000 }
 
   def to_param
-    name
+    username
   end
 
   # Returns a list of users this user is conversing with

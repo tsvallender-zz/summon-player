@@ -13,13 +13,15 @@ class AdsController < ApplicationController
     def show
         @message = Message.new
         @ad = Ad.find(params[:id])
-        @messages = @ad.messages.user(current_user)
-        if @ad.user == current_user
-            @users = @ad.interested
-        end
-        if @ad.archived && @ad.user != current_user
-            flash[:alert] = "You don't have permission to view that ad"
-            redirect_to ads_path
+        if (user_signed_in?)
+            @messages = @ad.conversation(current_user)
+            if @ad.user == current_user
+                @users = @ad.interested
+            end
+            if @ad.archived && @ad.user != current_user
+                flash[:alert] = "You don't have permission to view that ad"
+                redirect_to ads_path
+            end
         end
     end
 
@@ -82,7 +84,7 @@ class AdsController < ApplicationController
     def messages
         @user = User.find_by(username: params[:user])
         @ad = Ad.find(params[:id])
-        @messages = @ad.messages.user(@user)
+        @messages = @ad.conversation(@user)
         @message = Message.new
         render(partial: 'messages')
     end

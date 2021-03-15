@@ -24,25 +24,27 @@
     <% end %>
 <% end %>
 
-<h2>Messages</h2>
-<% if current_user == @ad.user %>
-    <ol id="users">
-        <% @users.each do |u| %>
-            <li><a href="<%= messages_ad_path(@ad, :user => u.username) %>" data-turbo-frame="user_messages"><%= u.username %></a>
+<% if user_signed_in? %>
+    <h2>Messages</h2>
+    <% if current_user == @ad.user %>
+        <ol id="users">
+            <% @users.each do |u| %>
+                <li><a href="<%= messages_ad_path(@ad, :user => u.username) %>" data-turbo-frame="user_messages"><%= u.username %></a>
+            <% end %>
+        </ol>
+        <%= turbo_frame_tag "user_messages" %>
+    <% else %>
+        <ol id="messages">
+            <%= render @messages %>
+        </ol>
+        <%= form_with(model: @message) do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+
+            <%= f.text_area :text %>
+            <%= f.hidden_field :to_id, value: @ad.user.id %>
+            <%= f.hidden_field :ad_id, value: @ad.id %>
+
+            <%= f.submit "Send" %>
         <% end %>
-    </ol>
-    <%= turbo_frame_tag "user_messages" %>
-<% else %>
-    <ol id="messages">
-        <%= render @messages %>
-    </ol>
-    <%= form_with(model: @message) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
-
-        <%= f.text_area :text %>
-        <%= f.hidden_field :to_id, value: @ad.user.id %>
-        <%= f.hidden_field :ad_id, value: @ad.id %>
-
-        <%= f.submit "Send" %>
     <% end %>
 <% end %>

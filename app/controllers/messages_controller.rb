@@ -29,6 +29,9 @@ class MessagesController < ApplicationController
             partial: "messages/message",
             locals: { message: message })
         end
+        format.html do
+          
+        end
       end
     else
       flash[:alert] = "Couldn't post your message"
