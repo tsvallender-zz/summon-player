@@ -24,8 +24,6 @@ class MessagesController < ApplicationController
 
     if message.save!
       respond_to do |format|
-        format.html { ActionCable.server.broadcast('messages_channel',
-                                    { message: render_message(message) }) }
         format.turbo_stream do
           render turbo_stream: turbo_stream.append(:messages,
             partial: "messages/message",
