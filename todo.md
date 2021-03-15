@@ -16,6 +16,8 @@
 ** Clubs, Stores
 * Posts
 ** Into feeds
+* User
+** More options - profile pic, social media, public email etc.
 
 * At-work tasks:
 ** More tests (models)
@@ -23,3 +25,4 @@
 ** Make chat scroll etc.
 ** Cookie error
 ** Check for bangs
+** Check deployment

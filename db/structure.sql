@@ -136,7 +136,8 @@ CREATE TABLE public.messages (
     to_id integer,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    ad_id bigint
+    ad_id bigint,
+    read boolean DEFAULT false
 );
 
 
@@ -490,6 +491,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210310114338'),
 ('20210310133718'),
 ('20210311090113'),
-('20210312083747');
+('20210312083747'),
+('20210315112822');
 
 
