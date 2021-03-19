@@ -5,10 +5,10 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable
 
   has_many :ads, dependent: :destroy
-  has_many :sent_messages, foreign_key: :from_id, class_name: "Message"
-  has_many :received_messages, foreign_key: :to_id, class_name: "Message"
-  has_many :chats
-  has_many :messages, through: :chats
+  # has_many :sent_messages, foreign_key: :from_id, class_name: "Message"
+  # has_many :received_messages, foreign_key: :to_id, class_name: "Message"
+  has_and_belongs_to_many :chats
+  # has_many :messages, through: :chats
          
   validates :username,
     presence:   true,

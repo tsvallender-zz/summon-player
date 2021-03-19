@@ -158,6 +158,16 @@ ALTER SEQUENCE public.chats_id_seq OWNED BY public.chats.id;
 
 
 --
+-- Name: chats_users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.chats_users (
+    user_id bigint NOT NULL,
+    chat_id bigint NOT NULL
+);
+
+
+--
 -- Name: messages; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -447,6 +457,20 @@ CREATE INDEX index_chats_on_subject_type_and_subject_id ON public.chats USING bt
 
 
 --
+-- Name: index_chats_users_on_chat_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_chats_users_on_chat_id ON public.chats_users USING btree (chat_id);
+
+
+--
+-- Name: index_chats_users_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_chats_users_on_user_id ON public.chats_users USING btree (user_id);
+
+
+--
 -- Name: index_messages_on_from_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -532,6 +556,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210312083747'),
 ('20210315112822'),
 ('20210319092919'),
-('20210319093530');
+('20210319093530'),
+('20210319101437');
 
 

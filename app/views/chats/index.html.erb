@@ -1,0 +1,10 @@
+<% provide(:title, "Messages") %>
+<h2>Messages</h2>
+
+<%= link_to 'Post a new message', new_chat_path %>
+
+<% @users.each do |c| %>
+    <ol class="chats">
+        <li><%= link_to c.username, message_path(c.username) %></li>
+    </ol>
+<% end %>

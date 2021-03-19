@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'chat/new'
   get 'messages/index'
   get 'messages/new'
   get 'messages/create'
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
   root to: "static_pages#home"
   resources :users, only: [:show]
   resources :messages, only: [:index, :show, :new, :create]
+  resources :chats, only: [:index, :show, :new, :create]
   resources :tags
   resources :ads do
     member do
