@@ -23,7 +23,7 @@
       	<%= link_to('Ads', ads_path) %>
       </li>
       <li>
-      	<%= link_to('Messages', messages_path) %>
+      	<%= link_to('Messages', chats_path) %>
       </li>
       <% if user_signed_in? %>
       	<li><%= link_to('Profile', user_path(current_user.username)) %></li>

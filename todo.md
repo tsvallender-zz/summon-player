@@ -1,6 +1,6 @@
 * Messaging
 ** group
-** notifications, read/unread
+** notifications, read/unread - add last_read_time to chat
 * Ads
 ** Location
 *** https://github.com/alexreisner/geocoder
@@ -18,6 +18,7 @@
 ** Into feeds
 * User
 ** More options - profile pic, social media, public email etc.
+** Error message on faile dlogin
 
 * At-work tasks:
 ** More tests (models)

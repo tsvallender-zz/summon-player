@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'chat/new'
-  get 'messages/index'
-  get 'messages/new'
-  get 'messages/create'
   get 'categories/index'
   get 'categories/show'
   devise_for :users

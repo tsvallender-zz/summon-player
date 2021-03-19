@@ -1,0 +1,20 @@
+<% provide(:title, "Conversation with ") %>
+
+<h2>Conversation with
+<% @users.each do |u| %>
+    <%= u.username %>
+<% end %></h2>
+
+<ol id="messages">
+    <%= render @chat.messages %>
+</ol>
+
+<%= form_with(model: @message) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <%= f.text_area :text %>
+
+    <%= f.hidden_field :chat_id, value: @chat.id %>
+
+    <%= f.submit "Send" %>
+<% end %>

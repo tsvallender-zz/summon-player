@@ -2,49 +2,35 @@ class ChatsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = current_user.chats
+    @chats = current_user.chats
   end
 
   def show
-    @user = User.find_by(username: params[:id])
-    @messages = current_user.chats.find_by(user: @user.id)
+    @chat = current_user.chats.find(params[:id])
+    @users = @chat.users.where.not(id: current_user.id)
     @message = Message.new
   end
 
   def create
-    user = User.find(message_params[:to_id])
-    message = current_user.sent_messages.build(
-      to: user,
-      text: message_params[:text]
-    )
-
-    unless message_params[:ad_id].blank?
-      message.ad = Ad.find(message_params[:ad_id])
-    end
-
-    if message.save!
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.append(:messages,
-            partial: "messages/message",
-            locals: { message: message })
-        end
-        format.html do
-          
-        end
+    chat = Chat.new(subject: chat_params[:subject])
+    if chat_params[:participants].respond_to? :each
+      chat_params[:participants].each do |p|
+        chat.users << User.find(p)
       end
     else
-      flash[:alert] = "Couldn't post your message"
-      redirect_to message_path(user.username)
+      chat.users << User.find(chat_params[:participants].to_i)
+    end
+    chat.users << current_user
+    if chat.save
+      redirect_to chat_path(chat)
+    else
+      flash[:alert] = "Couldn't start a new conversation"
+      redirect_to root_path(user.username)
     end
   end
 
   private
-    def message_params
-        params.require(:message).permit(:text, :to_id, :ad_id)
-    end
-
-    def render_message(message)
-      render(partial: 'message', locals: { message: message })
+    def chat_params 
+      params.require(:chat).permit(:subject, :participants)
     end
 end

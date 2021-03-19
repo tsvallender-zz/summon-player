@@ -3,10 +3,17 @@
 	<%= link_to('Edit profile', edit_user_registration_path) %>
 <% end %>
 <ul id="userOptions">
-	<li>Send message</li>
     <li>Invite to group</li>
     <li>Follow</li>
 </ul>
+
+<%= form_with(model: @chat) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <%= f.hidden_field :participants, value: @user.id %>
+
+    <%= f.submit "Start chat" %>
+<% end %>
 
 <p id="userDescription"><%= @user.description %></p>
 
