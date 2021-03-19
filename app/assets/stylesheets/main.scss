@@ -118,6 +118,9 @@ ol#messages {
         margin: 1em 0em;
         padding: 1em;
     }
+    li.unread {
+        border: 1px solid $highlight-color;
+    }
     .from {
         display: block;
         font-weight: bold;
