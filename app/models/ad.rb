@@ -10,22 +10,23 @@ class Ad < ApplicationRecord
   has_many :adtags, class_name: "AdTag", foreign_key: "ad_id"
   has_many :tags, through: :adtags, :source => :tag
   
-  has_many :messages
+  has_many :chats, as: :subject
+  has_many :messages, through: :chats
 
-  scope :active, -> { where(archived: false) }
-  scope :archived, -> { where(archived: true) }
-  scope :desc, -> { order(created_at: :desc) }
+#   scope :active, -> { where(archived: false) }
+#   scope :archived, -> { where(archived: true) }
+#   scope :desc, -> { order(created_at: :desc) }
 
-  def interested
-    user_ids = self.messages.where.not(from: user).distinct.pluck(:from_id)
-    users = []
-    user_ids.each do |u|
-      users.append(User.find(u))
-    end
-    users
-  end
+#   def interested
+#     user_ids = self.messages.where.not(from: user).distinct.pluck(:from_id)
+#     users = []
+#     user_ids.each do |u|
+#       users.append(User.find(u))
+#     end
+#     users
+#   end
   
-  def conversation(user)
-    self.messages.where("to_id = :user_id OR from_id = :user_id", user_id: user.id)
-  end
-end
+#   def conversation(user)
+#     self.messages.where("to_id = :user_id OR from_id = :user_id", user_id: user.id)
+#   end
+# end

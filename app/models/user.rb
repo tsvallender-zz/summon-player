@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :ads, dependent: :destroy
   has_many :sent_messages, foreign_key: :from_id, class_name: "Message"
   has_many :received_messages, foreign_key: :to_id, class_name: "Message"
+  has_many :chats
+  has_many :messages, through: :chats
          
   validates :username,
     presence:   true,
@@ -20,18 +22,18 @@ class User < ApplicationRecord
     username
   end
 
-  # Returns a list of users this user is conversing with
-  def conversations
-    user_ids = (sent_messages.distinct.pluck(:to_id) + received_messages.distinct.pluck(:from_id)).uniq
-    users = []
-    user_ids.each do |u|
-      users.append(User.find(u))
-    end
-    users
-  end
+  # # Returns a list of users this user is conversing with
+  # def conversations
+  #   user_ids = (sent_messages.distinct.pluck(:to_id) + received_messages.distinct.pluck(:from_id)).uniq
+  #   users = []
+  #   user_ids.each do |u|
+  #     users.append(User.find(u))
+  #   end
+  #   users
+  # end
 
-  # Returns the conversation with a given user
-  def conversation(user_id)
-    sent_messages.where(to_id: user_id, ad_id: nil).or(received_messages.where(from_id: user_id, ad_id: nil)).order("created_at")
-  end
+  # # Returns the conversation with a given user
+  # def conversation(user_id)
+  #   sent_messages.where(to_id: user_id, ad_id: nil).or(received_messages.where(from_id: user_id, ad_id: nil)).order("created_at")
+  # end
 end

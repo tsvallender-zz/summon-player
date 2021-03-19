@@ -126,6 +126,38 @@ ALTER SEQUENCE public.categories_id_seq OWNED BY public.categories.id;
 
 
 --
+-- Name: chats; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.chats (
+    id bigint NOT NULL,
+    subject_type character varying,
+    subject_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: chats_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.chats_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: chats_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.chats_id_seq OWNED BY public.chats.id;
+
+
+--
 -- Name: messages; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -136,7 +168,6 @@ CREATE TABLE public.messages (
     to_id integer,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    ad_id bigint,
     read boolean DEFAULT false
 );
 
@@ -267,6 +298,13 @@ ALTER TABLE ONLY public.categories ALTER COLUMN id SET DEFAULT nextval('public.c
 
 
 --
+-- Name: chats id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.chats ALTER COLUMN id SET DEFAULT nextval('public.chats_id_seq'::regclass);
+
+
+--
 -- Name: messages id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -317,6 +355,14 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 ALTER TABLE ONLY public.categories
     ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: chats chats_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.chats
+    ADD CONSTRAINT chats_pkey PRIMARY KEY (id);
 
 
 --
@@ -394,10 +440,10 @@ CREATE INDEX index_ads_on_user_id_and_created_at ON public.ads USING btree (user
 
 
 --
--- Name: index_messages_on_ad_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_chats_on_subject_type_and_subject_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_messages_on_ad_id ON public.messages USING btree (ad_id);
+CREATE INDEX index_chats_on_subject_type_and_subject_id ON public.chats USING btree (subject_type, subject_id);
 
 
 --
@@ -450,14 +496,6 @@ CREATE UNIQUE INDEX index_users_on_username ON public.users USING btree (usernam
 
 
 --
--- Name: messages fk_rails_2a9002a576; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.messages
-    ADD CONSTRAINT fk_rails_2a9002a576 FOREIGN KEY (ad_id) REFERENCES public.ads(id);
-
-
---
 -- Name: ads fk_rails_400d8fa7ce; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -492,6 +530,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210310133718'),
 ('20210311090113'),
 ('20210312083747'),
-('20210315112822');
+('20210315112822'),
+('20210319092919'),
+('20210319093530');
 
 
