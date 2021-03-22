@@ -4,8 +4,4 @@ class Chat < ApplicationRecord
   accepts_nested_attributes_for :messages
   has_and_belongs_to_many :chats_users
   has_and_belongs_to_many :users, :through => :chats_users
-
-  def to_param
-    stub
-  end
 end

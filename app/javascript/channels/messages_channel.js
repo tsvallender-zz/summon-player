@@ -1,9 +1,12 @@
 import consumer from "./consumer"
 
-consumer.subscriptions.create({ channel: "MessagesChannel", room: window.location.pathname}, {
+let path = window.location.pathname.split("/");
+let roomname = path.pop();
+
+consumer.subscriptions.create({ channel: "MessagesChannel", room: roomname}, {
   connected() {
     // Called when the subscription is ready for use on the server
-    console.log("Connected to " + window.location.pathname)
+    console.log("Connected to room " + roomname)
   },
 
   disconnected() {
@@ -11,7 +14,6 @@ consumer.subscriptions.create({ channel: "MessagesChannel", room: window.locatio
   },
 
   received(data) {
-    console.log(data);
     document.getElementById('messages').innerHTML += data.message;
   }
 });

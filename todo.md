@@ -1,5 +1,6 @@
 * Messaging
 ** Fix chat stub (both names)
+** Ensure users can't sub other user's chats
 ** group
 ** notifications, read/unread - add last_read_time to chat
 * Ads

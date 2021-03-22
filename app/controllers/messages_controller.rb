@@ -17,11 +17,10 @@ class MessagesController < ApplicationController
       from: current_user,
       text: message_params[:text]
     )
-    room = '/chats/' + chat.stub
 
     if message.save
       ActionCable.server.broadcast(
-        "messages_channel_#{room}",
+        "messages_channel_#{chat.id}",
         { message: render_message(message) } )
     else
       flash[:alert] = "Couldn't post your message"

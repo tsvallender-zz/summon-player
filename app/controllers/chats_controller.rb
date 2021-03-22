@@ -6,11 +6,8 @@ class ChatsController < ApplicationController
   end
 
   def show
-    # We need to ensure a valid stub here
-    user = User.find_by(username: params[:id])
-
     # Check if there's an existing chat, otherwise make a new one
-    if @chat = current_user.chats.find_by(stub: params[:id])
+    if @chat = current_user.chats.find(params[:id])
       @users = @chat.users.where.not(id: current_user.id)
     else 
       redirect_to chats_path(method: 'post', params: { 
@@ -25,11 +22,9 @@ class ChatsController < ApplicationController
     if chat_params[:participants].respond_to? :each
       chat_params[:participants].each do |p|
         chat.users << User.find(p)
-        chat.stub += User.find(p).username
       end
     else
       chat.users << User.find(chat_params[:participants].to_i)
-      chat.stub = User.find(chat_params[:participants].to_i).username
     end
     chat.users << current_user
 
