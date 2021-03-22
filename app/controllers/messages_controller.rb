@@ -17,18 +17,12 @@ class MessagesController < ApplicationController
       from: current_user,
       text: message_params[:text]
     )
+    room = '/chats/' + chat.stub
 
     if message.save
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.append(:messages,
-            partial: "messages/message",
-            locals: { message: message })
-        end
-        format.html do
-          
-        end
-      end
+      ActionCable.server.broadcast(
+        "messages_channel_#{room}",
+        { message: render_message(message) } )
     else
       flash[:alert] = "Couldn't post your message"
       redirect_to chat_path(chat)

@@ -1,4 +1,5 @@
 * Messaging
+** Fix chat stub (both names)
 ** group
 ** notifications, read/unread - add last_read_time to chat
 * Ads

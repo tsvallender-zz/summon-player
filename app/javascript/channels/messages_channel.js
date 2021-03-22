@@ -1,8 +1,9 @@
 import consumer from "./consumer"
 
-consumer.subscriptions.create("MessagesChannel", {
+consumer.subscriptions.create({ channel: "MessagesChannel", room: window.location.pathname}, {
   connected() {
     // Called when the subscription is ready for use on the server
+    console.log("Connected to " + window.location.pathname)
   },
 
   disconnected() {
@@ -10,6 +11,7 @@ consumer.subscriptions.create("MessagesChannel", {
   },
 
   received(data) {
+    console.log(data);
     document.getElementById('messages').innerHTML += data.message;
   }
 });

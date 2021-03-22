@@ -1,16 +1,14 @@
-<turbo-frame id="user_messages">
-    <ol id="messages">
-        <%= render @messages %>
-    </ol>
+<ol id="messages">
+    <%= render @messages %>
+</ol>
 
-    <%= form_with(model: @message) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
+<%= form_with(model: @message) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
 
-        <%= f.text_area :text %>
+    <%= f.text_area :text %>
 
-        <%= f.hidden_field :to_id, value: @user.id %>
-        <%= f.hidden_field :ad_id, value: @ad.id %>
+    <%= f.hidden_field :to_id, value: @user.id %>
+    <%= f.hidden_field :ad_id, value: @ad.id %>
 
-        <%= f.submit "Send" %>
-    <% end %>
-</turbo-frame>
+    <%= f.submit "Send" %>
+<% end %>
