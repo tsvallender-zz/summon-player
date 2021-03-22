@@ -2,7 +2,7 @@
 
 <h2>Conversation with
 <% @users.each do |u| %>
-    <%= u.username %>
+    <%= link_to u.username, user_path(u.username) %>
 <% end %></h2>
 
 <ol id="messages">
