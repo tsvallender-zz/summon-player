@@ -23,7 +23,7 @@ class MessagesController < ApplicationController
       chat.users.each do |u|
         ActionCable.server.broadcast(
           "messages_channel_#{u.username}",
-          { message: rendered_message } )
+          { type: 'message', message: rendered_message } )
       end
     else
       flash[:alert] = "Couldn't post your message"

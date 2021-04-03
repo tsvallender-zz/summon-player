@@ -12,17 +12,22 @@ consumer.subscriptions.create({ channel: "MessagesChannel", room: roomname}, {
   },
 
   received(data) {
-    document.getElementById('messages').innerHTML += data.message;
-    console.log('Received ' + data.message);
+    let pageType = document.getElementById('pageType').getAttribute('content');
+    switch(data.type) {
+      case 'message':
+        console.log("You have a new message"); // Do something better
+        if (pageType == "chat") {
+          document.getElementById('messages').innerHTML += data.message;
+        }
+        break;
+    }
   }
 });
 
-function readCookie(name)
-{
+function readCookie(name) {
 	var cookiename = name + "=";
 	var ca = document.cookie.split(';');
-	for(var i=0;i < ca.length;i++)
-	{
+	for(var i=0; i < ca.length; i++) {
 		var c = ca[i];
 		while (c.charAt(0)==' ') c = c.substring(1,c.length);
 		if (c.indexOf(cookiename) == 0) return c.substring(cookiename.length,c.length);

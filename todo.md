@@ -1,5 +1,5 @@
 * Messaging
-** Fix chat stub (both names)
+** Don't allow multiple chats the same (fix "start chat" link)
 ** Ensure users can't sub other user's chats
 ** group
 ** notifications, read/unread - add last_read_time to chat
