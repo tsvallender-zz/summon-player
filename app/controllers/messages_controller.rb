@@ -19,9 +19,12 @@ class MessagesController < ApplicationController
     )
 
     if message.save
-      ActionCable.server.broadcast(
-        "messages_channel_#{chat.id}",
-        { message: render_message(message) } )
+      rendered_message = render_message(message)
+      chat.users.each do |u|
+        ActionCable.server.broadcast(
+          "messages_channel_#{u.username}",
+          { message: rendered_message } )
+      end
     else
       flash[:alert] = "Couldn't post your message"
       redirect_to chat_path(chat)
@@ -30,7 +33,7 @@ class MessagesController < ApplicationController
 
   private
     def message_params
-        params.require(:message).permit(:text, :to_id, :chat_id)
+      params.require(:message).permit(:text, :to_id, :chat_id)
     end
 
     def render_message(message)

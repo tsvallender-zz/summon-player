@@ -24,7 +24,6 @@
 
 * At-work tasks:
 ** More tests (models)
-** CSS - Responsive
 ** Make chat scroll etc.
 ** Cookie error
 ** Check for bangs
