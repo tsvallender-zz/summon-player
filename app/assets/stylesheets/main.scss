@@ -28,7 +28,7 @@ header#title {
     }
 	h1 {
     	font-family: $title-font;
-        font-size: 5em;
+        font-size: calc(3rem + 3vw);
         margin: 0.25em;
         color: $highlight-color;
 	}
@@ -83,9 +83,9 @@ form {
 
 ol.ads {
     li {
-        border: 1px solid $border-color;
-        padding: 1em;
-        margin: 1em;
+        border-bottom: 1px solid $border-color;
+        padding: 1em 0em;
+        margin: 1em 0em;
         div {
             margin: .2em 0em;
         }
