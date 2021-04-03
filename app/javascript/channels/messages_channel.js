@@ -15,5 +15,6 @@ consumer.subscriptions.create({ channel: "MessagesChannel", room: roomname}, {
 
   received(data) {
     document.getElementById('messages').innerHTML += data.message;
+    console.log('Received ' + data.message);
   }
 });

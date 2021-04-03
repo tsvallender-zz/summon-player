@@ -14,7 +14,7 @@ class AdsController < ApplicationController
         @message = Message.new
         @ad = Ad.find(params[:id])
         if (user_signed_in?)
-            @messages = @ad.conversation(current_user)
+            @chat = current_user.chats.where(subject_type: "Ad", subject_id: @ad.id).first
             if @ad.user == current_user
                 @users = @ad.interested
             end

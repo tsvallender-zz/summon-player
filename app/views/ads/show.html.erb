@@ -35,15 +35,22 @@
         <%= turbo_frame_tag "user_messages" %>
     <% else %>
         <ol id="messages">
-            <%= render @messages %>
+            <% unless @chat.blank? %>
+                <% @chat.each do |m| %>
+                    <%= render m %>
+                <% end %>
+            <% end %>
         </ol>
         <%= form_with(model: @message) do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
 
             <%= f.text_area :text %>
-            <%= f.hidden_field :to_id, value: @ad.user.id %>
-            <%= f.hidden_field :ad_id, value: @ad.id %>
+            <%= f.hidden_field :subject_type, value: 'Ad' %>
+            <%= f.hidden_field :subject_id, value: @ad.id %>
 
+            <% unless @chat.blank? %>
+                <%= f.hidden_field :chat_id, value: @chat.id %>
+            <% end %>
             <%= f.submit "Send" %>
         <% end %>
     <% end %>

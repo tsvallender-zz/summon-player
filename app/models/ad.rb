@@ -25,8 +25,5 @@ class Ad < ApplicationRecord
 #     end
 #     users
 #   end
-  
-#   def conversation(user)
-#     self.messages.where("to_id = :user_id OR from_id = :user_id", user_id: user.id)
-#   end
+
 end
