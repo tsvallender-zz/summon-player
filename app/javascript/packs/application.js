@@ -4,6 +4,7 @@
 // that code so it'll be compiled.
 
 import { Turbo, cable } from "@hotwired/turbo-rails"
+require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
 
