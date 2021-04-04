@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'categories/index'
-  get 'categories/show'
-  devise_for :users
+  devise_for :users, controllers: { sessions: 'users/sessions' }
   root to: "static_pages#home"
   resources :users, only: [:show]
   resources :messages, only: [:index, :show, :new, :create]

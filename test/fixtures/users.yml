@@ -13,3 +13,11 @@ bob:
   email: bob@summonplayer.com
   encrypted_password: <%= User.new.send(:password_digest, 'foobar') %>
   confirmed_at: <%= 4.months.ago %>
+
+bruenor:
+  id: 3
+  username: bruenor
+  description: "I am Bruenor Battlehammer"
+  email: bruenor@summonplayer.com
+  encrypted_password: <%= User.new.send(:password_digest, 'foobar') %>
+  confirmed_at: <%= 4.months.ago %>

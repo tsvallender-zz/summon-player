@@ -1,9 +1,14 @@
 one:
+  chat_id: 1
   text: Hello there
   from_id: 1
-  to_id: 2
 
 two:
+  chat_id: 1
   text: Back at you
   from_id: 2
-  to_id: 1
+
+three:
+  chat_id: 2
+  text: Hi it's Bruenor
+  from_id: 3
