@@ -3,6 +3,6 @@
 
 <% @chats.each do |c| %>
     <ol class="chats">
-        <li><%= link_to c.id, chat_path(c) %></li>
+        <li class="chat"><%= link_to c.id, chat_path(c) %></li>
     </ol>
 <% end %>
