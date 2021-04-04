@@ -16,7 +16,7 @@ class AdsController < ApplicationController
         if (user_signed_in?)
             @chat = current_user.chats.where(subject_type: "Ad", subject_id: @ad.id).first
             if @ad.user == current_user
-                @users = @ad.interested
+                @chats = @ad.chats
             end
             if @ad.archived && @ad.user != current_user
                 flash[:alert] = "You don't have permission to view that ad"
