@@ -6,20 +6,17 @@ class ChatsController < ApplicationController
   end
 
   def show
-    # Check if there's an existing chat, otherwise make a new one
     if @chat = current_user.chats.find(params[:id])
       @users = @chat.users.where.not(id: current_user.id)
-    else 
-      redirect_to chats_path(method: 'post', params: { 
-        chat: { participants: user } })
     end
     @message = Message.new
   end
 
   def create
     chat = Chat.new(subject: chat_params[:subject])
-
+    # todo check already exists
     if chat_params[:participants].respond_to? :each
+      # Add each participant if multiple
       chat_params[:participants].each do |p|
         chat.users << User.find(p)
       end
