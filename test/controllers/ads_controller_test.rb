@@ -90,6 +90,8 @@ class AdsControllerTest < ActionDispatch::IntegrationTest
     sign_in @bob
     patch ad_path(@bobsad), params: {ad: { title: "Test ad", text: "Testing", category: @category}}
     assert_redirected_to ad_path(@bobsad)
+    get ad_path(@bobsad)
+    assert_select "h2.ad-title", "Test ad"
   end
 
   test "should redirect destroy when not logged in" do
@@ -109,19 +111,24 @@ class AdsControllerTest < ActionDispatch::IntegrationTest
   test "should not archive when not logged in" do
     patch archive_ad_path(@ad)
     assert_redirected_to new_user_session_path
+    get ad_path(@ad)
+    assert_select "div.alert p", 0
   end
 
   test "should not allow archiving someone elses ad" do
     sign_in @bob
     patch archive_ad_path(@ad)
-    assert !@ad.archived
     assert_redirected_to root_path
+    get ad_path(@ad)
+    assert_select "div.alert p", 0
   end
 
   test "should archive own ad" do
     sign_in @bob
     patch archive_ad_path(@bobsad.id)
     assert_redirected_to ad_path(@bobsad)
+    get ad_path(@bobsad)
+    assert_select "div.alert p", 1
   end
 
   test "should not unarchive when not logged in" do
@@ -137,7 +144,11 @@ class AdsControllerTest < ActionDispatch::IntegrationTest
 
   test "should unarchive own ad" do
     sign_in @bob
+    get ad_path(@archivedad)
+    assert_select "div.alert p", 1
     patch unarchive_ad_path(@archivedad.id)
     assert_redirected_to ad_path(@archivedad)
+    get ad_path(@archivedad)
+    assert_select "div.alert p", 0
   end
 end

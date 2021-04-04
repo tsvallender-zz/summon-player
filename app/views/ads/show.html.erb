@@ -4,7 +4,7 @@
 <% if @ad.archived %>
     <div class="alert">
         <p>This ad is archived and not visible to other users.</p>
-        <%= link_to 'Unarchive ad', unarchive_ad_path, method: "put" %>
+        <%= link_to 'Unarchive ad', unarchive_ad_path, method: "patch" %>
     </div>
 <% end %>
 <div class="ad-text"><%= @ad.text %></div>
@@ -20,7 +20,7 @@
 <% if current_user == @ad.user %>
     <%= link_to 'Edit ad', edit_ad_path, class: "edit" %>
     <% unless @ad.archived %>
-        | <%= link_to 'Archive ad', archive_ad_path, method: "put", class: "archive" %>
+        | <%= link_to 'Archive ad', archive_ad_path, method: "patch", class: "archive" %>
     <% end %>
 <% end %>
 
