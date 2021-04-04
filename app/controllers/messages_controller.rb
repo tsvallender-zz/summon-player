@@ -1,16 +1,6 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-    @users = current_user.conversations
-  end
-
-  def show
-    @user = User.find_by(username: params[:id])
-    @messages = current_user.conversation(@user.id)
-    @message = Message.new
-  end
-
   def create
     chat = Chat.find(message_params[:chat_id])
     message = chat.messages.build(
