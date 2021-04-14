@@ -1,6 +1,8 @@
 class MessagesChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "messages_channel_#{params[:room]}"
+    if params[:room] == current_user.username
+      stream_from "messages_channel_#{params[:room]}"
+    end
   end
 
   def unsubscribed
