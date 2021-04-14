@@ -111,8 +111,8 @@ ol.ads {
     border-radius: 1em;
 }
 
-ol#messages {
-    li.message {
+ol#messages, ol#chats {
+    li.message, li.chat {
         border: 1px solid $border-color;
         border-radius: 1em;
         margin: 1em 0em;

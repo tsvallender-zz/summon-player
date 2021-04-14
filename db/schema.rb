@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_22_104521) do
+ActiveRecord::Schema.define(version: 2021_04_14_094635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2021_03_22_104521) do
   create_table "chats_users", id: false, force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "chat_id", null: false
+    t.datetime "last_read", default: "2021-04-14 09:53:33", null: false
     t.index ["chat_id", "user_id"], name: "index_chats_users_on_chat_id_and_user_id"
     t.index ["user_id", "chat_id"], name: "index_chats_users_on_user_id_and_chat_id"
   end

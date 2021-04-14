@@ -2,7 +2,8 @@ class ChatsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @chats = current_user.chats
+    @chats = current_user.chats.order("updated_at DESC")
+    @chats_users = ChatsUsers.where(user_id: current_user.id)
   end
 
   def show
@@ -10,6 +11,9 @@ class ChatsController < ApplicationController
       @users = @chat.users.where.not(id: current_user.id)
     end
     @message = Message.new
+
+    cu = ChatsUsers.find_by(user_id: current_user.id, chat_id: @chat.id)
+    cu.touch(:last_read)
   end
 
   def create
@@ -26,7 +30,6 @@ class ChatsController < ApplicationController
     chat.users << current_user
 
     if chat.save
-      puts "HEELLLOOOOO"
       redirect_to chat_path(chat)
     else
       flash[:alert] = "Couldn't start a new conversation"

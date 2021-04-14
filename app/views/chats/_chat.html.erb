@@ -1,5 +1,7 @@
-<li id="chat-id-<%= chat.id %>">
-
+<% if @chats_users.find_by(chat_id: chat.id).last_read < chat.updated_at %>
+    <% new_messages = true %>
+<% end %>
+<li id="chat-id-<%= chat.id %>" class="chat<%= new_messages ? ' unread' : ''%>">
     <%= link_to chat_path(chat) do %>
         <% chat.users.each do |u| %>
             <% if u != current_user %>
@@ -7,4 +9,5 @@
             <% end %>
         <% end %>
     <% end %>
+    <span class="time">Last message was <%= time_ago_in_words(chat.updated_at) %> ago.</span>
 </li>
