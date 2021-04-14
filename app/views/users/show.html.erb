@@ -7,7 +7,7 @@
     <li>Follow</li>
 </ul>
 
-<%= form_with(model: @chat) do |f| %>
+<%= form_with(model: @chat, local: true) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
 
     <%= f.hidden_field :participants, value: @user.id %>

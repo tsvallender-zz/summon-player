@@ -26,6 +26,7 @@ class ChatsController < ApplicationController
     chat.users << current_user
 
     if chat.save
+      puts "HEELLLOOOOO"
       redirect_to chat_path(chat)
     else
       flash[:alert] = "Couldn't start a new conversation"
