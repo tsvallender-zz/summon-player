@@ -1,7 +1,7 @@
 * Testing
 ** Done controllers, need more tests for users
 * Messaging
-** group
+** fix on ads
 ** notifications
 * Ads
 ** Location
@@ -15,6 +15,7 @@
 ** Add new from new ad page, make sexier
 ** Follow - same as adtags associations
 * groups
+** Messaging
 ** Clubs, Stores
 * User
 ** More options - profile pic, social media, public email etc.
