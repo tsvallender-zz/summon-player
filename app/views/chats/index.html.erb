@@ -1,8 +1,6 @@
 <% provide(:title, "Messages") %>
 <h2>Messages</h2>
 
-<% @chats.each do |c| %>
     <ol class="chats">
-        <li class="chat"><%= link_to c.id, chat_path(c) %></li>
+         <%= render @chats %>
     </ol>
-<% end %>

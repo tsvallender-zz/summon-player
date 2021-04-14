@@ -1,3 +1,5 @@
+* Testing
+** Done controllers, need more tests for users
 * Messaging
 ** Don't allow multiple chats the same (fix "start chat" link)
 ** Ensure users can't sub other user's chats

@@ -1,0 +1,10 @@
+<li id="chat-id-<%= chat.id %>">
+
+    <%= link_to chat_path(chat) do %>
+        <% chat.users.each do |u| %>
+            <% if u != current_user %>
+                <%= u.username %>
+            <% end %>
+        <% end %>
+    <% end %>
+</li>
