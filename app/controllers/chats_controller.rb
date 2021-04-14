@@ -17,28 +17,35 @@ class ChatsController < ApplicationController
   end
 
   def create
-    chat = Chat.new(subject: chat_params[:subject])
-    # todo check already exists
-    if chat_params[:participants].respond_to? :each
-      # Add each participant if multiple
-      chat_params[:participants].each do |p|
-        chat.users << User.find(p)
-      end
+    users = parse_participants(chat_params[:participants])
+    if Chat.with_users(users)
+      redirect_to chat_path(Chat.with_users(users))
     else
-      chat.users << User.find(chat_params[:participants].to_i)
-    end
-    chat.users << current_user
+      chat = Chat.new(subject: chat_params[:subject])
 
-    if chat.save
-      redirect_to chat_path(chat)
-    else
-      flash[:alert] = "Couldn't start a new conversation"
-      redirect_to root_path(user.username)
+      if chat.save
+        redirect_to chat_path(chat)
+      else
+        flash[:alert] = "Couldn't start a new conversation"
+        redirect_to root_path(user.username)
+      end
     end
   end
 
   private
     def chat_params 
       params.require(:chat).permit(:subject_type, :subject_id, :participants)
+    end
+
+    def parse_participants(param)
+      participants = Array.new
+      if param.respond_to? :each
+        param.each do |p|
+          participants << User.find(p.to_i)
+        end
+      else
+        participants << User.find(param.to_i)
+      end
+      participants << current_user
     end
 end

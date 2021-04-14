@@ -20,8 +20,4 @@ class User < ApplicationRecord
   def to_param
     username
   end
-
-  def conversation_with(user)
-    self.chats.u users.include? user
-  end
 end
