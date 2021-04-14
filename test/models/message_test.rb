@@ -11,11 +11,6 @@ class MessageTest < ActiveSupport::TestCase
     assert @message.valid?
   end
 
-  test "should not be valid without to" do
-    @message.to = nil
-    assert_not @message.valid?
-  end
-
   test "should not be valid without from" do
     @message.from = nil
     assert_not @message.valid?
