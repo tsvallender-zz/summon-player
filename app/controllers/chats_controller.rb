@@ -18,16 +18,17 @@ class ChatsController < ApplicationController
 
   def create
     users = parse_participants(chat_params[:participants])
+
     if Chat.with_users(users)
       redirect_to chat_path(Chat.with_users(users))
     else
       chat = Chat.new(subject: chat_params[:subject])
-
+      chat.users = users
       if chat.save
         redirect_to chat_path(chat)
       else
-        flash[:alert] = "Couldn't start a new conversation"
-        redirect_to root_path(user.username)
+        flash[:alert] = "Couldn't start a new chat"
+        redirect_to root_path
       end
     end
   end

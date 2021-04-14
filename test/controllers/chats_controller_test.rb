@@ -32,10 +32,22 @@ class ChatsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create new chat" do
-    sign_in @trevor
+    sign_in @bob
     assert_difference "Chat.count", 1 do
-      post chats_path(params: { chat: { subject_type: nil, subject_id: nil, participants: 2}})
+      post chats_path(params: { chat: { 
+        subject_type: nil, subject_id: nil, participants: 3
+        }})
     end
     assert_redirected_to chat_path(3)
+  end
+  
+  test "shouldn't create new chat if existing" do
+    sign_in @trevor
+    assert_no_difference "Chat.count" do
+      post chats_path(params: { chat: { 
+        subject_type: nil, subject_id: nil, participants: 2
+        }})
+    end
+    assert_redirected_to chat_path(1)
   end
 end
