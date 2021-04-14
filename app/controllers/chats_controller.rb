@@ -3,7 +3,7 @@ class ChatsController < ApplicationController
 
   def index
     @chats = current_user.chats.order("updated_at DESC")
-    @chats_users = ChatsUsers.where(user_id: current_user.id)
+    @chat_users = ChatUser.where(user_id: current_user.id)
   end
 
   def show
@@ -12,7 +12,7 @@ class ChatsController < ApplicationController
     end
     @message = Message.new
 
-    cu = ChatsUsers.find_by(user_id: current_user.id, chat_id: @chat.id)
+    cu = ChatUser.find_by(user_id: current_user.id, chat_id: @chat.id)
     cu.touch(:last_read)
   end
 

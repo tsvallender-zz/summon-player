@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
   has_many :ads, dependent: :destroy
   
-  has_and_belongs_to_many :chats_users
-  has_and_belongs_to_many :chats, :through => :chats_users
+  has_many :chat_users
+  has_many :chats, :through => :chat_users
          
   validates :username,
     presence:   true,

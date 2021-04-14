@@ -1,4 +1,4 @@
-<% if @chats_users.find_by(chat_id: chat.id).last_read < chat.updated_at %>
+<% if @chat_users.find_by(chat_id: chat.id).last_read < chat.updated_at %>
     <% new_messages = true %>
 <% end %>
 <li id="chat-id-<%= chat.id %>" class="chat<%= new_messages ? ' unread' : ''%>">
