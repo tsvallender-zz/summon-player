@@ -9,7 +9,8 @@ class User < ApplicationRecord
   has_many :chat_users
   has_many :chats, :through => :chat_users
   has_many :messages
-         
+  has_one_attached :image, dependent: :destroy
+  
   validates :username,
     presence:   true,
     length:     { maximum: 20 },

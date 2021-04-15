@@ -1,8 +1,8 @@
 * Testing
 ** Done controllers, need more tests for users
 * Messaging
-** fix on ads
 ** notifications
+** Link to ad when send message from ad page
 * Ads
 ** Location
 *** https://github.com/alexreisner/geocoder

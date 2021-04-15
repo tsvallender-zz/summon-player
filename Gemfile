@@ -12,6 +12,7 @@ gem 'turbo-rails'
 gem 'redis'
 gem 'will_paginate'
 gem 'devise'
+gem 'image_processing'
 gem 'bootsnap', '>= 1.4.2', require: false # reduces boot time via caching
 
 group :development, :test do
@@ -38,6 +39,3 @@ group :test do
   gem 'guard'
   gem 'guard-minitest'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-# gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
