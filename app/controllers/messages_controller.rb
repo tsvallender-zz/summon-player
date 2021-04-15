@@ -21,8 +21,11 @@ class MessagesController < ApplicationController
       from: current_user,
       text: message_params[:text]
     )
-
-    if message.save
+    
+    if message_params[:participants]
+      # redirect if coming from an ad
+      redirect_to chat_path(chat)
+    elsif message.save
       rendered_message = render_message(message)
       chat.users.each do |u|
         ActionCable.server.broadcast(
@@ -33,6 +36,8 @@ class MessagesController < ApplicationController
       flash[:alert] = "Couldn't post your message"
       redirect_to chat_path(chat)
     end
+
+
   end
 
   private
