@@ -1,7 +1,9 @@
 one:
   id: 1
   subject: nil
+  updated_at: <%= 2.hours.ago %>
 
 two:
   id: 2
   subject: dnd (Ad)
+  updated_at: <%= 1.day.ago %>
