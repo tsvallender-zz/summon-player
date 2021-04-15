@@ -1,4 +1,6 @@
 class ChatsController < ApplicationController
+  include ParamsHelper
+  
   before_action :authenticate_user!
 
   def index
@@ -17,7 +19,7 @@ class ChatsController < ApplicationController
   end
 
   def create
-    users = parse_participants(chat_params[:participants])
+    users = helpers.parse_participants(chat_params[:participants])
 
     if Chat.with_users(users)
       redirect_to chat_path(Chat.with_users(users))
@@ -38,15 +40,4 @@ class ChatsController < ApplicationController
       params.require(:chat).permit(:subject_type, :subject_id, :participants)
     end
 
-    def parse_participants(param)
-      participants = Array.new
-      if param.respond_to? :each
-        param.each do |p|
-          participants << User.find(p.to_i)
-        end
-      else
-        participants << User.find(param.to_i)
-      end
-      participants << current_user
-    end
 end

@@ -19,4 +19,13 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
     end
     assert_response :success
   end
+
+  test "sending message with no chat id should make new chat" do
+    sign_in @bob
+    assert_difference "Chat.count", 1 do
+      post messages_path(params: { message: 
+        { text: "Test", chat_id: nil, participants: 3}
+      })
+    end
+  end
 end

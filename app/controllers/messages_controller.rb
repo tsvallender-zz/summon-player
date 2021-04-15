@@ -1,8 +1,22 @@
 class MessagesController < ApplicationController
+  include ParamsHelper
+
   before_action :authenticate_user!
 
   def create
-    chat = Chat.find(message_params[:chat_id])
+    # If no chat id, see if we need a new chat
+    if message_params[:chat_id].empty?
+      users = helpers.parse_participants(message_params[:participants])
+      if Chat.with_users(users)
+        chat = Chat.with_users(users)
+      else
+        chat = Chat.new(subject: nil)
+        chat.users = users
+      end
+    else
+      chat = Chat.find(message_params[:chat_id])
+    end
+
     message = chat.messages.build(
       from: current_user,
       text: message_params[:text]
@@ -23,7 +37,8 @@ class MessagesController < ApplicationController
 
   private
     def message_params
-      params.require(:message).permit(:text, :to_id, :chat_id)
+      params.require(:message).permit(:text, :to_id, :chat_id, :participants)
+      # participants is only used if creating a chat
     end
 
     def render_message(message)

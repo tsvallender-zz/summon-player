@@ -7,7 +7,7 @@
         <%= link_to 'Unarchive ad', unarchive_ad_path, method: "patch" %>
     </div>
 <% end %>
-<div class="ad-text"><%= @ad.text %></div>
+<p class="ad-text"><%= @ad.text %></p>
 <div class="ad-user">Posted by <%= @ad.user.username %></div>
 <div class="ad-category"><span class="h">Category:</span> <%= @ad.category.name %></div>
 <div class="ad-tags"><span class="h">Tags:</span>
@@ -27,30 +27,16 @@
 <% if user_signed_in? %>
     <h2>Messages</h2>
     <% if current_user == @ad.user %>
-        <ol id="chats">
-            <% @chats.each do |u| %>
-                <li><%= chat.id %></li>
-            <% end %>
-        </ol>
-        <%= turbo_frame_tag "user_messages" %>
+        <p>Here we need interested chats</p>
     <% else %>
-        <ol id="messages">
-            <% unless @chat.blank? %>
-                <% @chat.each do |m| %>
-                    <%= render m %>
-                <% end %>
-            <% end %>
-        </ol>
+        <p>Interested? Send <%= @ad.user.username %> a message.</p>
+
         <%= form_with(model: @message) do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
 
             <%= f.text_area :text %>
-            <%= f.hidden_field :subject_type, value: 'Ad' %>
-            <%= f.hidden_field :subject_id, value: @ad.id %>
-
-            <% unless @chat.blank? %>
-                <%= f.hidden_field :chat_id, value: @chat.id %>
-            <% end %>
+            <%= f.hidden_field :chat_id, value: nil %>
+            <%= f.hidden_field :participants, value: @ad.user.id %>
             <%= f.submit "Send" %>
         <% end %>
     <% end %>
