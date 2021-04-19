@@ -1,5 +1,5 @@
 <h1><%= @user.username %></h1>
-    <%= avatar(@user) %>
+    <%= avatar(@user, 200) %>
 <% if @user == current_user %>
 	<%= link_to('Edit profile', edit_user_registration_path) %>
 <% end %>

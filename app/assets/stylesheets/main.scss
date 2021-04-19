@@ -1,7 +1,9 @@
 $title-font: 'League Gothic', 'Arial Narrow', Arial, sans-serif;
 $body-font: 'Raleway', Arial, sans-serif;
+$text-color: #000;
 $border-color: #000;
 $highlight-color: #F63;
+$light-background: #bbb;
 
 @font-face {
     font-family: 'League Gothic';
@@ -139,4 +141,23 @@ ol#messages, ol#chats {
         display: block;
         text-align: right;
     }
+    a {
+        color: $text-color;
+        text-decoration: none;
+    }
 }
+
+.user {
+    background-color: $light-background;
+    border-radius: 1em;
+    height: 100%;
+    display: inline flex;
+    align-items: center;
+    img {
+        display: inline;
+    }
+    .text {
+        padding: .5em;
+    }
+}
+
