@@ -8,7 +8,7 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should redirect create when not logged in" do
-    post messages_path(params: { message: { text: "Hello there", to_id: 1}})
+    post messages_path(params: { message: { text: "Hello there", chat_id: 1}})
     assert_redirected_to new_user_session_path
   end
 
@@ -24,7 +24,7 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
     sign_in @bob
     assert_difference "Chat.count", 1 do
       post messages_path(params: { message: 
-        { text: "Test", chat_id: nil, participants: 3}
+        { text: "Test", chat_id: nil, participants: 3 }
       })
     end
   end
