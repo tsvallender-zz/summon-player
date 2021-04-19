@@ -3,10 +3,8 @@
 <% end %>
 <li id="chat-id-<%= chat.id %>" class="chat<%= new_messages ? ' unread' : ''%>">
     <%= link_to chat_path(chat) do %>
-        <% chat.users.each do |u| %>
-            <% if u != current_user %>
-                <%= render u %>
-            <% end %>
+        <% other_users(chat).each do |u| %>
+            <%= render u %>
         <% end %>
     <% end %>
     <span class="time">Last message was <%= time_ago_in_words(chat.updated_at) %> ago.</span>

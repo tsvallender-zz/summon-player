@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
       redirect_to chat_path(chat)
     elsif message.save
       rendered_message = render_message(message)
-      chat.users.each do |u|
+      helpers.other_users(chat).each do |u|
         ActionCable.server.broadcast(
           "messages_channel_#{u.username}",
           { type: 'message', message: rendered_message } )
