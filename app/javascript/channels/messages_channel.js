@@ -15,7 +15,6 @@ consumer.subscriptions.create({ channel: "MessagesChannel", room: roomname}, {
     let pageType = document.getElementById('pageType').getAttribute('content');
     switch(data.type) {
       case 'message':
-        console.log("You have a new message"); // Do something better
         if (pageType == "chat") {
           document.getElementById('messages').innerHTML += data.message;
         }

@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   include ParamsHelper
+  include ChatHelper
 
   before_action :authenticate_user!
 
@@ -28,7 +29,7 @@ class MessagesController < ApplicationController
       redirect_to chat_path(chat)
     elsif message.save
       rendered_message = render_message(message)
-      helpers.other_users(chat).each do |u|
+      chat.users.each do |u|
         ActionCable.server.broadcast(
           "messages_channel_#{u.username}",
           { type: 'message', message: rendered_message } )
