@@ -22,4 +22,14 @@ class User < ApplicationRecord
   def to_param
     username
   end
+
+  def unreadChats
+    unread = Array.new
+    chat_users.each do |cu|
+      if cu.last_read < cu.chat.updated_at
+        unread << cu.chat
+      end
+    end
+    unread
+  end
 end
