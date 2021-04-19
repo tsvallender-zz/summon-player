@@ -1,8 +1,12 @@
-* Testing
+* Testing/bugs
 ** Done controllers, need more tests for users
+** Sort cookie error
 * Messaging
 ** notifications
 ** Link to ad when send message from ad page
+** Fix weird bug with message not appearing instantly
+** Sending/sent animation
+** Chat to scroll to bottom
 * Ads
 ** Location
 *** https://github.com/alexreisner/geocoder
@@ -20,9 +24,3 @@
 * User
 ** More options - profile pic, social media, public email etc.
 ** Error message on failed login
-
-* At-work tasks:
-** Make chat scroll etc.
-** Cookie error
-** Check for bangs
-** Check deployment
