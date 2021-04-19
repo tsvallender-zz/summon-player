@@ -4,6 +4,7 @@ class Message < ApplicationRecord
 
   validates :text, presence: true, length: {maximum: 500} 
   validates :from, presence: true
+  validates :ad_id, presence: false
   
   def to_param
     from.name

@@ -1,5 +1,12 @@
 <li id="message-id-<%= message.id %>" class="message<%= !message.read ? ' unread' : ''%>">
     <span class="from"><%= message.from.username %>:</span>
+    <% if message.ad_id && ad = Ad.find(message.ad_id) %>
+        <span class="ad">
+            <%= link_to ad do %>
+                This message is in response to your ad, <%= ad.title %>.
+            <% end %>
+        </span>
+    <% end %>
     <span class="text"><%= message.text %></span>
     <span class="time"><%= time_ago_in_words(message.created_at) %> ago.</span>
 </li>

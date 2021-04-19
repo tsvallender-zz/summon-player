@@ -21,13 +21,16 @@ class MessagesController < ApplicationController
 
     message = chat.messages.build(
       from: current_user,
-      text: message_params[:text]
+      text: message_params[:text],
+      ad_id: message_params[:ad_id] ? message_params[:ad_id] : nil
     )
-    
-    if message_params[:participants]
-      # redirect if coming from an ad
+
+    if message.save && message_params[:ad_id]
       redirect_to chat_path(chat)
-    elsif message.save
+      return
+    end
+    
+    if message.save
       rendered_message = render_message(message)
       chat.users.each do |u|
         ActionCable.server.broadcast(
@@ -38,14 +41,13 @@ class MessagesController < ApplicationController
       flash[:alert] = "Couldn't post your message"
       redirect_to chat_path(chat)
     end
-
-
   end
 
   private
     def message_params
-      params.require(:message).permit(:text, :to_id, :chat_id, :participants)
-      # participants is only used if creating a chat
+      params.require(:message).permit(:text, :to_id, :chat_id, :participants, :ad_id)
+      # participants is only used if creating a chat (e.g. from ad)
+      # ad_id only used from an ad
     end
 
     def render_message(message)

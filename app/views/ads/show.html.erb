@@ -37,6 +37,7 @@
             <%= f.text_area :text %>
             <%= f.hidden_field :chat_id, value: nil %>
             <%= f.hidden_field :participants, value: @ad.user.id %>
+            <%= f.hidden_field :ad_id, value: @ad.id %>
             <%= f.submit "Send" %>
         <% end %>
     <% end %>
