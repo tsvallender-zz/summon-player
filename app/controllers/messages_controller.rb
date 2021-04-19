@@ -12,6 +12,7 @@ class MessagesController < ApplicationController
       else
         chat = Chat.new(subject: nil)
         chat.users = users
+        chat.save
       end
     else
       chat = Chat.find(message_params[:chat_id])
