@@ -24,7 +24,12 @@
       	<%= link_to('Ads', ads_path) %>
       </li>
       <li>
-      	<%= link_to('Messages', chats_path) %>
+      	<%= link_to(chats_path) do %>
+          Messages
+          <% if user_signed_in? && current_user.unreadChats.count > 0 %>
+            (<%= current_user.unreadChats.count %>)
+          <% end %>
+        <% end %>
       </li>
       <% if user_signed_in? %>
       	<li><%= link_to 'Profile', user_path(current_user.username) %></li>
