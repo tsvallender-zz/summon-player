@@ -8,7 +8,17 @@
 
 <ol id="messages">
     <li></li>
-    <%= render @chat.messages %>
+    <% last_user = nil %>
+    <% @chat.messages.each do |m| %>
+        <% if m.from != last_user %>
+            <div class="from">
+                <%= avatar(m.from, 80) %>
+                <strong><%= m.from.username %>:</strong>
+            </div>
+            <% last_user = m.from %>
+        <% end %>
+        <%= render m %>
+    <% end %>
 </ol>
 
 <%= form_with(model: @message, id: "messageForm") do |f| %>

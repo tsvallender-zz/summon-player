@@ -27,6 +27,10 @@ p {
     margin: 1em 0em;
 }
 
+strong {
+    font-weight: bold;
+}
+
 header#title {
     text-align: center;
     a {
@@ -122,19 +126,14 @@ ol#messages, ol#chats {
         border: 1px solid $border-color;
         border-radius: 1em;
         margin: 1em 0em;
-        padding: 1em;
+        padding: 0;
     }
     li.unread {
         border: 1px solid $highlight-color;
     }
-    .from {
-        display: block;
-        font-weight: bold;
-        font-size: .6em;
-    }
     .text {
-        display: block;
-        margin: .5em;
+        display:block;
+        margin: 0;
     }
     .time {
         font-size: .6em;
@@ -147,6 +146,7 @@ ol#messages, ol#chats {
     }
     .ad {
         font-weight: bold;
+        display: block;
     }
 }
 
