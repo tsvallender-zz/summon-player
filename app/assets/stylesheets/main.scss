@@ -19,8 +19,14 @@ $light-background: #bbb;
     font-style: normal;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 body {
     font-family: $body-font;
+
 }
 
 p {
@@ -150,6 +156,20 @@ ol#messages, ol#chats {
     }
 }
 
+
+.from {
+    position: sticky;
+    top: 0;
+}
+
+#messageForm {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: $light-background;
+}
+
 .user {
     background-color: $light-background;
     border-radius: 1em;
@@ -164,3 +184,19 @@ ol#messages, ol#chats {
     }
 }
 
+#userHeader {
+    display: flex;
+    background-color: $light-background;
+    #userDescription {
+        display: block;
+        margin: 1em 0em;
+    }
+    #userHeaderText {
+        padding: 1em;
+    }
+}
+#userContent {
+    padding-top: 1em;
+    clear: both;
+    display: block;
+}

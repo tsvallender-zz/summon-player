@@ -1,27 +1,30 @@
-<h1><%= @user.username %></h1>
+<section id="userHeader">
     <%= avatar(@user, 200) %>
-<% if @user == current_user %>
-	<%= link_to('Edit profile', edit_user_registration_path) %>
-<% end %>
-<ul id="userOptions">
-    <li>Invite to group</li>
-    <li>Follow</li>
-</ul>
+    <div id="userHeaderText">
+    <h1><%= @user.username %></h1>
+    <% if @user == current_user %>
+        <%= link_to('Edit profile', edit_user_registration_path) %>
+    <% end %>
 
-<%= form_with(model: @chat, local: true) do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
+    <span id="userDescription"><%= @user.description %></span>
 
-    <%= f.hidden_field :participants, value: @user.id %>
+    <% if @user != current_user %>
+        <%= form_with(model: @chat, local: true) do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
 
-    <%= f.submit "Start chat" %>
-<% end %>
+            <%= f.hidden_field :participants, value: @user.id %>
 
-<p id="userDescription"><%= @user.description %></p>
-
-<% if @user.ads.any? %>
-    <h2>Ads</h2>
-    <ol class="ads">
-        <%= render @ads %>
-    </ol>
-    <%= will_paginate @ads %>
-<% end %>1
+            <%= f.submit "Start chat" %>
+        <% end %>
+    <% end %>
+    </div>
+</section>
+<section id="userContent">
+    <% if @user.ads.any? %>
+        <h2>Ads</h2>
+        <ol class="ads">
+            <%= render @ads %>
+        </ol>
+        <%= will_paginate @ads %>
+    <% end %>
+</section>

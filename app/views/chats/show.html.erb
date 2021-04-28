@@ -6,27 +6,26 @@
     <%= link_to u.username, user_path(u.username) %>
 <% end %></h2>
 
-<ol id="messages">
-    <li></li>
-    <% last_user = nil %>
-    <% @chat.messages.each do |m| %>
-        <% if m.from != last_user %>
-            <div class="from">
-                <%= avatar(m.from, 80) %>
-                <strong><%= m.from.username %>:</strong>
-            </div>
-            <% last_user = m.from %>
+    <ol id="messages">
+        <li></li>
+        <% last_user = nil %>
+        <% @chat.messages.each do |m| %>
+            <% if m.from != last_user %>
+                <div class="from">
+                    <%= avatar(m.from, 80) %>
+                    <strong><%= m.from.username %>:</strong>
+                </div>
+                <% last_user = m.from %>
+            <% end %>
+            <%= render m %>
         <% end %>
-        <%= render m %>
+    </ol>
+    <%= form_with(model: @message, id: "messageForm") do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <%= f.text_area :text %>
+
+        <%= f.hidden_field :chat_id, value: @chat.id %>
+
+        <%= f.submit "Send" %>
     <% end %>
-</ol>
-
-<%= form_with(model: @message, id: "messageForm") do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-
-    <%= f.text_area :text %>
-
-    <%= f.hidden_field :chat_id, value: @chat.id %>
-
-    <%= f.submit "Send" %>
-<% end %>
