@@ -9,6 +9,7 @@ gem 'puma', '~> 4.1'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 4.0' # transpiles javascript
 gem 'turbo-rails'
+gem 'stimulus-rails'
 gem 'redis'
 gem 'will_paginate'
 gem 'devise'

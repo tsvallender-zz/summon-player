@@ -129,8 +129,13 @@ ol.ads {
 
 #messagesFrameButton {
     position: fixed;
-    bottom: 0;
-    right: 0;
+    bottom: .1em;
+    right: .1em;
+    background-color: $highlight-color;
+    border-radius: 1em;
+    font-size: 4em;
+    color: $light-background;
+    padding: .2em;
 }
 
 #messagesFrame {
@@ -138,17 +143,27 @@ ol.ads {
     background-color: #fff;
     border: 1px solid #000;
     position: fixed;
-    bottom: 20px;
+    bottom: 25px;
     right: 5px;
-    max-height: 60%;
+    height: 60%;
+    width: 25%;
     #chatContainer {
+        height: 100%;
         display: grid;
+        grid-template-columns: 1fr;
         grid-template-rows: auto 1fr auto;
+        grid-template-areas: 'header'
+                             'main'
+                             'footer';
     }
     #chatHeader {
-        background-color: $light-background;
+        grid-area: header;
+        background-color: $highlight-color;
+        padding: .2em;
+        color: #fff;
     }
     #chatForm {
+        grid-area: footer;
         background-color: $light-background;
         textarea {
             width: 80%;
@@ -158,8 +173,8 @@ ol.ads {
         }
     }
     ol#messages, ol#chats {
-        overflow-y: scroll;
-        max-height: 400px;
+        grid-area: main;
+        overflow: auto;
         li.message, li.chat {
             border: 1px solid $border-color;
             border-radius: 1em;
@@ -201,8 +216,6 @@ ol.ads {
         }
     } 
 }
-
-
 
 .user {
     background-color: $light-background;
