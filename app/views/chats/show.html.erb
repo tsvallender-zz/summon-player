@@ -1,5 +1,4 @@
-<% provide(:title, "Conversation with ") %>
-<% provide(:type, "chat") %>
+<turbo-frame id="messagesFrame">
 
 <h2>Conversation with
 <% @users.each do |u| %>
@@ -29,3 +28,4 @@
 
         <%= f.submit "Send" %>
     <% end %>
+</turbo-frame>

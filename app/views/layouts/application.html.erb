@@ -8,6 +8,7 @@
     <meta name="page_type" id="pageType" content="<%= yield(:type) %>">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'main', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
@@ -45,6 +46,13 @@
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
     	<%= yield %>
+
+
+    <% if user_signed_in? %>
+      <a id="messagesFrameButton">M</a>
+      <turbo-frame id="messagesFrame" src="/chats">
+      </turbo-frame>
+    <% end %>
     </main>
   </body>
 </html>

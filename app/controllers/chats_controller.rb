@@ -6,6 +6,7 @@ class ChatsController < ApplicationController
   def index
     @chats = current_user.chats.order("updated_at DESC")
     @chat_users = ChatUser.where(user_id: current_user.id)
+    render :layout => false
   end
 
   def show
@@ -16,6 +17,7 @@ class ChatsController < ApplicationController
 
     cu = ChatUser.find_by(user_id: current_user.id, chat_id: @chat.id)
     cu.touch(:last_read)
+    render :layout => false
   end
 
   def create

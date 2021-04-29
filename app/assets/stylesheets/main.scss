@@ -127,6 +127,24 @@ ol.ads {
     border-radius: 1em;
 }
 
+#messagesFrameButton {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+#messagesFrame {
+    display: none;
+    background-color: #fff;
+    border: 1px solid #000;
+    position: fixed;
+    bottom: 10px;
+    right: 5px;
+    overflow-y: scroll;
+    padding: 1em;
+    max-height: 60%;
+}
+
 ol#messages, ol#chats {
     li.message, li.chat {
         border: 1px solid $border-color;
@@ -163,7 +181,7 @@ ol#messages, ol#chats {
 }
 
 #messageForm {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
