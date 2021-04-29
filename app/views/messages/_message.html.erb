@@ -1,7 +1,7 @@
 <li id="message-id-<%= message.id %>" class="message<%= !message.read ? ' unread' : ''%>">
     <% if message.ad_id && ad = Ad.find(message.ad_id) %>
         <span class="ad">
-            <%= link_to ad do %>
+            <%= link_to ad, target: "_top" do %>
                 This message is in response to your ad, <%= ad.title %>.
             <% end %>
         </span>

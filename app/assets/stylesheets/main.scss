@@ -150,6 +150,12 @@ ol.ads {
     }
     #chatForm {
         background-color: $light-background;
+        textarea {
+            width: 80%;
+            font-family: $body-font;
+            resize: none;
+            overflow: auto;
+        }
     }
     ol#messages, ol#chats {
         overflow-y: scroll;
@@ -157,8 +163,11 @@ ol.ads {
         li.message, li.chat {
             border: 1px solid $border-color;
             border-radius: 1em;
-            margin: 1em 0em;
-            padding: 0;
+            margin: .2em;
+            padding: .5em;
+        }
+        li.message {
+            margin-left: 5.5em;
         }
         li.unread {
             border: 1px solid $highlight-color;
@@ -171,6 +180,7 @@ ol.ads {
             font-size: .6em;
             display: block;
             text-align: right;
+            color: $light-background;
         }
         a {
             color: $text-color;
@@ -180,11 +190,16 @@ ol.ads {
             font-weight: bold;
             display: block;
         }
+        .from {
+            position: sticky;
+            top: 0;
+            float: left;
+            clear: both;
+        }
+        hr {
+            clear: both;
+        }
     } 
-    .from {
-        position: sticky;
-        top: 0;
-    }
 }
 
 

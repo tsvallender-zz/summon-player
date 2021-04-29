@@ -12,14 +12,7 @@ consumer.subscriptions.create({ channel: "MessagesChannel", room: roomname}, {
   },
 
   received(data) {
-    let pageType = document.getElementById('pageType').getAttribute('content');
-    // switch(data.type) {
-    //   case 'message':
-    //     if (pageType == "chat") {
-    //       document.getElementById('messages').innerHTML += data.message;
-    //     }
-    //     break;
-    // }
+    // Alerts for new messages etc.
   }
 });
 
