@@ -161,6 +161,14 @@ ol.ads {
         background-color: $highlight-color;
         padding: .2em;
         color: #fff;
+        a:link, a:visited {
+            color: #fff;
+            text-decoration: none;
+            font-size: 2em;
+        }
+        h2 {
+            display: inline;
+        }
     }
     #chatForm {
         grid-area: footer;

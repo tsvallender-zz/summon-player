@@ -8,11 +8,10 @@
             });
         </script>
         <div id="chatHeader">
-            <%= link_to 'B', chats_path %>
-            <h2>Conversation with
+            <%= link_to '←', chats_path %>
             <% @users.each do |u| %>
-                <%= link_to u.username, user_path(u.username) %>
-            <% end %></h2>
+                <%= link_to u.username, user_path(u.username), target: "_top" %>
+            <% end %>
         </div>
         <ol id="messages">
             <li></li>
