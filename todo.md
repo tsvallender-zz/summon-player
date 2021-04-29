@@ -3,10 +3,9 @@
 ** Sort cookie error
 * Messaging
 ** notifications
-** Link to ad when send message from ad page
-** Fix weird bug with message not appearing instantly
 ** Sending/sent animation
 ** Chat to scroll to bottom
+** Empty chat problem
 * Ads
 ** Location
 *** https://github.com/alexreisner/geocoder
@@ -22,5 +21,5 @@
 ** Messaging
 ** Clubs, Stores
 * User
-** More options - profile pic, social media, public email etc.
+** More options - social media, public email etc.
 ** Error message on failed login
