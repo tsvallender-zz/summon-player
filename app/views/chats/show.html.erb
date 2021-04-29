@@ -1,31 +1,41 @@
 <turbo-frame id="messagesFrame">
-
-<h2>Conversation with
-<% @users.each do |u| %>
-    <%= link_to u.username, user_path(u.username) %>
-<% end %></h2>
-
-    <ol id="messages">
-        <li></li>
-        <% last_user = nil %>
-        <% @chat.messages.each do |m| %>
-            <% if m.from != last_user %>
-                <div class="from">
-                    <%= avatar(m.from, 80) %>
-                    <strong><%= m.from.username %>:</strong>
-                </div>
-                <% last_user = m.from %>
+    <div id="messagesContainer">    
+        <script type="text/javascript">
+            alert("HI");
+            let messages = document.getElementById("messages");
+            messages.addEventListener("load", function() {
+                window.scrollTo(0,document.querySelector(messages).scrollHeight);
+            });
+        </script>
+        <div id="chatHeader">
+            <%= link_to 'B', chats_path %>
+            <h2>Conversation with
+            <% @users.each do |u| %>
+                <%= link_to u.username, user_path(u.username) %>
+            <% end %></h2>
+        </div>
+        <ol id="messages">
+            <li></li>
+            <% last_user = nil %>
+            <% @chat.messages.each do |m| %>
+                <% if m.from != last_user %>
+                    <div class="from">
+                        <%= avatar(m.from, 80) %>
+                        <strong><%= m.from.username %>:</strong>
+                    </div>
+                    <% last_user = m.from %>
+                <% end %>
+                <%= render m %>
             <% end %>
-            <%= render m %>
+        </ol>
+        <%= form_with(model: @message, id: "chatForm") do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+
+            <%= f.text_area :text %>
+
+            <%= f.hidden_field :chat_id, value: @chat.id %>
+
+            <%= f.submit "Send" %>
         <% end %>
-    </ol>
-    <%= form_with(model: @message, id: "messageForm") do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
-
-        <%= f.text_area :text %>
-
-        <%= f.hidden_field :chat_id, value: @chat.id %>
-
-        <%= f.submit "Send" %>
-    <% end %>
+    </div>
 </turbo-frame>

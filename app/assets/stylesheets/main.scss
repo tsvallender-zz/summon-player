@@ -138,55 +138,56 @@ ol.ads {
     background-color: #fff;
     border: 1px solid #000;
     position: fixed;
-    bottom: 10px;
+    bottom: 20px;
     right: 5px;
-    overflow-y: scroll;
-    padding: 1em;
     max-height: 60%;
+    #chatContainer {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+    }
+    #chatHeader {
+        background-color: $light-background;
+    }
+    #chatForm {
+        background-color: $light-background;
+    }
+    ol#messages, ol#chats {
+        overflow-y: scroll;
+        max-height: 400px;
+        li.message, li.chat {
+            border: 1px solid $border-color;
+            border-radius: 1em;
+            margin: 1em 0em;
+            padding: 0;
+        }
+        li.unread {
+            border: 1px solid $highlight-color;
+        }
+        .text {
+            display:block;
+            margin: 0;
+        }
+        .time {
+            font-size: .6em;
+            display: block;
+            text-align: right;
+        }
+        a {
+            color: $text-color;
+            text-decoration: none;
+        }
+        .ad {
+            font-weight: bold;
+            display: block;
+        }
+    } 
+    .from {
+        position: sticky;
+        top: 0;
+    }
 }
 
-ol#messages, ol#chats {
-    li.message, li.chat {
-        border: 1px solid $border-color;
-        border-radius: 1em;
-        margin: 1em 0em;
-        padding: 0;
-    }
-    li.unread {
-        border: 1px solid $highlight-color;
-    }
-    .text {
-        display:block;
-        margin: 0;
-    }
-    .time {
-        font-size: .6em;
-        display: block;
-        text-align: right;
-    }
-    a {
-        color: $text-color;
-        text-decoration: none;
-    }
-    .ad {
-        font-weight: bold;
-        display: block;
-    }
-}
 
-
-.from {
-    position: sticky;
-    top: 0;
-}
-
-#messageForm {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: $light-background;
-}
 
 .user {
     background-color: $light-background;

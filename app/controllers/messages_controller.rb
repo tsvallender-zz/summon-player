@@ -31,11 +31,17 @@ class MessagesController < ApplicationController
     end
     
     if message.save
-      rendered_message = render_message(message)
+      # rendered_message = render_message(message)
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.append(:messages, partial: "messages/message",
+            locals: {message: message })
+        end
+      end
       chat.users.each do |u|
         ActionCable.server.broadcast(
           "messages_channel_#{u.username}",
-          { type: 'message', message: rendered_message } )
+          { type: 'message', message: message } )
       end
     else
       flash[:alert] = "Couldn't post your message"

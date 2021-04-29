@@ -1,5 +1,6 @@
 function messagesButton() {
     let frame = document.getElementById("messagesFrame");
+
     if (frame.style.display == "none" || getComputedStyle(frame).display == "none") {
         frame.style.display = "block";
     } else {
