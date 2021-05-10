@@ -37,6 +37,9 @@ class MessagesController < ApplicationController
           render turbo_stream: turbo_stream.append(:messages, partial: "messages/message",
             locals: {message: message })
         end
+        format.html do
+          render_message(message)
+        end
       end
       chat.users.each do |u|
         ActionCable.server.broadcast(
