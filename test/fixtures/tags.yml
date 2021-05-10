@@ -9,3 +9,7 @@ fifth:
 kidsonbikes:
   name: kidsonbikes
   description: Kids on Bikes
+
+fantasy:
+  name: fantasy
+  description: Fantasy games

@@ -17,6 +17,17 @@ class Ad < ApplicationRecord
   scope :archived, -> { where(archived: true) }
   scope :desc, -> { order(created_at: :desc) }
 
+  def addTags(tags)
+    tags.each do |t|
+      # check tag exists, if not create it
+      tag = nil
+      unless tag = Tag.find_by(name: t)
+        tag = Tag.create(name: t)
+      end
+      AdTag.create(ad_id: self.id, tag_id: tag.id)
+    end
+  end
+
 #   def interested
 #     user_ids = self.messages.where.not(from: user).distinct.pluck(:from_id)
 #     users = []
