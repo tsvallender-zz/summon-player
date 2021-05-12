@@ -4,7 +4,6 @@
 * Messaging
 ** notifications
 ** Sending/sent animation
-** Chat to scroll to bottom
 ** Empty chat problem
 * Ads
 ** Location
@@ -15,7 +14,6 @@
 ** Parent/child
 ** Synonyms
 ** "Real" name
-** Add new from new ad page, make sexier
 ** Follow - same as adtags associations
 * groups
 ** Messaging

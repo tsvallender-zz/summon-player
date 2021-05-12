@@ -32,6 +32,9 @@ class Ad < ApplicationRecord
     end
   end
 
+  def interested
+    Message.where(ad_id: self.id)
+  end
 #   def interested
 #     user_ids = self.messages.where.not(from: user).distinct.pluck(:from_id)
 #     users = []

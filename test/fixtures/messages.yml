@@ -12,3 +12,9 @@ three:
   chat_id: 2
   text: Hi it's Bruenor
   from_id: 3
+
+four:
+  chat_id: 2
+  text: I'd like to play please
+  from_id: 1
+  ad_id: 1

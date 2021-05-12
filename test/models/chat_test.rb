@@ -13,7 +13,7 @@ class ChatTest < ActiveSupport::TestCase
   end
 
   test "deleting should delete messages" do
-    assert_difference "Message.count", -1 do
+    assert_difference "Message.count", -2 do
       Chat.destroy(@chat.id)
     end
   end

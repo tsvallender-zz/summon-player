@@ -49,7 +49,7 @@ class AdsControllerTest < ActionDispatch::IntegrationTest
 
   test "should redirect create when not logged in" do
     assert_no_difference "Ad.count" do
-      post ads_path, params: { ad: { title: "Test ad", text: "Testing", category_id: @category.id, tag_ids: []}}
+      post ads_path, params: { ad: { title: "Test ad", text: "Testing", category_id: @category.id, taglist: "dnd"}}
     end
     assert_redirected_to new_user_session_path
   end
@@ -57,7 +57,7 @@ class AdsControllerTest < ActionDispatch::IntegrationTest
   test "should create ad when logged in" do
     sign_in @bob
     assert_difference "Ad.count", 1 do
-      post ads_path, params: { ad: { title: "Test ad", text: "Testing", category_id: @category.id, tag_ids: []}}
+      post ads_path, params: { ad: { title: "Test ad", text: "Testing", category_id: @category.id, taglist: "dnd"}}
     end
   end
 

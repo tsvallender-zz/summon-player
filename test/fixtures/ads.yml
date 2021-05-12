@@ -4,6 +4,7 @@ dnd:
   category: rpg
   text: "I want to play in Dungeons"
   archived: false
+  id: 1
 
 kidsonbikes:
   title: Kids on Bikes
@@ -11,6 +12,7 @@ kidsonbikes:
   category: rpg
   text: "I want to play Kids on Bikes"
   archived: false
+  id: 2
 
 scythe:
   title: Scythe
@@ -18,6 +20,7 @@ scythe:
   category: boardgame
   text: "I want to play Scythe"
   archived: false
+  id: 3
 
 archived:
   title: Warhammer Quest
@@ -25,3 +28,4 @@ archived:
   category: boardgame
   text: "I want to play WHQ"
   archived: true
+  id: 4
