@@ -19,6 +19,8 @@ gem 'bootsnap', '>= 1.4.2', require: false # reduces boot time via caching
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'faker'
+  gem 'guard'
+  gem 'guard-minitest'
 end
 
 group :development do
@@ -37,6 +39,4 @@ group :test do
   gem 'rails-controller-testing'
   gem 'minitest'
   gem 'minitest-reporters'
-  gem 'guard'
-  gem 'guard-minitest'
 end
