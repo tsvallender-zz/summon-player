@@ -18,6 +18,10 @@ class Ad < ApplicationRecord
   scope :desc, -> { order(created_at: :desc) }
 
   def addTags(tags)
+    if self.tags.count + tags.length > 10
+      raise "ads cannot have more than 10 tags"
+    end
+
     tags.each do |t|
       # check tag exists, if not create it
       tag = nil

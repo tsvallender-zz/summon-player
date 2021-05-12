@@ -10,7 +10,7 @@
     <%= f.collection_select :category_id, Category.all, :id, :name %>
 
     <%= f.label :tags, class: 'header' %>
-    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+    <%= f.text_field :tags %>
 
     <%= f.submit yield(:button_text) %>
 <% end %>

@@ -5,6 +5,7 @@ class AdTagsTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:trevor)
     @rpg = categories(:rpg)
+    @dnd = ads(:dnd)
   end
 
   test "new ad should create necessary tags, add all" do
@@ -15,5 +16,12 @@ class AdTagsTest < ActionDispatch::IntegrationTest
     @ad.addTags(['forbiddenlands', 'fantasy', 'hexcrawl'])
 
     assert_equal(3, @ad.tags.count)
+  end
+
+  test "ads should not be allowed more than 10 tags" do
+    assert_raise Exception do
+      @dnd.addTags(['one', 'two', 'three', 'four', 'five',
+                    'six', 'seven', 'eight', 'nine'])
+    end
   end
 end
