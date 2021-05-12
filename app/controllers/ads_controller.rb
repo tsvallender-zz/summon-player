@@ -33,11 +33,7 @@ class AdsController < ApplicationController
         @ad = current_user.ads.build(title: ad_params[:title], text: ad_params[:text])
         @ad.category = Category.find(ad_params[:category_id])
         if @ad.save
-            ad_params[:tag_ids].each do |tag_id|
-                unless tag_id.empty?
-                    AdTag.create!(ad_id: @ad.id, tag_id: tag_id.to_i)
-                end
-            end
+            @ad.addTags(ad_params[:taglist].split(' '))
             flash[:success] = "Ad posted!"
             redirect_to @ad
         else
@@ -91,7 +87,7 @@ class AdsController < ApplicationController
 
     private
         def ad_params
-            params.require(:ad).permit(:title, :text, :category_id, :tag_ids => [])
+            params.require(:ad).permit(:title, :text, :category_id, :taglist)
         end
 
         def ad_owner

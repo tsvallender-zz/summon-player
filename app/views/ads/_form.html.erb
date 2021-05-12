@@ -9,8 +9,8 @@
     <%= f.label :category, class: 'header' %>
     <%= f.collection_select :category_id, Category.all, :id, :name %>
 
-    <%= f.label :tags, class: 'header' %>
-    <%= f.text_field :tags %>
+    <%= f.label :taglist, class: 'header' %>
+    <%= f.text_field :taglist %>
 
     <%= f.submit yield(:button_text) %>
 <% end %>
