@@ -33,15 +33,12 @@ class Ad < ApplicationRecord
   end
 
   def interested
-    Message.where(ad_id: self.id)
+    user_ids = Message.where(ad_id: id).where.not(from: user).distinct.pluck(:from_id)
+    users = []
+    user_ids.each do |u|
+      users.append(User.find(u))
+    end
+    users
   end
-#   def interested
-#     user_ids = self.messages.where.not(from: user).distinct.pluck(:from_id)
-#     users = []
-#     user_ids.each do |u|
-#       users.append(User.find(u))
-#     end
-#     users
-#   end
 
 end

@@ -44,7 +44,16 @@
 <% if user_signed_in? %>
     <h2>Messages</h2>
     <% if current_user == @ad.user %>
-        <p>Here we need interested chats</p>
+        <% if @ad.interested.count > 0 %>
+            <p>The following users are interested in your ad:</p>
+            <ul>
+            <% @ad.interested.each do |u| %>
+                <li><%= u.username %></li>
+            <% end %>
+            </ul>
+        <% else %>
+            <p>Noone has responded to your ad yet.</p>
+        <% end %>
     <% else %>
         <p>Interested? Send <%= @ad.user.username %> a message.</p>
 

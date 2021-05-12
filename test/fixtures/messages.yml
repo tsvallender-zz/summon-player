@@ -16,5 +16,5 @@ three:
 four:
   chat_id: 2
   text: I'd like to play please
-  from_id: 1
+  from_id: 2
   ad_id: 1

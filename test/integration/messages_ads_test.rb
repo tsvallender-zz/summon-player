@@ -9,6 +9,7 @@ class MessagesAdsTest < ActionDispatch::IntegrationTest
   end
 
   test "should get messages from interested parties" do
-    assert_equal 1, @ad.interested.length
+    puts @ad.interested
+    assert_equal 1, @ad.interested.count
   end
 end
