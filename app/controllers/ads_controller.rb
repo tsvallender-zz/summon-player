@@ -3,11 +3,12 @@ class AdsController < ApplicationController
     before_action :ad_owner, only: [:edit, :update, :archive, :unarchive]
 
     def index
-        if params[:ad] && ad_params[:category_id].present? # Filtering by category
-            @ads = Ad.desc.active.where(category_id: ad_params[:category_id]).paginate(page: params[:page])
-        else
-            @ads = Ad.desc.active.paginate(page: params[:page])
-        end
+        @ads = Ad.filtered(ad_params).paginate(page: params[:page])
+        # if params[:ad] && ad_params[:category_id].present? # Filtering by category
+        #     @ads = Ad.desc.active.where(category_id: ad_params[:category_id]).paginate(page: params[:page])
+        # else
+        #     @ads = Ad.desc.active.paginate(page: params[:page])
+        # end
     end
 
     def show
@@ -83,7 +84,7 @@ class AdsController < ApplicationController
 
     private
         def ad_params
-            params.require(:ad).permit(:title, :text, :category_id, :taglist)
+            params.require(:ad).permit(:title, :text, :category_id, :taglist, :terms)
         end
 
         def ad_owner

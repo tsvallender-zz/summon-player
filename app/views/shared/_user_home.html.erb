@@ -1,4 +1,13 @@
 <p>Hello <%= current_user.username %>!</p>
 
+<h2>Search ads</h2>
+<%= form_tag(ads_path, method: :get) do %>
+    <%= text_field :ad, :terms %>
+    <%= label :ad, :category, class: 'header' %>
+    <%= collection_select :ad, :category_id, Category.all, :id, :name, :include_blank => "All" %>
+
+    <%= submit_tag 'Filter' %>
+<% end %>
+
 <h2>Latest ads</h2>
 <%= render @ads %>
