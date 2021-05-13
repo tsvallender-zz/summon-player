@@ -5,6 +5,7 @@ ruby '2.7.0'
 
 gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
 gem 'pg', '~> 1.2.3'
+gem 'pg_search'
 gem 'puma', '~> 4.1'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 4.0' # transpiles javascript

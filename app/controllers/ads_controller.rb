@@ -4,7 +4,10 @@ class AdsController < ApplicationController
 
     def index
         if params[:ad]
-            @ads = Ad.filtered(ad_params).paginate(page: params[:page])
+            if ad_params[:category_id].present?
+                @ads = Ad.where(category_id: ad_params[:category_id])
+            end
+            @ads = @ads.active.search(ad_params[:terms]).paginate(page: params[:page])
         else
             @ads = Ad.desc.active.paginate(page: params[:page])
         end

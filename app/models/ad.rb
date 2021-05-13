@@ -1,4 +1,9 @@
 class Ad < ApplicationRecord
+  include PgSearch::Model
+  pg_search_scope :search,
+                  against: { title: 'A', text: 'B' },
+                  using: { tsearch: { dictionary: 'english' }}
+  
   belongs_to :user
   belongs_to :category
 
@@ -13,7 +18,6 @@ class Ad < ApplicationRecord
   scope :active, -> { where(archived: false) }
   scope :archived, -> { where(archived: true) }
   scope :desc, -> { order(created_at: :desc) }
-  scope :filtered, -> (query_params) { Ad::Filter.new.filter(self, query_params)}
 
   def addTags(tags)
     if self.tags.count + tags.length > 10
