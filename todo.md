@@ -1,16 +1,15 @@
 * Testing/bugs
-** Done controllers, need more tests for users
 ** Sort cookie error
 * Messaging
-** notifications
+** notifications - need to know number of unread messages per chat
 ** Sending/sent animation
-** Empty chat problem
 * Ads
 ** Location
 *** https://github.com/alexreisner/geocoder
 *** https://postgis.net/docs/Geocode.html
 ** Search
 *** Optimisation, PostgreSQL 12 https://pganalyze.com/blog/full-text-search-ruby-rails-postgres
+*** tag filtering
 * tags
 ** Parent/child
 ** Synonyms
