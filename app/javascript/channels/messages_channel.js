@@ -21,6 +21,7 @@ consumer.subscriptions.create({ channel: "MessagesChannel", room: roomname}, {
           fetch('/messages/'+data.message.id)
             .then(res=> res.text() )
             .then(data => m.innerHTML += data)
+          // TODO scroll window down
         }
         break;
       default:

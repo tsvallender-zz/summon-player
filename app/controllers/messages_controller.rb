@@ -38,10 +38,10 @@ class MessagesController < ApplicationController
     if message.save!
       # rendered_message = render_message(message)
       respond_to do |format|
-        # format.turbo_stream do
-        #   render turbo_stream: turbo_stream.append(:messages, partial: "messages/message",
-        #     locals: {message: message })
-        # end
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.append(:messages, partial: "messages/message",
+            locals: {message: message })
+        end
         format.html do
           render_message(message)
         end
