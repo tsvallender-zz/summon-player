@@ -1,11 +1,5 @@
 <turbo-frame id="messagesFrame">
     <div id="chatContainer" data-controller="chat">    
-        <script type="text/javascript">
-            let messages = document.getElementById("messages");
-            messages.addEventListener("load", function() {
-                window.scrollTo(0,document.querySelector(messages).scrollHeight);
-            });
-        </script>
         <div id="chatHeader">
             <%= link_to '←', chats_path %>
             <% @users.each do |u| %>
@@ -33,7 +27,7 @@
 
             <%= f.hidden_field :chat_id, value: @chat.id %>
 
-            <%= f.submit "Send" %>
+            <%= f.submit "Send", id: "sendMessageButton", data: {action: "click->chat#send"} %>
         <% end %>
     </div>
 </turbo-frame>

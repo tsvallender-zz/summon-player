@@ -30,7 +30,7 @@ class MessagesController < ApplicationController
       return
     end
     
-    if message.save
+    if message.save!
       # rendered_message = render_message(message)
       respond_to do |format|
         format.turbo_stream do

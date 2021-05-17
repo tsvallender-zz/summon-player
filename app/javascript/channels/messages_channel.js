@@ -8,11 +8,11 @@ consumer.subscriptions.create({ channel: "MessagesChannel", room: roomname}, {
   },
 
   disconnected() {
-    // Called when the subscription has been terminated by the server
+    console.log("Disconnected from Action Cable");
   },
 
   received(data) {
-    // Alerts for new messages etc.
+    // TODO set unread message counter
   }
 });
 
