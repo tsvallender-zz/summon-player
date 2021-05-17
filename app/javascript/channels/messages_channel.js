@@ -13,6 +13,19 @@ consumer.subscriptions.create({ channel: "MessagesChannel", room: roomname}, {
 
   received(data) {
     // TODO set unread message counter
+    switch (data.type) {
+      case "message":
+        let e = document.getElementById("chat-" + data.message.chat_id)
+        if (e) {
+          let m = document.getElementById("messages");
+          fetch('/messages/'+data.message.id)
+            .then(res=> res.text() )
+            .then(data => m.innerHTML += data)
+        }
+        break;
+      default:
+        console.log("Received unknown data:", data);
+    }
   }
 });
 

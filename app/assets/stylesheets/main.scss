@@ -148,7 +148,7 @@ ol.ads {
     right: 5px;
     height: 60%;
     width: 25%;
-    #chatContainer {
+    div[id^='chat-'] {
         height: 100%;
         display: grid;
         grid-template-columns: 1fr;
