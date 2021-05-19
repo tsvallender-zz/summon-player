@@ -1,8 +1,8 @@
 * Testing/bugs
 ** Sort cookie error
 * Messaging
-** notifications - need to know number of unread messages per chat
-** Sending/sent animation
+** Make window responsive
+** Deal with network errors etc.
 * Ads
 ** Location
 *** https://github.com/alexreisner/geocoder
