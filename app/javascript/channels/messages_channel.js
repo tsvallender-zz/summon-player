@@ -15,13 +15,11 @@ consumer.subscriptions.create({ channel: "MessagesChannel", room: roomname}, {
     switch (data.type) {
       case "message":
         let e = document.getElementById("chat-" + data.message.chat_id)
-        
+        let m = document.getElementById("messages");
         if (e && data.message.from_id != parseInt(readCookie('user_id'))) {
-          let m = document.getElementById("messages");
           fetch('/messages/'+data.message.id)
             .then(res=> res.text() )
             .then(data => m.innerHTML += data);
-            frame.scrollTo(0, m.scrollHeight);
         } else {
           // TODO set unread message counter
         }
