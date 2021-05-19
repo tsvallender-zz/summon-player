@@ -20,8 +20,8 @@ consumer.subscriptions.create({ channel: "MessagesChannel", room: roomname}, {
           let m = document.getElementById("messages");
           fetch('/messages/'+data.message.id)
             .then(res=> res.text() )
-            .then(data => m.innerHTML += data)
-          // TODO scroll window down
+            .then(data => m.innerHTML += data);
+          scrollToBottom(m);
         }
         break;
       default:
@@ -39,4 +39,8 @@ function readCookie(name) {
 		if (c.indexOf(cookiename) == 0) return c.substring(cookiename.length,c.length);
 	}
 	return null;
+
+  function scrollToBottom(frame) {
+    frame.scrollTo(0, frame.scrollHeight);
+}
 }
