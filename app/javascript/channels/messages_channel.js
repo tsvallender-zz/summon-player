@@ -12,7 +12,6 @@ consumer.subscriptions.create({ channel: "MessagesChannel", room: roomname}, {
   },
 
   received(data) {
-    // TODO set unread message counter
     switch (data.type) {
       case "message":
         let e = document.getElementById("chat-" + data.message.chat_id)
@@ -22,6 +21,8 @@ consumer.subscriptions.create({ channel: "MessagesChannel", room: roomname}, {
             .then(res=> res.text() )
             .then(data => m.innerHTML += data);
           scrollToBottom(m);
+        } else {
+          // TODO set unread message counter
         }
         break;
       default:
@@ -39,8 +40,8 @@ function readCookie(name) {
 		if (c.indexOf(cookiename) == 0) return c.substring(cookiename.length,c.length);
 	}
 	return null;
-
-  function scrollToBottom(frame) {
-    frame.scrollTo(0, frame.scrollHeight);
 }
+
+function scrollToBottom(frame) {
+  frame.scrollTo(0, frame.scrollHeight);
 }
