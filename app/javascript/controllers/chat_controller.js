@@ -2,9 +2,8 @@ import { Controller } from "stimulus"
 
 export default class extends Controller {
     connect() {
-        console.log("Connected to chat_controller", this.element);
-
         const m = document.getElementById('messages');
+        m.scrollTo(0, m.scrollHeight);
         const config = {childList: true, subTree: true };
         const callback = function(mutationsList, observer) {
             m.scrollTo(0, m.scrollHeight);

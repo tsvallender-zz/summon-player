@@ -1,4 +1,11 @@
-<li id="message-id-<%= message.id %>" class="message<%= !message.read ? ' unread' : ''%>">
+<li id="message-id-<%= message.id %>"
+    class="message<%= !message.read ? ' unread' : ''%>"
+    <% if message.from_id == current_user.id %>
+        data-from="self"
+    <% else %>
+        data-from="<%= message.from_id %>"
+    <% end %>
+    >
     <% if message.ad_id && ad = Ad.find(message.ad_id) %>
         <span class="ad">
             <%= link_to ad, target: "_top" do %>

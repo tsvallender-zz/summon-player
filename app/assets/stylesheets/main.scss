@@ -193,6 +193,10 @@ ol.ads {
         li.message {
             margin-left: 5.5em;
         }
+        li.message[data-from='self'] {
+            margin-right: 5.5em;
+            margin-left: .2em;
+        }
         li.unread {
             border: 1px solid $highlight-color;
         }

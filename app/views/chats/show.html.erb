@@ -9,16 +9,7 @@
         <ol id="messages">
             <li></li>
             <% last_user = nil %>
-            <% @chat.messages.each do |m| %>
-                <% if m.from != last_user %>
-                    <hr>
-                    <div class="from">
-                        <%= avatar(m.from, 80) %>
-                    </div>
-                    <% last_user = m.from %>
-                <% end %>
-                <%= render m %>
-            <% end %>
+            <%= render @chat.messages %>
         </ol>
         <%= form_with(model: @message, id: "chatForm") do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
