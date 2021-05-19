@@ -13,4 +13,8 @@ window.onload = function() {
     if (button != null) {
         button.addEventListener("click", messagesButton);
     }
+    let chatButton = document.getElementById("chatButton");
+    if (chatButton != null) {
+        chatButton.addEventListener("click", messagesButton);
+    }
 }
