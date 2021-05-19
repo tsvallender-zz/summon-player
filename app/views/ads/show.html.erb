@@ -1,22 +1,5 @@
 <% provide(:title, @ad.title) %>
 
-<script type="text/javascript">
-    function showSentMessage() {
-        let frame = document.getElementById("messagesFrame");
-        if (frame.style.display == "none" || getComputedStyle(frame).display == "none") {
-            frame.style.display = "block";
-        } else {
-            frame.style.display = "none";
-        }
-    }
-    window.onload = function() { 
-        let button = document.getElementById("sendAdMessage");
-        if (button != null) {
-            button.addEventListener("click", showSentMessage);
-        }
-    }
-</script>
-
 <h2 class="ad-title"><%= @ad.title %></h2>
 <% if @ad.archived %>
     <div class="alert">
@@ -64,7 +47,7 @@
             <%= f.hidden_field :chat_id, value: nil %>
             <%= f.hidden_field :participants, value: @ad.user.id %>
             <%= f.hidden_field :ad_id, value: @ad.id %>
-            <%= f.submit "Send", id: 'sendAdMessage' %>
+            <%= f.submit "Send", id: 'chatButton' %>
         <% end %>
     <% end %>
 <% end %>

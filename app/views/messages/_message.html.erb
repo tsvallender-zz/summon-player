@@ -9,7 +9,7 @@
     <% if message.ad_id && ad = Ad.find(message.ad_id) %>
         <span class="ad">
             <%= link_to ad, target: "_top" do %>
-                This message is in response to your ad, <%= ad.title %>.
+                This message is in response to <%= ad.title %>.
             <% end %>
         </span>
     <% end %>
