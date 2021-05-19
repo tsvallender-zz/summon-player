@@ -36,7 +36,9 @@ class MessagesController < ApplicationController
     end
     
     if message.save!
-      # rendered_message = render_message(message)
+      cu = ChatUser.find_by(user_id: current_user.id, chat_id: chat.id)
+      cu.touch(:last_read)
+    
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: turbo_stream.append(:messages, partial: "messages/message",
@@ -46,8 +48,9 @@ class MessagesController < ApplicationController
           render_message(message)
         end
       end
-      unread = chat.unread_messages(current_user)
+      
       chat.users.each do |u|
+        unread = chat.unread_messages(u)
         ActionCable.server.broadcast(
           "messages_channel_#{u.username}",
           { type: 'message', message: message, unread: unread } )
