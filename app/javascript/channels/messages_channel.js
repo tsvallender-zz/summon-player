@@ -15,12 +15,13 @@ consumer.subscriptions.create({ channel: "MessagesChannel", room: roomname}, {
     switch (data.type) {
       case "message":
         let e = document.getElementById("chat-" + data.message.chat_id)
-        if (e) {
+        
+        if (e && data.message.from_id != parseInt(readCookie('user_id'))) {
           let m = document.getElementById("messages");
           fetch('/messages/'+data.message.id)
             .then(res=> res.text() )
             .then(data => m.innerHTML += data);
-          scrollToBottom(m);
+            frame.scrollTo(0, m.scrollHeight);
         } else {
           // TODO set unread message counter
         }
@@ -40,8 +41,4 @@ function readCookie(name) {
 		if (c.indexOf(cookiename) == 0) return c.substring(cookiename.length,c.length);
 	}
 	return null;
-}
-
-function scrollToBottom(frame) {
-  frame.scrollTo(0, frame.scrollHeight);
 }

@@ -12,6 +12,7 @@ class Users::SessionsController < Devise::SessionsController
   def create
     super
     cookies[:username] = current_user.username
+    cookies[:user_id] = current_user.id
   end
 
   # DELETE /resource/sign_out
