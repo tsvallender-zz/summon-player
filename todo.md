@@ -1,7 +1,6 @@
 * Testing/bugs
 ** Sort cookie error
 * Messaging
-** Fix messages appearing twice when sent - confirmation?
 ** notifications - need to know number of unread messages per chat
 ** Sending/sent animation
 * Ads

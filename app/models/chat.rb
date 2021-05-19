@@ -5,6 +5,11 @@ class Chat < ApplicationRecord
   has_many :chat_users, dependent: :destroy
   has_many :users, :through => :chat_users
 
+  def unread_messages(user)
+    cu = chat_users.find_by(user_id: user.id)
+    messages.where("created_at > ?",  cu.last_read).count
+  end
+
   def self.with_users(users)
     Chat.joins(:users)
         .where(users: { id: users })

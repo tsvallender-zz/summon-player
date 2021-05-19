@@ -23,11 +23,11 @@ class User < ApplicationRecord
     username
   end
 
-  def unreadChats
-    unread = Array.new
+  def unread_chats
+    unread = 0
     chat_users.each do |cu|
       if cu.last_read < cu.chat.updated_at
-        unread << cu.chat
+        unread += 1
       end
     end
     unread

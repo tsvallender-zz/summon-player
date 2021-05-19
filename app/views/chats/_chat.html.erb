@@ -7,5 +7,8 @@
             <%= render u %>
         <% end %>
     <% end %>
+    <% if new_messages %>
+        <%= chat.unread_messages(current_user) %>
+    <% end %>
     <span class="time">Last message was <%= time_ago_in_words(chat.updated_at) %> ago.</span>
 </li>
