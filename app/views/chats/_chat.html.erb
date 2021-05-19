@@ -8,7 +8,9 @@
         <% end %>
     <% end %>
     <% if new_messages %>
-        <%= chat.unread_messages(current_user) %>
+        <span id="unread-chat-<%= chat.id %>">
+            <%= chat.unread_messages(current_user) %>
+        </span>
     <% end %>
     <span class="time">Last message was <%= time_ago_in_words(chat.updated_at) %> ago.</span>
 </li>

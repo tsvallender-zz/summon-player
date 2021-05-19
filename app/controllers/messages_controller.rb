@@ -46,10 +46,11 @@ class MessagesController < ApplicationController
           render_message(message)
         end
       end
+      unread = chat.unread_messages(current_user)
       chat.users.each do |u|
         ActionCable.server.broadcast(
           "messages_channel_#{u.username}",
-          { type: 'message', message: message } )
+          { type: 'message', message: message, unread: unread } )
       end
     else
       flash[:alert] = "Couldn't post your message"

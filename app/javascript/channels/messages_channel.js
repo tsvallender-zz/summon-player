@@ -14,14 +14,18 @@ consumer.subscriptions.create({ channel: "MessagesChannel", room: roomname}, {
   received(data) {
     switch (data.type) {
       case "message":
-        let e = document.getElementById("chat-" + data.message.chat_id)
-        let m = document.getElementById("messages");
-        if (e && data.message.from_id != parseInt(readCookie('user_id'))) {
+        // Display new message if chat open
+        let chatFrame = document.getElementById("chat-" + data.message.chat_id);
+        let messagesFrame = document.getElementById("messages");
+        if (chatFrame && data.message.from_id != parseInt(readCookie('user_id'))) {
           fetch('/messages/'+data.message.id)
             .then(res=> res.text() )
-            .then(data => m.innerHTML += data);
-        } else {
-          // TODO set unread message counter
+            .then(data => messagesFrame.innerHTML += data);
+        }
+
+        let unreadCounter = document.getElementById("unread-chat-" + data.message.chat_id);
+        if (unreadCounter) {
+          unreadCounter.innerHTML = data.unread;
         }
         break;
       default:
