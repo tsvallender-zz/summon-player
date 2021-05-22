@@ -5,7 +5,7 @@
             <% @users.each do |u| %>
                 <%= link_to u.username, user_path(u.username), target: "_top" %>
             <% end %>
-        <span id="chatClose">-</span>
+        <span id="chatClose" onclick="document.getElementById('messagesFrame').style.display = 'none';">-</span>
         </div>
         <ol id="messages">
             <li></li>
