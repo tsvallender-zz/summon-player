@@ -1,8 +1,15 @@
 <turbo-frame id="messagesFrame">
     <div id="chatHeader">
         <h2>Messages</h2>
+        <span id="chatClose" onclick="document.getElementById('messagesFrame').style.display = 'none';">-</span>
     </div>
     <ol id="chats">
          <%= render @chats %>
     </ol>
+    <script>
+        let chatClose = document.getElementById("chatClose");
+        if (chatClose != null) {
+            chatClose.addEventListener("click", messagesButton);
+        }
+    </script>
 </turbo-frame>

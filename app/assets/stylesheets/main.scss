@@ -171,6 +171,9 @@ ol.ads {
             display: inline;
         }
     }
+    #chatClose {
+        float: right;
+    }
     #chatForm {
         grid-area: footer;
         background-color: $light-background;
