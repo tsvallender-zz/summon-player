@@ -144,10 +144,16 @@ ol.ads {
     background-color: #fff;
     border: 1px solid #000;
     position: fixed;
-    bottom: 25px;
-    right: 5px;
-    height: 60%;
-    width: 25%;
+    bottom: 0px;
+    right: 0px;
+    height: 100%;
+    width: 100%;
+    @media (min-width: 800px) {
+        bottom: 25px;
+        right: 5px;
+        height: 60%;
+        width: 25%;
+    }
     div[id^='chat-'] {
         height: 100%;
         display: grid;
