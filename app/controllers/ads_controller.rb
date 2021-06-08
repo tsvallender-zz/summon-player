@@ -9,10 +9,19 @@ class AdsController < ApplicationController
             else
                 @ads = Ad.all
             end
-            @ads = @ads.active.search(ad_params[:terms]).paginate(page: params[:page])
+            unless ad_params[:terms].strip.empty?
+                # # Get ads tagged with any terms
+                # ad_params[:terms].split.each do |t|
+                #     if tag = Tag.find_by(name: t)
+                #         @ads = @ads.or(tag.ads)
+                #     end
+                # end
+                @ads = @ads.active.search(ad_params[:terms])
+            end
         else
-            @ads = Ad.desc.active.paginate(page: params[:page])
+            @ads = Ad.desc.active
         end
+        @ads = @ads.paginate(page: params[:page])
     end
 
     def show
