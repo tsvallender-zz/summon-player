@@ -2,7 +2,11 @@ class Ad < ApplicationRecord
   include PgSearch::Model
   pg_search_scope :search,
                   against: { title: 'A', text: 'B' },
-                  using: { tsearch: { dictionary: 'english' }}
+                  using: { 
+                    tsearch: { 
+                      dictionary: 'english',
+                      any_word: true
+                  }}
   
   belongs_to :user
   belongs_to :category

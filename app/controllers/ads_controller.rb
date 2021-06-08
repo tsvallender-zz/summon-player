@@ -2,6 +2,8 @@ class AdsController < ApplicationController
     before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :archive, :unarchive]
     before_action :ad_owner, only: [:edit, :update, :archive, :unarchive]
 
+    require 'will_paginate/array'
+
     def index
         if params[:ad]
             if ad_params[:category_id].present?
@@ -10,13 +12,15 @@ class AdsController < ApplicationController
                 @ads = Ad.all
             end
             unless ad_params[:terms].strip.empty?
-                # # Get ads tagged with any terms
-                # ad_params[:terms].split.each do |t|
-                #     if tag = Tag.find_by(name: t)
-                #         @ads = @ads.or(tag.ads)
-                #     end
-                # end
+                # Search title and text
                 @ads = @ads.active.search(ad_params[:terms])
+
+                # Get ads tagged with any terms
+                ad_params[:terms].split.each do |t|
+                    if tag = Tag.find_by(name: t)
+                        @ads += tag.ads.all
+                    end
+                end
             end
         else
             @ads = Ad.desc.active
