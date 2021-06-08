@@ -6,6 +6,8 @@ class AdsController < ApplicationController
         if params[:ad]
             if ad_params[:category_id].present?
                 @ads = Ad.where(category_id: ad_params[:category_id])
+            else
+                @ads = Ad.all
             end
             @ads = @ads.active.search(ad_params[:terms]).paginate(page: params[:page])
         else
