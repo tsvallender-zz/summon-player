@@ -9,7 +9,7 @@
 
     <span id="userDescription"><%= @user.description %></span>
 
-    <% if @user != current_user %>
+    <% if user_signed_in? && @user != current_user %>
         <%= form_with(model: @chat, local: true, data: {'turbo-frame': 'messagesFrame'}) do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
 
