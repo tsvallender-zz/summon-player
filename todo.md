@@ -9,7 +9,6 @@
 *** https://postgis.net/docs/Geocode.html
 ** Search
 *** Optimisation, PostgreSQL 12 https://pganalyze.com/blog/full-text-search-ruby-rails-postgres
-*** tag filtering
 * tags
 ** Parent/child
 ** Synonyms

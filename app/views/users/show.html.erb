@@ -3,6 +3,7 @@
     <div id="userHeaderText">
     <h1><%= @user.username %></h1>
     <% if @user == current_user %>
+        <p>DOB: <%= @user.dob %></p>
         <%= link_to('Edit profile', edit_user_registration_path) %>
     <% end %>
 
