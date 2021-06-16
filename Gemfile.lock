@@ -229,10 +229,13 @@ GEM
     thor (1.1.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    timeliness (0.4.4)
     turbo-rails (0.5.9)
       rails (>= 6.0.0)
     tzinfo (1.2.9)
       thread_safe (~> 0.1)
+    validates_timeliness (5.0.0)
+      timeliness (>= 0.3.10, < 1)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.1.0)
@@ -283,6 +286,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   stimulus-rails
   turbo-rails
+  validates_timeliness
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)

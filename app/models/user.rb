@@ -20,7 +20,8 @@ class User < ApplicationRecord
   	length:			{ maximum: 1000 }
 
   validates :dob,
-    presence:   true
+    presence:   true,
+    timeliness: {on_or_before: 16.years.ago}
     
   def to_param
     username

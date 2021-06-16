@@ -16,6 +16,7 @@ gem 'will_paginate'
 gem 'devise'
 gem 'image_processing'
 gem 'bootsnap', '>= 1.4.2', require: false # reduces boot time via caching
+gem 'validates_timeliness'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
