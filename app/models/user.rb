@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_many :chats, :through => :chat_users
   has_many :messages
   has_one_attached :image, dependent: :destroy
+
+  has_many :watched_tags
+  has_many :tags, through: :watched_tags
   
   validates :username,
     presence:   true,
