@@ -19,6 +19,9 @@ class User < ApplicationRecord
   validates :description,
   	length:			{ maximum: 1000 }
 
+  validates :dob,
+    presence:   true
+    
   def to_param
     username
   end
