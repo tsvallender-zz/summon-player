@@ -5,11 +5,14 @@ class UserTest < ActiveSupport::TestCase
     @user = User.new(
       email: "test@summonplayer.com",
       username: "tester",
-      password: "password"
+      password: "password",
+      description: "I'd like to play games",
+      dob: 20.years.ago
     )
   end
 
   test "should be valid" do
+    puts "ERROR: "
     assert @user.valid?
 	end
 

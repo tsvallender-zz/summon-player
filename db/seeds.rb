@@ -16,6 +16,7 @@ user.save!
     user.password_confirmation = "password"
     user.username = Faker::Name.unique.name.gsub!(/[^\w_]/i, '').first(20)
     user.description = "I am Example #{n+1}"
+    user.dob = Faker::Date.birthday(min_age: 18, max_age: 100)
     user.skip_confirmation!
     user.save!
 end
