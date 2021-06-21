@@ -5,6 +5,7 @@ user.password = 'foobar'
 user.password_confirmation = 'foobar'
 user.username = 'user'
 user.description = 'I am not a real person'
+user.dob = 24.years.ago
 user.skip_confirmation!
 user.save!
 

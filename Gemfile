@@ -3,12 +3,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.0'
 
-gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
-gem 'pg', '~> 1.2.3'
+gem 'rails'
+gem 'pg'
 gem 'pg_search'
-gem 'puma', '~> 4.1'
-gem 'sass-rails', '>= 6'
-gem 'webpacker', '~> 4.0' # transpiles javascript
+gem 'puma'
+gem 'sass-rails'
+gem 'webpacker'
 gem 'turbo-rails'
 gem 'stimulus-rails'
 gem 'redis'
@@ -17,6 +17,7 @@ gem 'devise'
 gem 'image_processing'
 gem 'bootsnap', '>= 1.4.2', require: false # reduces boot time via caching
 gem 'validates_timeliness'
+gem 'rexml'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

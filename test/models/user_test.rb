@@ -12,7 +12,6 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "should be valid" do
-    puts "ERROR: "
     assert @user.valid?
 	end
 

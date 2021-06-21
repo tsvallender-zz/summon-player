@@ -38,7 +38,6 @@ class ChatsControllerTest < ActionDispatch::IntegrationTest
         subject_type: nil, subject_id: nil, participants: 3
         }})
     end
-    assert_redirected_to chat_path(3)
   end
   
   test "shouldn't create new chat if existing" do

@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
-
+  protect_from_forgery with: :exception, prepend: true
   before_action :update_allowed_parameters, if: :devise_controller?
   
   def after_sign_in_path_for(resource)
