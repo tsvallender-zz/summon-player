@@ -9,10 +9,6 @@ class Tag < ApplicationRecord
   
     has_many :adtags, class_name: "AdTag", foreign_key: "tag_id"
     has_many :ads, through: :adtags, :source => :ad
-
-    has_many :watched_tags
-    has_many :users, through: :watched_tags
-
   def to_param
     name
   end
