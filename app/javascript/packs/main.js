@@ -9,6 +9,12 @@ function messagesButton() {
 }
 
 window.onload = function() {
+    addButtonListeners();
+    document.addEventListener('turbo:load', addButtonListeners);
+
+}
+
+function addButtonListeners() {
     let button = document.getElementById("messagesFrameButton");
     if (button != null) {
         button.addEventListener("click", messagesButton);
@@ -16,6 +22,5 @@ window.onload = function() {
     let chatButton = document.getElementById("chatButton");
     if (chatButton != null) {
         chatButton.addEventListener("click", messagesButton);
-    }    
-
+    }  
 }
