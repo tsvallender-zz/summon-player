@@ -5,8 +5,10 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    message = Message.find(params[:id])
-    render_message(message)
+    cu = ChatUser.find_by(user_id: current_user.id, chat_id: chat.id)
+    @last_read = cu.last_read
+    @message = Message.find(params[:id])
+    render :layout => false
   end
 
   def create
@@ -37,23 +39,22 @@ class MessagesController < ApplicationController
     
     if message.save!
       cu = ChatUser.find_by(user_id: current_user.id, chat_id: chat.id)
+      @last_read = cu.last_read
       cu.touch(:last_read)
-    
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: turbo_stream.append(:messages, partial: "messages/message",
-            locals: {message: message })
+            locals: {message: message})
         end
         format.html do
-          render_message(message)
+          render :layout => false
         end
       end
       
       chat.users.each do |u|
-        unread = chat.unread_messages(u)
         ActionCable.server.broadcast(
           "messages_channel_#{u.username}",
-          { type: 'message', message: message, unread: unread } )
+          { type: 'message', message: message} )
       end
     else
       flash[:alert] = "Couldn't post your message"
@@ -69,6 +70,6 @@ class MessagesController < ApplicationController
     end
 
     def render_message(message)
-      render(partial: 'message', locals: { message: message })
+      render(partial: 'message', locals: { message: message, last_read: last_read })
     end
 end

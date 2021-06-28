@@ -67,4 +67,6 @@ Rails.application.configure do
   config.action_cable.allowed_request_origins = [%r{http[s]?://\S+}]
   config.hosts << "localhost"
   config.hosts << "http://192.168.0.27"
+
+  config.web_console.whitelisted_ips = '192.168.0.0/16'
 end

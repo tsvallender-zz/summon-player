@@ -1,5 +1,5 @@
 <li id="message-id-<%= message.id %>"
-    class="message<%= !message.read ? ' unread' : ''%>"
+    class="message<%= @last_read < message.created_at ? ' unread' : ''%>"
     <% if message.from_id == current_user.id %>
         data-from="self"
     <% else %>

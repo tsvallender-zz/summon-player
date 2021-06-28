@@ -22,11 +22,6 @@ consumer.subscriptions.create({ channel: "MessagesChannel", room: roomname}, {
             .then(res=> res.text() )
             .then(data => messagesFrame.innerHTML += data);
         }
-
-        let unreadCounter = document.getElementById("unread-chat-" + data.message.chat_id);
-        if (unreadCounter) {
-          unreadCounter.innerHTML = data.unread;
-        }
         break;
       default:
         console.log("Received unknown data:", data);

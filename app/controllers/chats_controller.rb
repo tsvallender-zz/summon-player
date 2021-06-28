@@ -16,6 +16,7 @@ class ChatsController < ApplicationController
     @message = Message.new
 
     cu = ChatUser.find_by(user_id: current_user.id, chat_id: @chat.id)
+    @last_read = cu.last_read
     cu.touch(:last_read)
     render :layout => false
   end
