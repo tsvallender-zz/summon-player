@@ -23,6 +23,10 @@ consumer.subscriptions.create({ channel: "MessagesChannel", room: roomname}, {
             .then(data => messagesFrame.innerHTML += data);
         }
         break;
+      case "unread_chats":
+        let chatButton = document.getElementById("messagesFrameButton");
+        chatButton.innerHTML = data.unread_chats;
+        break;
       default:
         console.log("Received unknown data:", data);
     }

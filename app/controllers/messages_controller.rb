@@ -56,6 +56,9 @@ class MessagesController < ApplicationController
         ActionCable.server.broadcast(
           "messages_channel_#{u.username}",
           { type: 'message', message: @message} )
+        ActionCable.server.broadcast(
+          "messages_channel_#{u.username}",
+          { type: 'unread_chats', unread_chats: u.unread_chats} )
       end
     else
       flash[:alert] = "Couldn't post your message"
@@ -68,9 +71,5 @@ class MessagesController < ApplicationController
       params.require(:message).permit(:text, :to_id, :chat_id, :participants, :ad_id)
       # participants is only used if creating a chat (e.g. from ad)
       # ad_id only used from an ad
-    end
-
-    def render_message(message)
-      render(partial: 'message', locals: { message: message, last_read: last_read })
     end
 end

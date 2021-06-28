@@ -18,6 +18,9 @@ class ChatsController < ApplicationController
     cu = ChatUser.find_by(user_id: current_user.id, chat_id: @chat.id)
     @last_read = cu.last_read
     cu.touch(:last_read)
+    ActionCable.server.broadcast(
+      "messages_channel_#{current_user.username}",
+      { type: 'unread_chats', unread_chats: current_user.unread_chats} )
     render :layout => false
   end
 
