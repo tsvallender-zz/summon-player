@@ -11,7 +11,7 @@ function messagesButton() {
 window.onload = function() {
     addButtonListeners();
     document.addEventListener('turbo:load', addButtonListeners);
-
+    document.addEventListener('turbo:submit-end', clearMessageInput);
 }
 
 function addButtonListeners() {
@@ -23,4 +23,9 @@ function addButtonListeners() {
     if (chatButton != null) {
         chatButton.addEventListener("click", messagesButton);
     }  
+}
+
+function clearMessageInput() {
+    let input = document.getElementById("message_text");
+    input.value = "";
 }

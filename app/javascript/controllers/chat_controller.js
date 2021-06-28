@@ -14,7 +14,5 @@ export default class extends Controller {
 
     send() {
         // TODO: Validate message
-        // let input = document.getElementById("message_text");
-        // input.value = "";
     }
 }
