@@ -13,7 +13,7 @@ class ChatsController < ApplicationController
     if @chat = current_user.chats.find(params[:id])
       @users = @chat.users.where.not(id: current_user.id)
     end
-    @message = Message.new
+    @newmessage = Message.new
 
     cu = ChatUser.find_by(user_id: current_user.id, chat_id: @chat.id)
     @last_read = cu.last_read

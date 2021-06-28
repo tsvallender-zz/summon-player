@@ -42,11 +42,7 @@
 
     <% if user_signed_in? %>
       <a id="messagesFrameButton">
-      <% if (c = current_user.unread_chats) > 0 %>
-        <%= c %>
-      <% else %>
         &#128172;
-      <% end %>
       </a>
       <turbo-frame id="messagesFrame" src="/chats">
       </turbo-frame>

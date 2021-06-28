@@ -5,10 +5,11 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
 
   def show
+    message = Message.find(params[:id])
+    chat = Chat.find(message.chat_id)
     cu = ChatUser.find_by(user_id: current_user.id, chat_id: chat.id)
     @last_read = cu.last_read
-    @message = Message.find(params[:id])
-    render :layout => false
+    render :partial => 'message', locals: { message: message }
   end
 
   def create
@@ -26,25 +27,25 @@ class MessagesController < ApplicationController
       chat = Chat.find(message_params[:chat_id])
     end
 
-    message = chat.messages.build(
+    @message = chat.messages.build(
       from: current_user,
       text: message_params[:text],
       ad_id: message_params[:ad_id] ? message_params[:ad_id] : nil
     )
 
-    if message.save && message_params[:ad_id]
+    if @message.save && message_params[:ad_id]
       redirect_to chat_path(chat)
       return
     end
     
-    if message.save!
+    if @message.save!
       cu = ChatUser.find_by(user_id: current_user.id, chat_id: chat.id)
       @last_read = cu.last_read
       cu.touch(:last_read)
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: turbo_stream.append(:messages, partial: "messages/message",
-            locals: {message: message})
+            locals: {message: @message})
         end
         format.html do
           render :layout => false
@@ -54,7 +55,7 @@ class MessagesController < ApplicationController
       chat.users.each do |u|
         ActionCable.server.broadcast(
           "messages_channel_#{u.username}",
-          { type: 'message', message: message} )
+          { type: 'message', message: @message} )
       end
     else
       flash[:alert] = "Couldn't post your message"

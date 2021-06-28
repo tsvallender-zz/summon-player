@@ -12,7 +12,7 @@
             <% last_user = nil %>
             <%= render @chat.messages %>
         </ol>
-        <%= form_with(model: @message, id: "chatForm") do |f| %>
+        <%= form_with(model: @newmessage, id: "chatForm") do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
 
             <%= f.text_area :text %>
