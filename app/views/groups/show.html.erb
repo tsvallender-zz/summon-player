@@ -1,4 +1,18 @@
 <% provide(:title, @group.name) %>
 <h2><%= @group.name %></h2>
-
-Owned by <%= link_to @group.user.username, user_path(@group.user) %>.
+<% if @group.user == current_user %>
+    <%= link_to 'Edit group', edit_group_path(@group) %>
+<% end %>
+<ul>
+    <li>Owned by <%= link_to @group.user.username, user_path(@group.user) %>.</li>
+    <li>Group is
+    <% case @group.privacy %>
+    <% when 'open' %>
+        open.
+    <% when 'request' %>
+        open to requests.
+    <% when 'invite' %>
+        invite-only.
+    <% end %>
+    </li>
+</ul>
