@@ -1,0 +1,4 @@
+<% provide(:title, @group.name) %>
+<h2><%= @group.name %></h2>
+
+Owned by <%= link_to @group.user.username, user_path(@group.user) %>.

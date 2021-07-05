@@ -1,0 +1,28 @@
+<% provide(:title, "Groups") %>
+<h2>Groups</h2>
+
+<%= link_to 'Create a new group', new_group_path %>
+
+<h3>Groups you run</h3>
+<% if @ownedgroups.any? %>
+    <ol class="groups">
+        <%= render @ownedgroups %>
+    </ol>
+    <%= will_paginate @ownedgroups %>
+<% end %>
+
+<h3>Groups you're a member of</h3>
+<% if @memberships.any? %>
+    <ol class="groups">
+        <%= render @memberships %>
+    </ol>
+    <%= will_paginate @memberships %>
+<% end %>
+
+<h3>More groups</h3>
+<% if @groups.any? %>
+    <ol class="groups">
+        <%= render @groups %>
+    </ol>
+    <%= will_paginate @groups %>
+<% end %>

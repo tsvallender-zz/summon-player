@@ -56,3 +56,12 @@ users_subset.each do |user|
     ad.save!
     AdTag.create!(ad_id: ad.id, tag_id: warhammer.id)
 end
+
+# Generate groups
+users_subset.each do |user|
+    group = user.groups.build(name: Faker::Superhero.name)
+    group.save!
+    users_subset.each do |u|
+        GroupUser.create!(group_id: group.id, user_id: u.id)
+    end
+end

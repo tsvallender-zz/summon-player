@@ -10,8 +10,9 @@ class User < ApplicationRecord
   has_many :chats, :through => :chat_users
   has_many :messages
   has_one_attached :image, dependent: :destroy
+  has_many :groups, dependent: :destroy
   has_many :group_users, dependent: :destroy
-  has_many :memberships, :through => :group_users
+  has_many :memberships, :through => :group_users, :source => :group
   
   validates :username,
     presence:   true,
