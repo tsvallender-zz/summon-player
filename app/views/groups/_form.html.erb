@@ -2,6 +2,7 @@
     <%= render 'shared/error_messages', object: f.object %>
     <%= f.label :name, class: 'header' %>
     <%= f.text_field :name %>
+    <%= f.select :privacy, Group.privacies.keys.map { |w| [w.humanize, w] } %>
 
     <%= f.submit yield(:button_text) %>
 <% end %>
