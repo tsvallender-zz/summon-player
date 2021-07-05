@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  before_action :authenticate_user!
   def index
     # need different page params for different sections
     @groups = Group.all.paginate(page: params[:page])
@@ -8,6 +9,11 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    if @group.members.include? current_user
+      @groupuser = GroupUser.where(user_id: current_user.id, group_id: @group.id).first
+    else 
+      @groupuser = GroupUser.new
+    end
   end
 
   def new

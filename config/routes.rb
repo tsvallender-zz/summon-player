@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :chats, only: [:index, :show, :new, :create]
   resources :tags
   resources :groups
+  resources :group_users, only: [:create, :destroy]
   resources :ads do
     member do
       patch :archive

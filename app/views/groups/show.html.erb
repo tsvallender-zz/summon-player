@@ -5,14 +5,29 @@
 <% end %>
 <ul>
     <li>Owned by <%= link_to @group.user.username, user_path(@group.user) %>.</li>
-    <li>Group is
-    <% case @group.privacy %>
-    <% when 'open' %>
-        open.
-    <% when 'request' %>
-        open to requests.
-    <% when 'invite' %>
-        invite-only.
-    <% end %>
-    </li>
 </ul>
+
+<turbo-frame id="join-group">
+    <% if @group.members.include?(current_user) && @group.user != current_user %>
+        <% message = "Are you sure you want to leave "+ @group.name + "?" %>
+        <%= link_to "Leave group",
+            @groupuser,
+            method: :delete,
+            data: { confirm: message } %>
+    <% elsif !@group.members.include?(current_user) %>
+        <% case @group.privacy
+           when 'open' %>
+            <% button_text = 'Join ' + @group.name %>
+        <% when 'request' %>
+            <% button_text = 'Request to join ' + @group.name %>
+        <% end %>
+        <% unless @group.privacy == 'invite' %>
+            <%= form_with(model: @groupuser, id: "joinForm") do |f| %>
+                <%= render 'shared/error_messages', object: f.object %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.hidden_field :group_id, value: @group.id %>
+                <%= f.submit button_text %>
+            <% end %>
+        <% end %>
+    <% end %>
+</turbo-frame>
