@@ -19,6 +19,11 @@
             <p>You have requested to join this group.</p>
         <% when 'invite' %>
             <p>You are invited to join this group.</p>
+            <%= form_with(model: @groupuser) do |f| %>
+                <%= render 'shared/error_messages', object: f.object %>
+                <%= f.hidden_field :confirmed, value: true %>
+                <%= f.submit "Accept invitation" %>
+            <% end %>
         <% end %>
     <% elsif @group.members.include?(current_user) %>
         <% message = "Are you sure you want to leave "+ @group.name + "?" %>

@@ -29,10 +29,10 @@ class GroupUsersController < ApplicationController
 
     def update
         gu = GroupUser.find(params[:id])
-        if gu.group.user != current_user
+        if (gu.group.privacy == 'request' && gu.group.user != current_user) ||
+           (gu.group.privacy == 'invite' && gu.user != current_user)
             redirect_to gu.group
-        end
-        if gu.update(groupusers_params)
+        elsif gu.update(groupusers_params)
             flash[:success] = "Membership confirmed"
             redirect_to requests_group_path(gu.group)
         end
