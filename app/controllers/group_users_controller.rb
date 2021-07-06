@@ -10,10 +10,9 @@ class GroupUsersController < ApplicationController
         elsif gu.group.privacy == 'request'
             gu.save
             redirect_to gu.group
-            # todo join list - status in group user
-        else
-            flash[:error] = "This group is invite-only"
-            redirect_to gu.group
+        elsif gu.group.privacy == 'invite' && gu.group.members.include?(current_user)
+            gu.save
+            redirect_to invite_group_path(gu.group)
         end
     end
 

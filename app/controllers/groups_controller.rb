@@ -73,6 +73,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @users = User.where.not(id: GroupUser.where(group_id: @group.id).pluck(:user_id))
     @users = @users.paginate(page: params[:page])
+    @gu = GroupUser.new
   end
 
   private

@@ -3,9 +3,9 @@
 
 <% if @group.user == current_user %>
     <%= link_to 'Confirmed members',
-        members_group_path(@group) %> |
+        members_group_path %> |
     <%= link_to 'Membership requests', 
-        requests_group_path(@group) %>
+        requests_group_path %>
 <% end %>
 <% if @members.any? %>
     <ol class="groups">

@@ -14,7 +14,12 @@
         <p>You own this group.</p>
     <% elsif @group.members.include?(current_user) &&
         @group.group_users.find_by(user_id: current_user.id).confirmed == false %>
-        <p>You have requested to join this group.</p>
+        <% case @group.privacy
+           when 'request' %>
+            <p>You have requested to join this group.</p>
+        <% when 'invite' %>
+            <p>You are invited to join this group.</p>
+        <% end %>
     <% elsif @group.members.include?(current_user) %>
         <% message = "Are you sure you want to leave "+ @group.name + "?" %>
         <%= link_to "Leave group",
