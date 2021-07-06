@@ -1,0 +1,15 @@
+<% provide(:title, @group.name + " members") %>
+<h1><%= @group.name %> members</h1>
+
+<% if @group.user == current_user %>
+    <%= link_to 'Confirmed members',
+        members_group_path(@group) %> | 
+    <%= link_to 'Membership requests', 
+        requests_group_path(@group) %>
+<% end %>
+<% if @members.any? %>
+    <ol class="groups">
+        <%= render @members %>
+    </ol>
+    <%= will_paginate @members %>
+<% end %>

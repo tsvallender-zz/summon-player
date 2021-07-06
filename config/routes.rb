@@ -5,8 +5,13 @@ Rails.application.routes.draw do
   resources :messages, only: [:index, :show, :new, :create]
   resources :chats, only: [:index, :show, :new, :create]
   resources :tags
-  resources :groups
-  resources :group_users, only: [:create, :destroy]
+  resources :groups do
+    member do
+      get :members
+      get :requests
+    end
+  end
+  resources :group_users, only: [:create, :destroy, :update]
   resources :ads do
     member do
       patch :archive

@@ -3,16 +3,17 @@ class GroupUsersController < ApplicationController
     def create
         gu = GroupUser.new(groupusers_params)
         if gu.group.privacy == 'open'
+            gu.confirmed = true
             if gu.save
                 redirect_to gu.group
             end
         elsif gu.group.privacy == 'request'
-            flash[:success] = "You have requested to join " + gu.group.name
-            redirect_to @group
+            gu.save
+            redirect_to gu.group
             # todo join list - status in group user
         else
             flash[:error] = "This group is invite-only"
-            redirect_to @group
+            redirect_to gu.group
         end
     end
 
@@ -27,8 +28,16 @@ class GroupUsersController < ApplicationController
         redirect_to group
     end
 
+    def update
+        gu = GroupUser.find(params[:id])
+        if gu.update(groupusers_params)
+            flash[:success] = "Membership confirmed"
+            redirect_to requests_group_path(gu.group)
+        end
+    end
+
     private
     def groupusers_params
-        params.require(:group_user).permit(:group_id, :user_id)
+        params.require(:group_user).permit(:group_id, :user_id, :confirmed)
     end
 end

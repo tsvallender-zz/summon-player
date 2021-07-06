@@ -1,0 +1,14 @@
+<turbo-frame id="gu-<% group_user.id %>">
+<span class="user">
+    <%= avatar(group_user.user, 50) %>
+    <span class="text"><%= group_user.user.username %></span>
+    <% if group_user.confirmed == false &&
+        group_user.group.user == current_user %>
+        <%= form_with(model: group_user) do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+            <%= f.hidden_field :confirmed, value: true %>
+            <%= f.submit "Confirm membership" %>
+        <% end %>
+    <% end %>
+</span>
+</turbo-frame>

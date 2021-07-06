@@ -62,6 +62,6 @@ users_subset.each do |user|
     group = user.groups.build(name: Faker::Superhero.name)
     group.save!
     users_subset.each do |u|
-        GroupUser.create!(group_id: group.id, user_id: u.id)
+        GroupUser.create!(group_id: group.id, user_id: u.id, confirmed: true)
     end
 end

@@ -51,6 +51,23 @@ class GroupsController < ApplicationController
     redirect_to groups_url
   end
 
+  def members
+    @group = Group.find(params[:id])
+    @members = @group.group_users.where("confirmed = true")
+      .paginate(page: params[:page])
+  end
+
+  def requests
+    @group = Group.find(params[:id])
+    if @group.privacy == 'request'
+      @members = @group.group_users.where("confirmed = false")
+        .paginate(page: params[:page])
+      render 'members'
+    else
+      redirect_to @group
+    end
+  end
+
   private
   def group_params
       params.require(:group).permit(:name, :privacy)
