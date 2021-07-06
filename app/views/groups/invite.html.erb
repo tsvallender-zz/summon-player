@@ -1,0 +1,14 @@
+<% provide(:title, @group.name + " invitations") %>
+<h1><%= link_to @group.name, @group %></h1>
+<h2>Invite new members</h2>
+<% if @users.any? %>
+    <ol class="users">
+        <% @users.each do |u| %>
+            <div>
+            <%= render partial: 'users/user', locals: { user: u } %>
+            <%= link_to 'Invite', '#' %>
+            </div>
+        <% end %>
+    </ol>
+    <%= will_paginate @users %>
+<% end %>
