@@ -5,4 +5,6 @@ class Group < ApplicationRecord
 
   enum privacy: { open: 'open', request: 'request', invite: 'invite' }
   validates :privacy, inclusion: { in: privacies.keys}
+
+  validates :name, presence: true
 end
