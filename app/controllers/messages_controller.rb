@@ -48,7 +48,7 @@ class MessagesController < ApplicationController
             locals: {message: @message})
         end
         format.html do
-          render :layout => false
+          render :layout => false, :partial => 'messages/message', :locals => { message: @message }
         end
       end
       
