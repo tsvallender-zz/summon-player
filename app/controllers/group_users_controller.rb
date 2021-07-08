@@ -1,5 +1,7 @@
 class GroupUsersController < ApplicationController
     before_action :authenticate_user!
+    before_action :set_group_user, only: [:destroy, :update]
+    
     def create
         gu = GroupUser.new(groupusers_params)
         if gu.group.privacy == 'open'
@@ -17,29 +19,31 @@ class GroupUsersController < ApplicationController
     end
 
     def destroy
-        gu = GroupUser.find(params[:id])
-        group = gu.group
+        group = @gu.group
         if group.user == current_user
             flash[:error] = "You can't leave a group you own."
-        elsif gu.destroy
+        elsif @gu.destroy
             flash[:success] = "You left " + group.name
         end
         redirect_to group
     end
 
     def update
-        gu = GroupUser.find(params[:id])
-        if (gu.group.privacy == 'request' && gu.group.user != current_user) ||
-           (gu.group.privacy == 'invite' && gu.user != current_user)
-            redirect_to gu.group
-        elsif gu.update(groupusers_params)
+        if (@gu.group.privacy == 'request' && @gu.group.user != current_user) ||
+           (@gu.group.privacy == 'invite' && @gu.user != current_user)
+            redirect_to @gu.group
+        elsif @gu.update(groupusers_params)
             flash[:success] = "Membership confirmed"
-            redirect_to requests_group_path(gu.group)
+            redirect_to requests_group_path(@gu.group)
         end
     end
 
     private
     def groupusers_params
         params.require(:group_user).permit(:group_id, :user_id, :confirmed)
+    end
+
+    def set_group_user
+        @gu = GroupUser.find(params[:id])
     end
 end
