@@ -68,6 +68,14 @@ class GroupsController < ApplicationController
     end
   end
 
+  def invite
+    # todo filter/search users
+    @group = Group.find(params[:id])
+    @users = User.where.not(id: GroupUser.where(group_id: @group.id).pluck(:user_id))
+    @users = @users.paginate(page: params[:page])
+    @gu = GroupUser.new
+  end
+
   private
   def group_params
       params.require(:group).permit(:name, :privacy)

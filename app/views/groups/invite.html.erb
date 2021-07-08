@@ -1,0 +1,22 @@
+<% provide(:title, @group.name + " invitations") %>
+<h1><%= link_to @group.name, @group %></h1>
+<h2>Invite new members</h2>
+<% if @users.any? %>
+    <ol class="users">
+        <% @users.each do |u| %>
+        <turbo-frame id="user-<%= u.id %>">
+            <div>
+            <%= render partial: 'users/user', locals: { user: u } %>
+            <%= form_with(model: @gu) do |f| %>
+                <%= render 'shared/error_messages', object: f.object %>
+                <%= f.hidden_field :user_id, value: u.id %>
+                <%= f.hidden_field :group_id, value: @group.id %>
+                <%= f.hidden_field :confirmed, value: false %>
+                <%= f.submit "Invite" %>
+            <% end %>
+            </div>
+        </turbo-frame>
+        <% end %>
+    </ol>
+    <%= will_paginate @users %>
+<% end %>

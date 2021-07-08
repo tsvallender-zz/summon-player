@@ -10,10 +10,9 @@ class GroupUsersController < ApplicationController
         elsif gu.group.privacy == 'request'
             gu.save
             redirect_to gu.group
-            # todo join list - status in group user
-        else
-            flash[:error] = "This group is invite-only"
-            redirect_to gu.group
+        elsif gu.group.privacy == 'invite' && gu.group.members.include?(current_user)
+            gu.save
+            redirect_to invite_group_path(gu.group)
         end
     end
 
@@ -30,7 +29,10 @@ class GroupUsersController < ApplicationController
 
     def update
         gu = GroupUser.find(params[:id])
-        if gu.update(groupusers_params)
+        if (gu.group.privacy == 'request' && gu.group.user != current_user) ||
+           (gu.group.privacy == 'invite' && gu.user != current_user)
+            redirect_to gu.group
+        elsif gu.update(groupusers_params)
             flash[:success] = "Membership confirmed"
             redirect_to requests_group_path(gu.group)
         end
