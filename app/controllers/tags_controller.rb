@@ -1,8 +1,8 @@
 class TagsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_tag, only: [:show, :edit, :update, :destroy]
 
   def show
-    @tag = Tag.find_by(name: params[:id])
     @ads = @tag.ads.active.paginate(page: params[:page])
   end
 
@@ -20,11 +20,9 @@ class TagsController < ApplicationController
   end
 
   def edit
-    @tag = Tag.find_by(name: params[:id])
   end
 
   def update
-    @tag = Tag.find_by(name: params[:id])
     if @tag.update(tag_params)
       redirect_to @tag
     else
@@ -33,7 +31,7 @@ class TagsController < ApplicationController
   end
 
   def destroy
-    Tag.find_by(name: params[:id]).destroy
+    @tag.destroy
     redirect_to tags_path
   end
 
@@ -41,5 +39,9 @@ class TagsController < ApplicationController
 	private
     def tag_params
       params.require(:tag).permit(:name, :description)
+    end
+
+    def set_tag
+      @tag = Tag.find_by(name: params[:id])
     end
 end
