@@ -27,5 +27,7 @@ function addButtonListeners() {
 
 function clearMessageInput() {
     let input = document.getElementById("message_text");
-    input.value = "";
+    if (input) {
+        input.value = "";
+    }
 }
