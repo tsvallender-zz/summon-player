@@ -1,7 +1,20 @@
 require "test_helper"
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  include Devise::Test::IntegrationHelpers
+  def setup
+    @group = groups(:dragon)
+    @user = users(:trevor)
+  end
+
+  test "should create post when logged in" do
+    sign_in @user
+    assert_difference "Post.count", 1 do
+      post posts_path, params: { post: { 
+        content: "This is a test", 
+        user_id: @user.id,
+        subject_id: @group.id,
+        subject_type: 'Group' }}
+    end
+  end
 end

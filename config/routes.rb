@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :messages, only: [:index, :show, :new, :create]
   resources :chats, only: [:index, :show, :new, :create]
   resources :tags
+  resources :posts
   resources :groups do
     member do
       get :members
