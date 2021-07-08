@@ -14,6 +14,7 @@ class GroupsController < ApplicationController
     else 
       @groupuser = GroupUser.new
     end
+    @post = Post.new
   end
 
   def new

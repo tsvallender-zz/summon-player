@@ -1,0 +1,14 @@
+<turbo-frame id="post-form">
+<%= form_with(model: post) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <%= f.label :content, class: 'header' %>
+    <%= f.text_area :content %>
+
+    <%= f.hidden_field :subject_type, value: subject.class.name %>
+    <%= f.hidden_field :subject_id, value: subject.id %>
+    <%= f.hidden_field :user_id, value: current_user.id%>
+
+    <%= f.submit 'Create post' %>
+<% end %>
+</turbo-frame>

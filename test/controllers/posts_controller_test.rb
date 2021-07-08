@@ -14,7 +14,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         content: "This is a test", 
         user_id: @user.id,
         subject_id: @group.id,
-        subject_type: 'Group' }}
+        subject_type: @group.class.name }}
     end
   end
 end

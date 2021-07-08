@@ -48,3 +48,7 @@
         <% end %>
     <% end %>
 </turbo-frame>
+
+<h3>Make a post</h3>
+<%= render :partial => 'posts/form', :locals => { subject: @group, post: @post } %>
+<h3>Posts</h3>
