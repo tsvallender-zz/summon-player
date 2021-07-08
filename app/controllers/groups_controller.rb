@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :members, :requests, :invite]
   def index
     # need different page params for different sections
     @groups = Group.all.paginate(page: params[:page])
@@ -8,7 +9,6 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find(params[:id])
     if @group.members.include? current_user
       @groupuser = GroupUser.where(user_id: current_user.id, group_id: @group.id).first
     else 
@@ -31,34 +31,29 @@ class GroupsController < ApplicationController
   end
 
   def edit
-    @group = Group.find(params[:id])
   end
 
   def update
-    group = Group.find(params[:id])
-    if group.update(group_params)
+    if @group.update(group_params)
         flash[:success] = "Group updated"
-        redirect_to group
+        redirect_to @group
     else
         render 'edit'
     end
   end
 
   def destroy
-    group = Group.find(params[:id])
-    group.destroy
+    @group.destroy
     flash[:success] = "Group deleted"
     redirect_to groups_url
   end
 
   def members
-    @group = Group.find(params[:id])
     @members = @group.group_users.where("confirmed = true")
       .paginate(page: params[:page])
   end
 
   def requests
-    @group = Group.find(params[:id])
     if @group.privacy == 'request'
       @members = @group.group_users.where("confirmed = false")
         .paginate(page: params[:page])
@@ -70,7 +65,6 @@ class GroupsController < ApplicationController
 
   def invite
     # todo filter/search users
-    @group = Group.find(params[:id])
     @users = User.where.not(id: GroupUser.where(group_id: @group.id).pluck(:user_id))
     @users = @users.paginate(page: params[:page])
     @gu = GroupUser.new
@@ -79,5 +73,9 @@ class GroupsController < ApplicationController
   private
   def group_params
       params.require(:group).permit(:name, :privacy)
+  end
+
+  def set_group
+    @group = Group.find(params[:id])
   end
 end
