@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     member do
       get :members
       get :requests
+      get :invite
     end
   end
   resources :group_users, only: [:create, :destroy, :update]
