@@ -1,7 +1,7 @@
 class AdsController < ApplicationController
     before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :archive, :unarchive]
+    before_action :set_ad, only: [:show, :edit, :update, :destroy, :archive, :unarchive, :messages, :ad_owner]
     before_action :ad_owner, only: [:edit, :update, :archive, :unarchive]
-
     require 'will_paginate/array'
 
     def index
@@ -30,7 +30,6 @@ class AdsController < ApplicationController
 
     def show
         @message = Message.new
-        @ad = Ad.find(params[:id])
         if (user_signed_in?)
             if @ad.archived && @ad.user != current_user
                 flash[:alert] = "You don't have permission to view that ad"
@@ -56,27 +55,24 @@ class AdsController < ApplicationController
     end
 
     def edit
-        @ad = Ad.find(params[:id])
     end
 
     def update
-        ad = Ad.find(params[:id])
-        if ad.update(ad_params)
+        if @ad.update(ad_params)
             flash[:success] = "Ad updated"
-            redirect_to ad
+            redirect_to @ad
         else
             render 'edit'
         end
     end
 
     def destroy
-        Ad.find(params[:id]).destroy
+        @ad.destroy
         flash[:success] = "Ad deleted"
         redirect_to ads_url
     end
 
     def archive
-        @ad = Ad.find(params[:id])
         @ad.archived = true
         @ad.save!
         flash[:success] = "Ad has been archived"
@@ -84,7 +80,6 @@ class AdsController < ApplicationController
     end
 
     def unarchive
-        @ad = Ad.find(params[:id])
         @ad.archived = false
         @ad.save!
         flash[:success] = "Ad has been unarchived"
@@ -93,7 +88,6 @@ class AdsController < ApplicationController
 
     def messages
         @user = User.find_by(username: params[:user])
-        @ad = Ad.find(params[:id])
         @messages = @ad.conversation(@user)
         @message = Message.new
         render(partial: 'messages')
@@ -105,7 +99,10 @@ class AdsController < ApplicationController
         end
 
         def ad_owner
-            @ad = Ad.find(params[:id])
             redirect_to(root_path) unless current_user == @ad.user
+        end
+
+        def set_ad
+            @ad = Ad.find(params[:id])
         end
 end
