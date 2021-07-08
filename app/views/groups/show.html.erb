@@ -52,3 +52,11 @@
 <h3>Make a post</h3>
 <%= render :partial => 'posts/form', :locals => { subject: @group, post: @post } %>
 <h3>Posts</h3>
+<% if @posts.any? %>
+    <ol id="group-posts">
+        <%= render @posts %>
+    </ol>
+    <%= will_paginate @posts %>
+<% else %>
+    <p>No posts in this group yet!</p>
+<% end %>

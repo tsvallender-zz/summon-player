@@ -128,6 +128,18 @@ ol.ads {
     border-radius: 1em;
 }
 
+.post {
+    padding: .5em;
+    margin: .5em 0em;
+    border: 1px solid $border-color;
+    div {
+        font-style: italic;
+        color: $light-background;
+        font-size: .8em;
+        text-align: right;
+    }
+}
+
 #messagesFrameButton {
     position: fixed;
     bottom: .1em;

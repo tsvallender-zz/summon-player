@@ -1,0 +1,6 @@
+<li id="post-<%= post.id %>" class="post">
+    <%= post.content %>
+    <div id="post-<%= post.id %>-metadata">
+        Posted <%= time_ago_in_words post.created_at %> ago.
+    </div>
+</li>

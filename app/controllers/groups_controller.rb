@@ -15,6 +15,7 @@ class GroupsController < ApplicationController
       @groupuser = GroupUser.new
     end
     @post = Post.new
+    @posts = @group.posts.order("created_at DESC").paginate(page: params[:page])
   end
 
   def new
