@@ -7,7 +7,6 @@
 
     <%= f.hidden_field :subject_type, value: subject.class.name %>
     <%= f.hidden_field :subject_id, value: subject.id %>
-    <%= f.hidden_field :user_id, value: current_user.id%>
 
     <%= f.submit 'Create post' %>
 <% end %>

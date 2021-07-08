@@ -5,6 +5,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @group = groups(:dragon)
     @user = users(:trevor)
+    @bruenor = users(:bruenor)
   end
 
   test "should create post when logged in" do

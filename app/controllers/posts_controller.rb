@@ -3,7 +3,9 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def create
+    # todo ensure user has right to post message to subject
     @post = Post.new(post_params)
+    @post.user = current_user
     if @post.save
       render
     else
@@ -14,7 +16,7 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:subject_type, :subject_id, :user_id, :content)
+      params.require(:post).permit(:subject_type, :subject_id, :content)
     end
 
     def set_post
