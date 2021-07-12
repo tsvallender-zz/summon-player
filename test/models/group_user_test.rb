@@ -15,12 +15,12 @@ class GroupUserTest < ActiveSupport::TestCase
 
   test "should require a user" do
     @group_user.user = nil
-    assert_not @group.valid?
+    assert_not @group_user.valid?
   end
   
   test "should require a group" do
     @group_user.group = nil
-    assert_not @group.valid?
+    assert_not @group_user.valid?
   end
 
   test "default should be unconfirmed" do
