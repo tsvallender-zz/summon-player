@@ -2,7 +2,6 @@ class Post < ApplicationRecord
   belongs_to :subject, polymorphic: true
   belongs_to :user
 
-  validates :content,
-    presence: true,
-    length: { maximum: 5000 }
+  has_rich_text :content
+  validates :content, presence: true
 end

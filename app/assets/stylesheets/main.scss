@@ -132,7 +132,7 @@ ol.ads {
     padding: .5em;
     margin: .5em 0em;
     border: 1px solid $border-color;
-    div {
+    div[id^='post-'] {
         font-style: italic;
         color: $light-background;
         font-size: .8em;

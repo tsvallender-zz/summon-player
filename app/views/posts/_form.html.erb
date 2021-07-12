@@ -2,7 +2,7 @@
     <%= render 'shared/error_messages', object: f.object %>
 
     <%= f.label :content, class: 'header' %>
-    <%= f.text_area :content %>
+    <%= f.rich_text_area :content %>
 
     <%= f.hidden_field :subject_type, value: subject.class.name %>
     <%= f.hidden_field :subject_id, value: subject.id %>
