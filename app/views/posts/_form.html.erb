@@ -1,5 +1,4 @@
-<turbo-frame id="post-form">
-<%= form_with(model: post) do |f| %>
+<%= form_with(model: post, id: "post_form") do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
 
     <%= f.label :content, class: 'header' %>
@@ -10,4 +9,3 @@
 
     <%= f.submit 'Create post' %>
 <% end %>
-</turbo-frame>

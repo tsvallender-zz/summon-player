@@ -4,11 +4,6 @@
         <span id="chatClose" onclick="document.getElementById('messagesFrame').style.display = 'none';">-</span>
     </div>
     <ol id="chats">
-        <% if current_page?(url_for(controller: 'chats')) %>
-            <%= request.original_url %>
-        <% else %>
-            <p>nope</p>
-        <% end %>
         <%= render @chats %>
     </ol>
 

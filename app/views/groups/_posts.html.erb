@@ -1,9 +1,9 @@
 <h3>Posts</h3>
 <% if posts.any? %>
-    <ol id="group-posts">
+    <ol id="group_posts">
         <%= render posts %>
     </ol>
     <%= will_paginate posts %>
 <% else %>
-    <p>No posts in this group yet!</p>
+    <p id="group_posts">No posts in this group yet!</p>
 <% end %>

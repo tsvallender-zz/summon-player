@@ -6,11 +6,12 @@ class PostsController < ApplicationController
     # todo ensure user has right to post message to subject
     @post = Post.new(post_params)
     @post.user = current_user
-    if @post.save
-      render
-    else
+    if !@post.save
       flash[:error] = "Couldn't create new post"
       redirect_to @post.subject
+    end
+    respond_to do |format|
+      format.turbo_stream
     end
   end
 

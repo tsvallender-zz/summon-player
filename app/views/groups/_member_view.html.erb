@@ -5,6 +5,8 @@
 </ul>
 
 <h3>Make a post</h3>
-<%= render :partial => 'posts/form', :locals => { subject: group, post: post } %>
+<%= turbo_frame_tag("posts") do %>
+    <%= render :partial => 'posts/form', :locals => { subject: group, post: post } %>
 
-<%= render :partial => 'groups/posts', :locals => {posts: posts }%>
+    <%= render :partial => 'groups/posts', :locals => {posts: posts }%>
+<% end %>
