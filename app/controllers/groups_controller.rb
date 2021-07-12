@@ -1,6 +1,8 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_group, only: [:show, :edit, :update, :destroy, :members, :requests, :invite]
+  before_action :group_owner, only: [:edit, :update, :destroy, :requests]
+
   def index
     # need different page params for different sections
     @groups = Group.all.paginate(page: params[:page])
@@ -79,5 +81,11 @@ class GroupsController < ApplicationController
 
   def set_group
     @group = Group.find(params[:id])
+  end
+
+  def group_owner
+    if current_user != @group.user
+      head :unauthorized
+    end
   end
 end

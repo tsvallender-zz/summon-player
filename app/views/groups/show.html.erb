@@ -1,5 +1,5 @@
 <% provide(:title, @group.name) %>
-<h2><%= @group.name %></h2>
+<h2 class="group-name"><%= @group.name %></h2>
 <% if @group.user == current_user %>
     <%= link_to 'Edit group', edit_group_path(@group) %>
 <% end %>

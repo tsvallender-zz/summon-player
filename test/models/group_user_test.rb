@@ -5,7 +5,8 @@ class GroupUserTest < ActiveSupport::TestCase
     @user = users(:trevor)
     @bruenor = users(:bruenor)
     @group = groups(:dungeon)
-    @group_user = @group.group_users.build(user: @bruenor, confirmed: true)
+    @group_user = @group.group_users.build(user: @bruenor)
+    @group_user.save
   end
 
   test "should be valid" do
@@ -21,4 +22,9 @@ class GroupUserTest < ActiveSupport::TestCase
     @group_user.group = nil
     assert_not @group.valid?
   end
+
+  test "default should be unconfirmed" do
+    assert_not @group_user.confirmed
+  end
+  
 end

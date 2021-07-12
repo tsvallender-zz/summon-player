@@ -1,17 +1,17 @@
 dungeon:
   id: 1
   name: The Dungeon Group
-  user: trevor
+  user_id: 1
   privacy: open
 
 dragon:
   id: 2
   name: The Dragon Group
-  user: bob
+  user_id: 2
   privacy: request
   
 kob:
   id: 3
   name: We are Kids on Bikes
-  user: bruenor
+  user_id: 3
   privacy: invite
