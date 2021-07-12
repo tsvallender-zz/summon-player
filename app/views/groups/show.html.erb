@@ -1,62 +1,17 @@
 <% provide(:title, @group.name) %>
 <h2 class="group-name"><%= @group.name %></h2>
+
 <% if @group.user == current_user %>
+    <h4>You own this group.</h4>
     <%= link_to 'Edit group', edit_group_path(@group) %>
-<% end %>
-<ul>
-    <li><%= link_to 'Members', members_group_path(@group) %></li>
-    <li><%= link_to 'Invite new members', invite_group_path(@group) %></li>
-    <li>Owned by <%= link_to @group.user.username, user_path(@group.user) %>.</li>
-</ul>
-
-<turbo-frame id="join-group">
-    <% if @group.user == current_user%>
-        <p>You own this group.</p>
-    <% elsif @group.members.include?(current_user) &&
-        @group.group_users.find_by(user_id: current_user.id).confirmed == false %>
-        <% case @group.privacy
-           when 'request' %>
-            <p>You have requested to join this group.</p>
-        <% when 'invite' %>
-            <p>You are invited to join this group.</p>
-            <%= form_with(model: @groupuser) do |f| %>
-                <%= render 'shared/error_messages', object: f.object %>
-                <%= f.hidden_field :confirmed, value: true %>
-                <%= f.submit "Accept invitation" %>
-            <% end %>
-        <% end %>
-    <% elsif @group.members.include?(current_user) %>
-        <% message = "Are you sure you want to leave "+ @group.name + "?" %>
-        <%= link_to "Leave group",
-            @groupuser,
-            method: :delete,
-            data: { confirm: message } %>
-    <% elsif !@group.members.include?(current_user) %>
-        <% case @group.privacy
-           when 'open' %>
-            <% button_text = 'Join ' + @group.name %>
-        <% when 'request' %>
-            <% button_text = 'Request to join ' + @group.name %>
-        <% end %>
-        <% unless @group.privacy == 'invite' %>
-            <%= form_with(model: @groupuser, id: "joinForm") do |f| %>
-                <%= render 'shared/error_messages', object: f.object %>
-                <%= f.hidden_field :user_id, value: current_user.id %>
-                <%= f.hidden_field :group_id, value: @group.id %>
-                <%= f.submit button_text %>
-            <% end %>
-        <% end %>
-    <% end %>
-</turbo-frame>
-
-<h3>Make a post</h3>
-<%= render :partial => 'posts/form', :locals => { subject: @group, post: @post } %>
-<h3>Posts</h3>
-<% if @posts.any? %>
-    <ol id="group-posts">
-        <%= render @posts %>
-    </ol>
-    <%= will_paginate @posts %>
 <% else %>
-    <p>No posts in this group yet!</p>
+    <h4>Owned by <%= link_to @group.user.username, user_path(@group.user) %>.</h4>
+<% end %>
+
+<% if @group.members.include? current_user %>
+    <%= render :partial => 'groups/member_view', 
+        :locals => { group: @group, post: @post, posts: @posts }  %>
+<% else %>
+    <%= render :partial => 'groups/non_member_view', 
+        :locals => { group: @group, posts: @posts, groupuser: @groupuser }  %>
 <% end %>

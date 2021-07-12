@@ -1,0 +1,39 @@
+<turbo-frame id="join-group">
+    <% if group.user == current_user%>
+        <p>You own this group.</p>
+    <% elsif group.members.include?(current_user) &&
+        group.group_users.find_by(user_id: current_user.id).confirmed == false %>
+        <% case group.privacy
+           when 'request' %>
+            <p>You have requested to join this group.</p>
+        <% when 'invite' %>
+            <p>You are invited to join this group.</p>
+            <%= form_with(model: groupuser) do |f| %>
+                <%= render 'shared/error_messages', object: f.object %>
+                <%= f.hidden_field :confirmed, value: true %>
+                <%= f.submit "Accept invitation" %>
+            <% end %>
+        <% end %>
+    <% elsif group.members.include?(current_user) %>
+        <% message = "Are you sure you want to leave "+ group.name + "?" %>
+        <%= link_to "Leave group",
+            groupuser,
+            method: :delete,
+            data: { confirm: message } %>
+    <% elsif !group.members.include?(current_user) %>
+        <% case group.privacy
+           when 'open' %>
+            <% button_text = 'Join ' + group.name %>
+        <% when 'request' %>
+            <% button_text = 'Request to join ' + group.name %>
+        <% end %>
+        <% unless group.privacy == 'invite' %>
+            <%= form_with(model: groupuser, id: "joinForm") do |f| %>
+                <%= render 'shared/error_messages', object: f.object %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.hidden_field :group_id, value: group.id %>
+                <%= f.submit button_text %>
+            <% end %>
+        <% end %>
+    <% end %>
+</turbo-frame>

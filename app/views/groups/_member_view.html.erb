@@ -1,0 +1,10 @@
+<ul>
+    <li><%= link_to 'Members', members_group_path(@group) %></li>
+    <li><%= link_to 'Invite new members', invite_group_path(@group) %></li>
+    <li></li>
+</ul>
+
+<h3>Make a post</h3>
+<%= render :partial => 'posts/form', :locals => { subject: group, post: post } %>
+
+<%= render :partial => 'groups/posts', :locals => {posts: posts }%>

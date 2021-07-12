@@ -18,6 +18,10 @@ class GroupsController < ApplicationController
     end
     @post = Post.new
     @posts = @group.posts.order("created_at DESC").paginate(page: params[:page])
+
+    unless @groupchat = Chat.with_users(@group.members)
+      @groupchat = Chat.new(subject: @group, users: @group.members)
+    end
   end
 
   def new
