@@ -1,7 +1,6 @@
 * Testing/bugs
 ** Sort cookie error
 * Messaging
-** Make window responsive
 ** Deal with network errors etc.
 * Ads
 ** Location
