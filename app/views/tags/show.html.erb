@@ -7,15 +7,18 @@
 <%=link_to "Delete", tag_path(@tag), :method => :delete %>  
 
 <% if @taguser.user.present? %>
+    <turbo-frame id="follow-tag">
     <%= link_to "Stop following", @taguser,
         method: :delete, data: {confirm: "Are you sure?" } %>
-
+    </turbo-frame>
 <% else %>
+    <turbo-frame id="follow-tag">
     <%= form_with(model: @taguser, id: "followForm") do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <%= f.hidden_field :tag_id, value: @tag.id %>
         <%= f.submit "Follow" %>
     <% end %>
+    </turbo-frame>
 <% end %>
 
 <p><%= @tag.description %></p>

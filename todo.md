@@ -12,7 +12,6 @@
 ** Parent/child
 ** Synonyms
 ** "Real" name
-** Follow - move to turbo frames
 * groups
 ** Messaging
 ** Clubs, Stores
