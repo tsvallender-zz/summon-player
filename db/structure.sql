@@ -476,6 +476,38 @@ CREATE TABLE public.schema_migrations (
 
 
 --
+-- Name: tag_users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.tag_users (
+    id bigint NOT NULL,
+    tag_id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: tag_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.tag_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: tag_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.tag_users_id_seq OWNED BY public.tag_users.id;
+
+
+--
 -- Name: tags; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -644,6 +676,13 @@ ALTER TABLE ONLY public.posts ALTER COLUMN id SET DEFAULT nextval('public.posts_
 
 
 --
+-- Name: tag_users id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.tag_users ALTER COLUMN id SET DEFAULT nextval('public.tag_users_id_seq'::regclass);
+
+
+--
 -- Name: tags id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -775,6 +814,14 @@ ALTER TABLE ONLY public.posts
 
 ALTER TABLE ONLY public.schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: tag_users tag_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.tag_users
+    ADD CONSTRAINT tag_users_pkey PRIMARY KEY (id);
 
 
 --
@@ -948,6 +995,27 @@ CREATE INDEX index_posts_on_user_id ON public.posts USING btree (user_id);
 
 
 --
+-- Name: index_tag_users_on_tag_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_tag_users_on_tag_id ON public.tag_users USING btree (tag_id);
+
+
+--
+-- Name: index_tag_users_on_tag_id_and_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_tag_users_on_tag_id_and_user_id ON public.tag_users USING btree (tag_id, user_id);
+
+
+--
+-- Name: index_tag_users_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_tag_users_on_user_id ON public.tag_users USING btree (user_id);
+
+
+--
 -- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1031,6 +1099,14 @@ ALTER TABLE ONLY public.groups
 
 
 --
+-- Name: tag_users fk_rails_7777edc70b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.tag_users
+    ADD CONSTRAINT fk_rails_7777edc70b FOREIGN KEY (tag_id) REFERENCES public.tags(id);
+
+
+--
 -- Name: chat_users fk_rails_86a54ec29b; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1071,6 +1147,14 @@ ALTER TABLE ONLY public.active_storage_attachments
 
 
 --
+-- Name: tag_users fk_rails_e8c6ad5d6f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.tag_users
+    ADD CONSTRAINT fk_rails_e8c6ad5d6f FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -1106,6 +1190,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210712103134'),
 ('20210712124327'),
 ('20210712124328'),
-('20210722103013');
+('20210722103013'),
+('20210722113544');
 
 
