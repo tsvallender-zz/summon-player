@@ -128,15 +128,18 @@ ol.ads {
     border-radius: 1em;
 }
 
-.post {
+.post, #post_content {
     padding: .5em;
     margin: .5em 0em;
     border: 1px solid $border-color;
     em {
         font-style: italic;
     }
-    li {
+    ul li {
         list-style-type: disc;
+    }
+    ol li {
+        list-style-type: decimal;
     }
     div[id^='post-'] {
         font-style: italic;
