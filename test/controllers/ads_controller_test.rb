@@ -49,7 +49,7 @@ class AdsControllerTest < ActionDispatch::IntegrationTest
 
   test "should redirect create when not logged in" do
     assert_no_difference "Ad.count" do
-      post ads_path, params: { ad: { title: "Test ad", text: "Testing", category_id: @category.id, taglist: "dnd"}}
+      post ads_path, params: { ad: { title: "Test ad", content: "Testing", category_id: @category.id, taglist: "dnd"}}
     end
     assert_redirected_to new_user_session_path
   end
@@ -57,14 +57,14 @@ class AdsControllerTest < ActionDispatch::IntegrationTest
   test "should create ad when logged in" do
     sign_in @bob
     assert_difference "Ad.count", 1 do
-      post ads_path, params: { ad: { title: "Test ad", text: "Testing", category_id: @category.id, taglist: "dnd"}}
+      post ads_path, params: { ad: { title: "Test ad", content: "Testing", category_id: @category.id, taglist: "dnd"}}
     end
   end
 
   test "should redirect edit when not logged in" do
     @old = @ad
     assert_equal @old, @ad
-    patch ad_path(@ad), params: {ad: { title: "Test ad", text: "Testing", category: @category}}
+    patch ad_path(@ad), params: {ad: { title: "Test ad", content: "Testing", category: @category}}
     assert_equal @old, @ad
     assert_redirected_to new_user_session_path
   end
@@ -81,14 +81,14 @@ class AdsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
     @old = @ad
     assert_equal @old, @ad
-    patch ad_path(@ad), params: {ad: { title: "Test ad", text: "Testing", category: @category}}
+    patch ad_path(@ad), params: {ad: { title: "Test ad", content: "Testing", category: @category}}
     assert_equal @old, @ad
     assert_redirected_to root_path
   end
 
   test "should update when logged in" do
     sign_in @bob
-    patch ad_path(@bobsad), params: {ad: { title: "Test ad", text: "Testing", category: @category}}
+    patch ad_path(@bobsad), params: {ad: { title: "Test ad", content: "Testing", category: @category}}
     assert_redirected_to ad_path(@bobsad)
     get ad_path(@bobsad)
     assert_select "h2.ad-title", "Test ad"

@@ -10,7 +10,7 @@ class AdTagsTest < ActionDispatch::IntegrationTest
 
   test "new ad should create necessary tags, add all" do
     @ad = @user.ads.build(title: "Let's play Forbidden Lands",
-      text: "I'd love to play this game'",
+      content: "I'd love to play this game'",
       category: @rpg)
     @ad.save
     @ad.addTags(['forbiddenlands', 'fantasy', 'hexcrawl'])

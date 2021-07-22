@@ -1,6 +1,6 @@
 <li id="ad-id-<%= ad.id %>">
     <h4 class="ad-title"><%= link_to ad.title, ad_path(ad.id) %></h4>
-    <div class="ad-text"><%= ad.text %></div>
+    <div class="ad-text"><%= ad.content %></div>
     <div class="ad-category"><span class="h">Category:</span> <%= ad.category.name%></div>
     <div class="ad-tags"><span class="h">Tags:</span>
         <% ad.tags.each do |tag| %>

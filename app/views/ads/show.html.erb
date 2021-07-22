@@ -7,7 +7,7 @@
         <%= link_to 'Unarchive ad', unarchive_ad_path, method: "patch" %>
     </div>
 <% end %>
-<p class="ad-text"><%= @ad.text %></p>
+<p class="ad-text"><%= @ad.content %></p>
 <div class="ad-user">Posted by <%= @ad.user.username %></div>
 <div class="ad-category"><span class="h">Category:</span> <%= @ad.category.name %></div>
 <div class="ad-tags"><span class="h">Tags:</span>

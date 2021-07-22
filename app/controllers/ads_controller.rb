@@ -43,7 +43,7 @@ class AdsController < ApplicationController
     end
 
     def create
-        @ad = current_user.ads.build(title: ad_params[:title], text: ad_params[:text])
+        @ad = current_user.ads.build(title: ad_params[:title], content: ad_params[:content])
         @ad.category = Category.find(ad_params[:category_id])
         if @ad.save
             @ad.addTags(ad_params[:taglist].split(' '))
@@ -95,7 +95,7 @@ class AdsController < ApplicationController
 
     private
         def ad_params
-            params.require(:ad).permit(:title, :text, :category_id, :taglist, :terms)
+            params.require(:ad).permit(:title, :content, :category_id, :taglist, :terms)
         end
 
         def ad_owner

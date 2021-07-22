@@ -1,0 +1,31 @@
+ad_one:
+  record_type: Ad
+  record_id: 1
+  name: content
+  body: <p>I want to play in Dungeons</p>
+  created_at: <%= 1.day.ago %>
+  updated_at: <%= 1.day.ago %>
+
+ad_two:
+  record_type: Ad
+  record_id: 2
+  name: content
+  body: <p>I want to play Kids on Bikes</p>
+  created_at: <%= 1.hour.ago %>
+  updated_at: <%= 1.minute.ago %>
+
+ad_three:
+  record_type: Ad
+  record_id: 3
+  name: content
+  body: <p>I want to play Scythe</p>
+  created_at: <%= 1.minute.ago %>
+  updated_at: <%= 1.second.ago %>
+
+ad_four:
+  record_type: Ad
+  record_id: 4
+  name: content
+  body: <p>I want to play WHQ</p>
+  created_at: <%= 1.year.ago %>
+  updated_at: <%= 1.day.ago %>
