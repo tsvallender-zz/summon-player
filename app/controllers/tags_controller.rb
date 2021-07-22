@@ -4,6 +4,12 @@ class TagsController < ApplicationController
 
   def show
     @ads = @tag.ads.active.paginate(page: params[:page])
+
+    if @tag.followers.include? current_user
+      @taguser = TagUser.find_by(user: current_user, tag: @tag)
+    else
+      @taguser = TagUser.new
+    end
   end
 
   def new

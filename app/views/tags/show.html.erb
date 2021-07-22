@@ -6,6 +6,18 @@
 
 <%=link_to "Delete", tag_path(@tag), :method => :delete %>  
 
+<% if @taguser.user.present? %>
+    <%= link_to "Stop following", @taguser,
+        method: :delete, data: {confirm: "Are you sure?" } %>
+
+<% else %>
+    <%= form_with(model: @taguser, id: "followForm") do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <%= f.hidden_field :tag_id, value: @tag.id %>
+        <%= f.submit "Follow" %>
+    <% end %>
+<% end %>
+
 <p><%= @tag.description %></p>
 
 <% if @tag.ads.any? %>

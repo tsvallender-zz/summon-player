@@ -12,7 +12,7 @@
 ** Parent/child
 ** Synonyms
 ** "Real" name
-** Follow - same as adtags associations
+** Follow - move to turbo frames
 * groups
 ** Messaging
 ** Clubs, Stores
