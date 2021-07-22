@@ -12,10 +12,10 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
     assert_difference "Post.count", 1 do
       post posts_path, params: { post: { 
-        content: "This is a test", 
-        user_id: @user.id,
-        subject_id: @group.id,
-        subject_type: @group.class.name }}
+          content: "This is a test", 
+          subject_id: @group.id,
+          subject_type: @group.class.name }},
+        as: :turbo_stream
     end
   end
 end
