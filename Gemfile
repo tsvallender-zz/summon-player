@@ -24,6 +24,7 @@ group :development, :test do
   gem 'faker'
   gem 'guard'
   gem 'guard-minitest'
+  gem 'rails_real_favicon'
 end
 
 group :development do
