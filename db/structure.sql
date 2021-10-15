@@ -276,7 +276,7 @@ CREATE TABLE public.chat_users (
     id bigint NOT NULL,
     chat_id bigint NOT NULL,
     user_id bigint NOT NULL,
-    last_read timestamp without time zone DEFAULT '2021-07-08 07:42:24.691802'::timestamp without time zone NOT NULL,
+    last_read timestamp without time zone DEFAULT '2021-10-15 10:18:44.286117'::timestamp without time zone NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
